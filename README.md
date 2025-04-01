@@ -52,3 +52,8 @@ export default tseslint.config({
   },
 })
 ```
+Run proyect on docker:
+
+```sh
+docker run -p 8081:8081 -v $(pwd):/app fitfrontend
+```
