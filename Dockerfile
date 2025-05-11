@@ -1,11 +1,17 @@
-FROM node:alpine 
+FROM node:alpine
 
 WORKDIR /app
 
-COPY . .
+# Copiar solo los archivos de dependencias primero
+COPY package.json package-lock.json ./
 
+# Instalar dependencias
 RUN npm install
+
+# Copiar el resto de los archivos
+COPY . .
 
 EXPOSE 8081
 
-CMD ["sh", "-c", "npm install && npm run dev"]
+# Nota: El comando final se sobrescribe en docker-compose.yml
+CMD ["npm", "run", "dev"]
