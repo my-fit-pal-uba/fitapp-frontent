@@ -74,7 +74,12 @@ p{
   font-size: 14px;
   transition: all 0.3s ease;
   max-width: 280px;
+  background-color: white;
 }
+
+.input::placeholder {
+  color: black
+} 
 
 /* Efectos al enfocar */
 .email-input-wrapper input:focus,
@@ -86,7 +91,7 @@ p{
 
 /* Estilo para estado inválido */
 .email-input-wrapper input:invalid,
-.password-input-wrapper input:invalid {
+.password-nput-wrapper input:invalid {
   border-color: #fc8181;
 }
 

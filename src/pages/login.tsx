@@ -37,6 +37,7 @@ const Login: React.FC<LoginFormProps> = ({ onLogin, setError }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ingrese su email"
+              class="input"
             />
           </div>
           <div className='password-input-wrapper'>
@@ -46,6 +47,7 @@ const Login: React.FC<LoginFormProps> = ({ onLogin, setError }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
+              class="input"
             />
           </div>
         </div>
