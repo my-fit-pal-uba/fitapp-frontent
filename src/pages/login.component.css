@@ -69,6 +69,10 @@ p{
 
 .input::placeholder {
   color: black
+}
+
+.input{
+  color: black
 } 
 
 .email-input-wrapper input:focus,
