@@ -5,6 +5,7 @@ import './login.css';
 function Login(): JSX.Element {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,7 +44,7 @@ function Login(): JSX.Element {
           </div>
         </div>
         <div className="login-button-wrapper">
-          <button type="button" onClick={() => {}}>
+          <button type="button" onClick={() => navigate('/signup')}>
             Crear Cuenta
           </button>
           <button type="submit">
