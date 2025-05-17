@@ -1,4 +1,4 @@
-.hola {
+.sign-up-card-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +66,7 @@
   border-radius: 8px;
   font-size: 14px;
   transition: all 0.3s ease;
-  max-width: 280px;
+  max-width: 80%;
   background-color: white;
 }
 
@@ -92,7 +92,6 @@
 }
 
 .password-input-wrapper::after {
-  content: "🔒";
   position: absolute;
   right: 12px;
   opacity: 0.5;

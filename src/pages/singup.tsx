@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import './signup.css';
 
-function SignUp () {
+function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <div className="hola">
+    <div className="sign-up-card-wrapper">
+      <form action="" style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <div className="app-title">
           <p>PeakFit</p>
         </div>
@@ -32,10 +34,11 @@ function SignUp () {
           </div>
         </div>
         <div className="login-button-wrapper">
-          <button type="button" onClick={() => {}}>
+          <button type="button" onClick={() => { }}>
             Crear Cuenta
           </button>
         </div>
+      </form>
     </div>
   );
 }

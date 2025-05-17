@@ -34,7 +34,6 @@ p{
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  width: 100%;
   position: relative; /* Para posicionar elementos hijos */
   gap: 12px; /* Espacio entre label e input */
 }
@@ -63,7 +62,7 @@ p{
   border-radius: 8px;
   font-size: 14px;
   transition: all 0.3s ease;
-  max-width: 280px;
+  max-width: 80%;
   background-color: white;
 }
 
@@ -89,7 +88,6 @@ p{
 }
 
 .password-input-wrapper::after {
-  content: "🔒";
   position: absolute;
   right: 12px;
   opacity: 0.5;
