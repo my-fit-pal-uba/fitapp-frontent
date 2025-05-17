@@ -5,7 +5,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: red;
   background-image: url('./assets/fondo.png');
 
   font-synthesis: none;
@@ -24,13 +23,12 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  margin: 0;               /* Elimina márgenes predeterminados */
+  min-height: 100vh;       /* Altura mínima = 100% del viewport */
+  display: flex;           /* Activa Flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
 }
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

@@ -44,7 +44,9 @@ function Login(): JSX.Element {
           </div>
         </div>
         <div className="login-button-wrapper">
-          <button type="button" onClick={() => navigate('/signup')}>
+          <button type="button" onClick={() => 
+            navigate('/signup')
+          }>
             Crear Cuenta
           </button>
           <button type="submit">

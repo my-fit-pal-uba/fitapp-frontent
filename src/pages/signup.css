@@ -1,0 +1,137 @@
+.hola {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #c7fdd6;
+    height: 300px;
+    width: 500px;
+    border-radius: 20px;
+}
+
+.app-title {
+    color: #28666E;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.email-input-wrapper, 
+.password-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+  position: relative; /* Para posicionar elementos hijos */
+  gap: 12px; /* Espacio entre label e input */
+}
+
+.email-input-wrapper.vertical,
+.password-input-wrapper.vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.email-input-wrapper label,
+.password-input-wrapper label {
+  min-width: 100px; /* Ancho consistente */
+  text-align: right;
+  font-weight: 500;
+  color: #2d3748; /* Color oscuro legible */
+  transition: all 0.2s ease;
+}
+
+.email-input-wrapper input,
+.password-input-wrapper input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  max-width: 280px;
+  background-color: white;
+}
+
+.input::placeholder {
+  color: black
+}
+
+.input{
+  color: black
+} 
+
+.email-input-wrapper input:focus,
+.password-input-wrapper input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+
+.email-input-wrapper input:invalid,
+.password-nput-wrapper input:invalid {
+  border-color: #fc8181;
+}
+
+.password-input-wrapper::after {
+  content: "🔒";
+  position: absolute;
+  right: 12px;
+  opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .email-input-wrapper,
+  .password-input-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .email-input-wrapper label,
+  .password-input-wrapper label {
+    text-align: left;
+    min-width: auto;
+  }
+}
+
+label {
+    color: black;
+}
+
+input {
+    width: 200px;
+    height: 20px;
+    color: white;
+    padding-left: 10px;
+    background-color: #E6EBE0;
+}
+
+.login-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    background-color: #28666E;
+    margin-right: 10px;
+}
