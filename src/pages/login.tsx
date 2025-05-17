@@ -1,26 +1,17 @@
-import { useState } from 'react';
-import './login.component.css'
+import { useState, FormEvent, JSX } from 'react';
+import { useNavigate } from 'react-router';
+import './login.css';
 
-interface LoginFormProps {
-  onLogin: (credentials: { email: string; password: string }) => void;
-  error: string;
-  setError: (message: string) => void;
-}
+function Login(): JSX.Element {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-const Login: React.FC<LoginFormProps> = ({ onLogin, setError }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('');
-
-    if (!email || !password) {
-      setError('Por favor ingresa email y contraseña');
-      return;
-    }
-
-    onLogin({ email, password });
+    // Lógica de autenticación aquí
+    console.log({ email, password });
+    // Ejemplo de redirección después del login:
+    // navigate('/dashboard');
   };
 
   return (
@@ -37,7 +28,7 @@ const Login: React.FC<LoginFormProps> = ({ onLogin, setError }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ingrese su email"
-              class="input"
+              className="input"
             />
           </div>
           <div className='password-input-wrapper'>
@@ -47,21 +38,21 @@ const Login: React.FC<LoginFormProps> = ({ onLogin, setError }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
-              class="input"
+              className="input"
             />
           </div>
         </div>
         <div className="login-button-wrapper">
-          <button type="submit" >
+          <button type="button" onClick={() => {}}>
             Crear Cuenta
           </button>
-          <button type="submit" >
+          <button type="submit">
             Ingresar
           </button>
         </div>
       </div>
     </form>
   );
-};
+}
 
 export default Login;

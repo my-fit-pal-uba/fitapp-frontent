@@ -1,14 +1,12 @@
 version: '3.8'
-
 services:
-  app:
+  frontend:
     build: .
     ports:
       - "8081:8081"
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./:/app          
+      - /app/node_modules     
     environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
-    command: npm run dev
+      - CHOKIDAR_USEPOLLING=true  
+      - WATCHPACK_POLLING=true     
