@@ -5,6 +5,44 @@ function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  async function hashPassword(password: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const handleSignUp = async () => {
+
+    try {
+      const hashedPassword = await hashPassword(password);
+      const response = await fetch('http://172.26.0.3:8080/access/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: hashedPassword,
+          name: 'Jose',      // Puedes cambiar estos valores o agregarlos como inputs
+          last_name: 'Nacho'
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert('Cuenta creada exitosamente');
+        console.log(data);
+      } else {
+        alert('Error al crear la cuenta');
+        console.log(data);
+      }
+    } catch (error) {
+      alert('Error de conexión con la API');
+      console.error(error);
+    }
+  };
+
   return (
     <div className="sign-up-card-wrapper">
       <form action="" style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -34,13 +72,16 @@ function SignUp() {
           </div>
         </div>
         <div className="login-button-wrapper">
-          <button type="button" onClick={() => { }}>
+          <button type="button" onClick={() => { handleSignUp() }}>
             Crear Cuenta
           </button>
         </div>
       </form>
     </div>
   );
-}
+
+};
+
+
 
 export default SignUp;

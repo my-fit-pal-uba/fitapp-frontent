@@ -7,12 +7,44 @@ function Login(): JSX.Element {
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+
+  async function hashPassword(password: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Lógica de autenticación aquí
-    console.log({ email, password });
-    // Ejemplo de redirección después del login:
-    // navigate('/dashboard');
+    try {
+      if (!email || !password) {
+        throw new Error('Email y contraseña son requeridos');
+      }
+
+      // Configuración de la petición
+      const apiUrl = new URL('http://172.26.0.3:8080/access/login');
+      apiUrl.searchParams.append('email', email);
+      apiUrl.searchParams.append('password', await hashPassword(password));
+
+      const response = await fetch(apiUrl.toString(), {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+      const data = await response.json();
+      if (!data.response) {
+        alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
+        console.table(data.message);
+      } else {  
+        console.table("Usuario logeado")
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
+    }
   };
 
   return (
@@ -44,7 +76,7 @@ function Login(): JSX.Element {
           </div>
         </div>
         <div className="login-button-wrapper">
-          <button type="button" onClick={() => 
+          <button type="button" onClick={() =>
             navigate('/signup')
           }>
             Crear Cuenta
