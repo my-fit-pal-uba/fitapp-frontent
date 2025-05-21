@@ -24,7 +24,7 @@ function Login(): JSX.Element {
       }
 
       // Configuración de la petición
-      const apiUrl = new URL('http://172.26.0.3:8080/access/login');
+      const apiUrl = new URL('http://172.21.0.3:8080/access/login');
       apiUrl.searchParams.append('email', email);
       apiUrl.searchParams.append('password', await hashPassword(password));
 

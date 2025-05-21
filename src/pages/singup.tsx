@@ -4,6 +4,8 @@ import './signup.css';
 function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   async function hashPassword(password: string): Promise<string> {
     const encoder = new TextEncoder();
@@ -17,7 +19,7 @@ function SignUp() {
 
     try {
       const hashedPassword = await hashPassword(password);
-      const response = await fetch('http://172.26.0.3:8080/access/signup', {
+      const response = await fetch('http://172.21.0.3:8080/access/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,8 +27,8 @@ function SignUp() {
         body: JSON.stringify({
           email: email,
           password: hashedPassword,
-          name: 'Jose',      // Puedes cambiar estos valores o agregarlos como inputs
-          last_name: 'Nacho'
+          name: firstName,      // Puedes cambiar estos valores o agregarlos como inputs
+          last_name: lastName
         }),
       });
       const data = await response.json();
@@ -50,6 +52,26 @@ function SignUp() {
           <p>PeakFit</p>
         </div>
         <div className='input-wrapper'>
+          <div className='name-input-wrapper'>
+            <input
+              type="text"
+              id="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="Ingrese su nombre"
+              className="input"
+            />
+          </div>
+          <div className='last-name-input-wrapper'>
+            <input
+              type="text"
+              id="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Ingrese su apellido"
+              className="input"
+            />
+          </div>
           <div className='email-input-wrapper' >
             <input
               type="email"

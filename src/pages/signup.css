@@ -31,7 +31,9 @@
     margin-top: 10px;
 }
 
-.email-input-wrapper, 
+.email-input-wrapper,
+.name-input-wrapper,
+.last-name-input-wrapper,
 .password-input-wrapper {
   display: flex;
   align-items: center;
@@ -43,6 +45,8 @@
 }
 
 .email-input-wrapper.vertical,
+.name-input-wrapper.vertical,
+.last-name-input-wrapper.vertical,
 .password-input-wrapper.vertical {
   flex-direction: column;
   align-items: flex-start;
@@ -50,6 +54,8 @@
 }
 
 .email-input-wrapper label,
+.name-input-wrapper label,
+.last-name-input-wrapper label,
 .password-input-wrapper label {
   min-width: 100px; /* Ancho consistente */
   text-align: right;
@@ -59,6 +65,8 @@
 }
 
 .email-input-wrapper input,
+.name-input-wrapper input,
+.last-name-input-wrapper input,
 .password-input-wrapper input {
   flex: 1;
   padding: 10px 14px;
