@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './signup.css';
 
 function SignUp() {
@@ -6,6 +7,7 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const navigate = useNavigate();
 
   async function hashPassword(password: string): Promise<string> {
     const encoder = new TextEncoder();
@@ -35,6 +37,7 @@ function SignUp() {
       if (response.ok) {
         alert('Cuenta creada exitosamente');
         console.log(data);
+        navigate('/');
       } else {
         alert('Error al crear la cuenta');
         console.log(data);

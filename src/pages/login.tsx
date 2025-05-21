@@ -1,5 +1,5 @@
 import { useState, FormEvent, JSX } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 function Login(): JSX.Element {
@@ -39,7 +39,9 @@ function Login(): JSX.Element {
         alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
         console.table(data.message);
       } else {  
+        alert('Sesion iniciada correctamente');
         console.table("Usuario logeado")
+        navigate('/home');
       }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
