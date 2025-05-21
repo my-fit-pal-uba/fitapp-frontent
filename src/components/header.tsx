@@ -6,7 +6,7 @@ function Header() {
   const { user } = useUser();
     return (
       <header className="app-header">
-        <div className="app-title">Centro PeakFit</div>
+        <div className="app-title">PeakFit</div>
         <div className="user-name">
           {user ? (
             <>
