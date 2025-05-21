@@ -5,8 +5,8 @@ import './login.css';
 function Login(): JSX.Element {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false); // Nuevo estado
   const navigate = useNavigate();
-
 
   async function hashPassword(password: string): Promise<string> {
     const encoder = new TextEncoder();
@@ -23,7 +23,6 @@ function Login(): JSX.Element {
         throw new Error('Email y contraseña son requeridos');
       }
 
-      // Configuración de la petición
       const apiUrl = new URL('http://172.26.0.3:8080/access/login');
       apiUrl.searchParams.append('email', email);
       apiUrl.searchParams.append('password', await hashPassword(password));
@@ -38,8 +37,7 @@ function Login(): JSX.Element {
       if (!data.response) {
         alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
         console.table(data.message);
-      } else {  
-        alert('Sesion iniciada correctamente');
+      } else {
         console.table("Usuario logeado")
         console.table(data);
         localStorage.setItem('user', JSON.stringify(data.response));
@@ -70,13 +68,31 @@ function Login(): JSX.Element {
           </div>
           <div className='password-input-wrapper'>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
               className="input"
+              // style={{ width: '100%', paddingRight: '40px' }}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              style={{
+                position: 'absolute',
+                right: '30px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0
+              }}
+              tabIndex={-1}
+            >
+              {showPassword ? "👁️" : "👁️‍🗨️"}
+            </button>
           </div>
         </div>
         <div className="login-button-wrapper">
