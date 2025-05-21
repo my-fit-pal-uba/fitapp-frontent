@@ -24,7 +24,7 @@ function Login(): JSX.Element {
       }
 
       // Configuración de la petición
-      const apiUrl = new URL('http://172.21.0.3:8080/access/login');
+      const apiUrl = new URL('http://172.26.0.3:8080/access/login');
       apiUrl.searchParams.append('email', email);
       apiUrl.searchParams.append('password', await hashPassword(password));
 
@@ -41,6 +41,8 @@ function Login(): JSX.Element {
       } else {  
         alert('Sesion iniciada correctamente');
         console.table("Usuario logeado")
+        console.table(data);
+        localStorage.setItem('user', JSON.stringify(data.response));
         navigate('/home');
       }
     } catch (error) {
