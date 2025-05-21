@@ -29,7 +29,7 @@ function SignUp() {
         body: JSON.stringify({
           email: email,
           password: hashedPassword,
-          name: firstName,      // Puedes cambiar estos valores o agregarlos como inputs
+          name: firstName,                
           last_name: lastName
         }),
       });
