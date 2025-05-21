@@ -1,11 +1,13 @@
 import { useState, FormEvent, JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
+import { useUser } from '../context/user_context';
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
 
   async function hashPassword(password: string): Promise<string> {
@@ -38,7 +40,8 @@ function Login(): JSX.Element {
       if (!data.response) {
         alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
         console.table(data.message);
-      } else {  
+      } else { 
+        setUser({ email });
         alert('Sesion iniciada correctamente');
         console.table("Usuario logeado")
         navigate('/home');
