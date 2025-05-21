@@ -23,7 +23,7 @@ function Login(): JSX.Element {
         throw new Error('Email y contraseña son requeridos');
       }
 
-      const apiUrl = new URL('http://172.26.0.3:8080/access/login');
+      const apiUrl = new URL('http://localhost/access/login');
       apiUrl.searchParams.append('email', email);
       apiUrl.searchParams.append('password', await hashPassword(password));
 
@@ -40,7 +40,7 @@ function Login(): JSX.Element {
       } else {
         console.table("Usuario logeado")
         console.table(data);
-        localStorage.setItem('user', JSON.stringify(data.response));
+        localStorage.setItem('token', JSON.stringify(data.response));
         navigate('/home');
       }
     } catch (error) {

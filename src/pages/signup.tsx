@@ -21,7 +21,7 @@ function SignUp() {
 
     try {
       const hashedPassword = await hashPassword(password);
-      const response = await fetch('http://172.26.0.3:8080/access/signup', {
+      const response = await fetch('http://localhost/access/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
