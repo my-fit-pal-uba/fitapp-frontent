@@ -1,5 +1,6 @@
 import { useState, FormEvent, JSX } from 'react';
 import { useNavigate } from 'react-router';
+import { DevUrl } from '../env/dev.url.model';
 import './login.css';
 
 function Login(): JSX.Element {
@@ -19,11 +20,12 @@ function Login(): JSX.Element {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      
       if (!email || !password) {
         throw new Error('Email y contraseña son requeridos');
       }
 
-      const apiUrl = new URL('http://localhost/access/login');
+      const apiUrl = new URL(`${DevUrl.baseUrl}/access/login`);
       apiUrl.searchParams.append('email', email);
       apiUrl.searchParams.append('password', await hashPassword(password));
 
@@ -35,11 +37,8 @@ function Login(): JSX.Element {
       });
       const data = await response.json();
       if (!data.response) {
-        alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
-        console.table(data.message);
+        return 
       } else {
-        console.table("Usuario logeado")
-        console.table(data);
         localStorage.setItem('token', JSON.stringify(data.response));
         navigate('/home');
       }
@@ -74,7 +73,7 @@ function Login(): JSX.Element {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
               className="input"
-              // style={{ width: '100%', paddingRight: '40px' }}
+            // style={{ width: '100%', paddingRight: '40px' }}
             />
             <button
               type="button"
