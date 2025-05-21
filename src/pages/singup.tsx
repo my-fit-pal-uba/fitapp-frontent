@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import './signup.css';
 
 function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigator = useNavigate();
 
   async function hashPassword(password: string): Promise<string> {
     const encoder = new TextEncoder();
@@ -33,12 +35,15 @@ function SignUp() {
       if (response.ok) {
         alert('Cuenta creada exitosamente');
         console.log(data);
+        navigator('/home');
       } else {
         alert('Error al crear la cuenta');
+        navigator('/login');
         console.log(data);
       }
     } catch (error) {
       alert('Error de conexión con la API');
+      navigator('/login');
       console.error(error);
     }
   };

@@ -40,6 +40,7 @@ function Login(): JSX.Element {
         console.table(data.message);
       } else {  
         console.table("Usuario logeado")
+        navigate('/home');
       }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
