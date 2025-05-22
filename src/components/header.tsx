@@ -6,7 +6,6 @@ import DropdownButton from './dropdown';
 
 function Header() {
   const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,10 +15,7 @@ function Header() {
       return;
     }
     setName(user.username);
-    setEmail(user.email);
   }, []);
-
-  // Cerrar dropdown al hacer clic fuera
 
   return (
     <header className="app-header">
@@ -27,7 +23,7 @@ function Header() {
         <span className="material-symbols-outlined icons">
           fitness_center
         </span>
-        <div className="app-title">Centro PeakFit</div>
+        <div className="app-title">PeakFit</div>
       </div>
       <div className="user-info" ref={dropdownRef}>
         <div className="user-details">

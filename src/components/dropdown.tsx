@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import './dropdown.css'; // Archivo CSS para los estilos
+import './dropdown.css'; 
 import { ereaseToken } from '../Models/token';
 import { useNavigate } from 'react-router';
 
