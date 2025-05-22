@@ -1,10 +1,25 @@
+import { getToken } from '../Models/token';
+import { User } from '../Models/user';
+import { registerProfile } from '../services/registration.services';
 import './registration.css'
+import { useNavigate } from 'react-router';
 
 function Registration() {
+    const navigator = useNavigate();
 
     const handleRegistration = (role: string) => {
-        console.log(`Rol seleccionado: ${role}`);
+        const user: User | null = getToken();
+        if (!user) {
+            return;
+        }
+        const userId: number = user.user_id;
+        const result = registerProfile(userId, role);
+        if (!result) {
+            return;
+        }
+        navigator('/home');
     }
+
 
     return (
         <div className="registration-wrapper">
