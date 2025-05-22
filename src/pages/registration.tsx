@@ -8,15 +8,16 @@ function Registration() {
     const navigator = useNavigate();
 
     const handleRegistration = (role: string) => {
-        const user: User | null = getToken();
-        if (!user) {
-            return;
-        }
-        const userId: number = user.user_id;
-        const result = registerProfile(userId, role);
-        if (!result) {
-            return;
-        }
+        // const user: User | null = getToken();
+        // if (!user) {
+        //     return;
+        // }
+        // const userId: number = user.user_id;
+        // const result = registerProfile(userId, role);
+        // if (!result) {
+        //     return;
+        // }
+        console.table(role);
         navigator('/home');
     }
 
