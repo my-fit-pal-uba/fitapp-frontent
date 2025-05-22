@@ -1,6 +1,6 @@
-import { getToken } from '../Models/token';
-import { User } from '../Models/user';
-import { registerProfile } from '../services/registration.services';
+// import { getToken } from '../Models/token';
+// import { User } from '../Models/user';
+// import { registerProfile } from '../services/registration.services';
 import './registration.css'
 import { useNavigate } from 'react-router';
 

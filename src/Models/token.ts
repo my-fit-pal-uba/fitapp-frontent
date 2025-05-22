@@ -23,3 +23,7 @@ export function getToken(): User | null {
 export function setToken(token: string): void {
   sessionStorage.setItem("token", token);
 }
+
+export function ereaseToken(): void {
+  sessionStorage.removeItem("token");
+}
