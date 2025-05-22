@@ -27,10 +27,10 @@ function SimpleProfileForm() {
     return (
         <div className="simple-profile-container">
             <Header></Header>
-            <h1>Mi Perfil</h1>
-            <div className="form-wrapper">
+            <h2>Mi Perfil</h2>
+            <form onSubmit={handleSubmit} className="simple-profile-form">
 
-                <form onSubmit={handleSubmit} className="simple-profile-form">
+                <div className="form-wrapper">
                     <div className="form-group">
                         <label htmlFor="age">Edad</label>
                         <input
@@ -89,8 +89,8 @@ function SimpleProfileForm() {
                     <button type="submit" className="submit-btn">
                         Guardar
                     </button>
-                </form>
-            </div>
+                </div >
+            </form>
         </div>
     );
 }
