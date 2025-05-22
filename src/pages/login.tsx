@@ -2,6 +2,7 @@ import { useState, FormEvent, JSX } from 'react';
 import { useNavigate } from 'react-router';
 import { DevUrl } from '../env/dev.url.model';
 import './login.css';
+import { setToken } from '../Models/token';
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState<string>('');
@@ -20,7 +21,7 @@ function Login(): JSX.Element {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      
+
       if (!email || !password) {
         throw new Error('Email y contraseña son requeridos');
       }
@@ -39,7 +40,7 @@ function Login(): JSX.Element {
       if (!data.response) {
         return 
       } else {
-        localStorage.setItem('token', JSON.stringify(data.response));
+        setToken(data.response);
         navigate('/home');
       }
     } catch (error) {
@@ -73,7 +74,6 @@ function Login(): JSX.Element {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
               className="input"
-            // style={{ width: '100%', paddingRight: '40px' }}
             />
             <button
               type="button"

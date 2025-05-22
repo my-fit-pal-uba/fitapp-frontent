@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export function getToken(): User | null {
-  const token: string | null = localStorage.getItem("token");
+  const token: string | null = sessionStorage.getItem("token");
   if (!token) {
     return null;
   }
@@ -17,4 +17,9 @@ export function getToken(): User | null {
   );
   const user: User = JSON.parse(jsonPayload);
   return user;
+}
+
+
+export function setToken(token: string): void {
+  sessionStorage.setItem("token", token);
 }
