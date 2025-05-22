@@ -7,7 +7,7 @@ import { setToken } from '../Models/token';
 function Login(): JSX.Element {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [showPassword, setShowPassword] = useState<boolean>(false); // Nuevo estado
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
 
   async function hashPassword(password: string): Promise<string> {
