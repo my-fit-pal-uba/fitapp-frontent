@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import './dropdown.css'; 
+import './dropdown.css';
 import { ereaseToken } from '../Models/token';
 import { useNavigate } from 'react-router';
 
@@ -26,6 +26,12 @@ function DropdownButton() {
         navigator('/login');
     }
 
+    const onOpenProfile = () => {
+        setIsOpen(false);
+        navigator('/profile');
+        console.log('open profile');
+    }
+
     return (
         <div className="dropdown-container" ref={dropdownRef}>
             <button
@@ -39,7 +45,7 @@ function DropdownButton() {
 
             {isOpen && (
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => { /* acción para perfil */ setIsOpen(false); }}>
+                    <button className="dropdown-item" onClick={() => { onOpenProfile(); }}>
                         👤 Ver Perfil
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
