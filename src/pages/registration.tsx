@@ -29,7 +29,7 @@ function Registration() {
                 <button
                     type="button"
                     className="card-button"
-                    onClick={() => handleRegistration('fitness')}
+                    onClick={() => handleRegistration("fitness_buddy")}
                     aria-label="Seleccionar Fitness Buddy"
                 >
                     <p className='card-title'>Fitness Buddy</p>
@@ -42,7 +42,7 @@ function Registration() {
                 <button
                     type="button"
                     className="card-button"
-                    onClick={() => handleRegistration('trainer')}
+                    onClick={() => handleRegistration("personal_trainer")}
                     aria-label="Seleccionar Personal Trainer"
                 >
                     <p className='card-title'>Personal trainer</p>

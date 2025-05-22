@@ -6,8 +6,6 @@ export async function registerProfile(
   role: string,
 ) {
   try {
-    // Usando Axios como cliente HTTP en lugar de fetch
-
     const response = await axios.post(`${DevUrl.baseUrl}/access/signup`, {
       user_id: user_id,
       role: role,
