@@ -1,6 +1,11 @@
 import './registration.css'
 
 function Registration() {
+
+    const handleRegistration = (role: string) => {
+        console.log(`Rol seleccionado: ${role}`);
+    }
+
     return (
         <div className="registration-wrapper">
             <p className='title'>Queremos saber más de vos!!!</p>
@@ -9,7 +14,7 @@ function Registration() {
                 <button
                     type="button"
                     className="card-button"
-                    onClick={() => console.log('Fitness Buddy seleccionado')}
+                    onClick={() => handleRegistration('fitness')}
                     aria-label="Seleccionar Fitness Buddy"
                 >
                     <p className='card-title'>Fitness Buddy</p>
@@ -22,7 +27,7 @@ function Registration() {
                 <button
                     type="button"
                     className="card-button"
-                    onClick={() => console.log('Personal Trainer seleccionado')}
+                    onClick={() => handleRegistration('trainer')}
                     aria-label="Seleccionar Personal Trainer"
                 >
                     <p className='card-title'>Personal trainer</p>
