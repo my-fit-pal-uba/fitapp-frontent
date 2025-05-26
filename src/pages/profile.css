@@ -40,6 +40,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
+  color: black;
 }
 
 .form-group select {
@@ -48,6 +49,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
+  color: black;
 }
 
 .form-group input:focus,
