@@ -1,6 +1,8 @@
 import './login.css';
+import './home.css';
 import Header from '../components/header';
 import { useNavigate } from 'react-router';
+import Registrator from '../components/registrator';
 
 function Home() {
   const navigate = useNavigate();
@@ -16,6 +18,9 @@ function Home() {
         >
           Ejercicios
         </button>
+        <div className="home-content-wrapper">
+          <Registrator />
+        </div>
       </main>
     </>
   );
