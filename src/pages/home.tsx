@@ -1,13 +1,16 @@
 import './login.css';
+import './home.css';
 import Header from '../components/header';
+import Registrator from '../components/registrator';
 
 function Home() {
   return (
     <>
       <Header />
       <main className="main-content">
-        <h1>Bienvenido a la Home Page</h1>
-        <p>Esta es la página principal después de iniciar sesión.</p>
+        <div className="home-content-wrapper">
+          <Registrator />
+        </div>
       </main>
     </>
   );
