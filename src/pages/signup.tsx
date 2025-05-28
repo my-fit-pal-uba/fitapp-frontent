@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './signup.css';
+import { setToken } from '../Models/token';
+import { DevUrl } from '../env/dev.url.model';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -21,7 +23,8 @@ function SignUp() {
 
     try {
       const hashedPassword = await hashPassword(password);
-      const response = await fetch('http://localhost/access/signup', {
+
+      const response = await fetch(`${DevUrl.baseUrl}/access/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,24 +32,20 @@ function SignUp() {
         body: JSON.stringify({
           email: email,
           password: hashedPassword,
-          name: firstName,                
+          name: firstName,
           last_name: lastName
         }),
       });
       const data = await response.json();
+
       if (response.ok) {
-        alert('Cuenta creada exitosamente');
-        console.log(data);
-        navigator('/home');
+        setToken(data.response);
+        navigator('/registration');
       } else {
-        alert('Error al crear la cuenta');
-        navigator('/login');
-        console.log(data);
+        navigator('/registration');
       }
     } catch (error) {
-      alert('Error de conexión con la API');
       navigator('/login');
-      console.error(error);
     }
   };
 
