@@ -47,11 +47,11 @@ function SimpleProfileForm() {
         fetchProfile();
     }, []);
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: (name === 'age' || name === 'height') ? (value === '' ? '' : Number(value)) : value
         }));
     };
 
@@ -87,7 +87,6 @@ function SimpleProfileForm() {
                     <div className="form-group">
                         <label htmlFor="age">Edad</label>
                         <input
-                            type="number"
                             id="age"
                             name="age"
                             value={formData.age}
@@ -101,7 +100,6 @@ function SimpleProfileForm() {
                     <div className="form-group">
                         <label htmlFor="height">Altura (cm)</label>
                         <input
-                            type="number"
                             id="height"
                             name="height"
                             value={formData.height}
