@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './header.css';
 import { User } from '../Models/user';
 import { getToken } from '../Models/token';
+import DropdownButton from './dropdown';
 
 function Header() {
-
-
   const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const user: User | null = getToken();
@@ -16,15 +15,21 @@ function Header() {
       return;
     }
     setName(user.username);
-    setEmail(user.email);
   }, []);
 
   return (
     <header className="app-header">
-      <div className="app-title">Centro PeakFit</div>
-      <div className="user-name">
-        <p>{name}</p>
-        <p>{email}</p>
+      <div className="title-wrapper">
+        <span className="material-symbols-outlined icons">
+          fitness_center
+        </span>
+        <div className="app-title">PeakFit</div>
+      </div>
+      <div className="user-info" ref={dropdownRef}>
+        <div className="user-details">
+          <p>{name}</p>
+        </div>
+        <DropdownButton />
       </div>
     </header>
   );
