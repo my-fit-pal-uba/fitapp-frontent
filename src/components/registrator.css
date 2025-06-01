@@ -9,72 +9,79 @@
     --black: #2c3e50;
 }
 
-/* Estilos base */
+/* Estilos base mejorados */
 .registrator-container {
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
 }
 
 .registrator-card {
     background: var(--white);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 2.5rem;
-    max-width: 450px;
-    transition: transform 0.3s ease;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .registrator-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 .registrator-title {
     color: var(--secondary-color);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
-    margin-bottom: 2rem;
-    /* text-align: center; */
+    margin-bottom: 1.5rem;
     line-height: 1.4;
 }
 
 .registrator-form {
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: var(--white);
+    color: var(--black);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    /* align-items: center; */
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
-    width: 90%;
 }
 
 .input-label {
     color: var(--secondary-color);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    margin-left: 0.5rem;
+    margin-left: 0.3rem;
 }
 
 .registrator-input {
-    padding: 0.9rem 1.2rem;
+    padding: 0.8rem 1rem;
     border: 2px solid var(--medium-gray);
     border-radius: 10px;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     background-color: var(--white);
     color: var(--black);
-    width: 100%;
+    width: 15rem;
 }
 
 .registrator-input:focus {
-    border-color: var(--primary-color);
+    border-color: var(--accent-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
 .registrator-input::placeholder {
@@ -87,66 +94,87 @@
     color: var(--white);
     border: none;
     border-radius: 10px;
+    padding: 0.8rem;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
-.submit-btn:hover {
+.submit-btn:hover:not(:disabled) {
     background-color: #27ae60;
     transform: translateY(-2px);
 }
 
-.submit-btn:active {
+.submit-btn:active:not(:disabled) {
     transform: translateY(0);
 }
 
 .submit-btn:disabled {
     background-color: var(--medium-gray);
     cursor: not-allowed;
+    opacity: 0.8;
 }
 
 .button-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
+    margin-top: 0.5rem;
 }
 
-/* Efecto de carga */
+/* Efecto de carga mejorado */
 .submit-btn.loading::after {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
+    width: 18px;
+    height: 18px;
+    margin: -9px 0 0 -9px;
     border: 3px solid rgba(255, 255, 255, 0.3);
     border-top-color: var(--white);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-/* Responsive */
+/* Mejoras responsive */
 @media (max-width: 480px) {
     .registrator-container {
-        padding: 1rem;
+        padding: 0.5rem;
     }
-    
+
     .registrator-card {
         padding: 1.5rem;
     }
-    
+
     .registrator-title {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
+        margin-bottom: 1.2rem;
     }
+
+    .registrator-input {
+        padding: 0.7rem 0.9rem;
+    }
+
+    .submit-btn {
+        padding: 0.7rem;
+    }
+}
+
+/* Estilo para el indicador de unidad */
+.unit-indicator {
+    color: var(--dark-gray);
+    font-size: 0.85rem;
+    margin-left: 0.3rem;
+    font-weight: 400;
 }
