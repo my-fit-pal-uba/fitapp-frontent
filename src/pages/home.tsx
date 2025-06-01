@@ -10,7 +10,6 @@ function Home() {
       <Header />
       <main className="main-content">
         <div className="home-content-wrapper">
-          
           <Registrator />
           <Clock />
         </div>

@@ -10,7 +10,6 @@ const Registrator: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simular envío de datos
         setTimeout(() => {
             setIsSubmitting(false);
             alert(`Datos registrados:\nPeso: ${weight} kg\nCalorías: ${calories}`);
