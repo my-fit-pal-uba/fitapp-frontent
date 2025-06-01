@@ -20,9 +20,11 @@ function Header() {
   return (
     <header className="app-header">
       <div className="title-wrapper">
-        <span className="material-symbols-outlined icons">
-          fitness_center
-        </span>
+        <a href="/home" className="icon-link">
+          <span className="material-symbols-outlined icons">
+            fitness_center
+          </span>
+        </a>
         <div className="app-title">PeakFit</div>
       </div>
       <div className="user-info" ref={dropdownRef}>

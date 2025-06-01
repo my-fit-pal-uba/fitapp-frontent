@@ -29,7 +29,11 @@ function DropdownButton() {
     const onOpenProfile = () => {
         setIsOpen(false);
         navigator('/profile');
-        console.log('open profile');
+    }
+
+    const onOpenEjercicios = () => {
+        setIsOpen(false);
+        navigator('/exercises');
     }
 
     return (
@@ -47,6 +51,9 @@ function DropdownButton() {
                 <div className="dropdown-menu">
                     <button className="dropdown-item" onClick={() => { onOpenProfile(); }}>
                         👤 Ver Perfil
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenEjercicios(); }}>
+                        🏋️ Ejercicios
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
