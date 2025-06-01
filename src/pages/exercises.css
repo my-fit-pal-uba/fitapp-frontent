@@ -1,0 +1,74 @@
+.exercises-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-form input,
+.filter-form select {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-right: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #28666E;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005f73;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.exercise-card {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.exercise-card h2 {
+  margin-top: 0;
+}
+
+.exercise-card img,
+.exercise-card video {
+  max-width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+}
+
