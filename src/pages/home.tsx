@@ -10,7 +10,14 @@ function Home() {
       <Header />
       <main className="main-content">
         <div className="home-content-wrapper">
-          <Registrator />
+          <Registrator
+            type="weight"
+            onSubmit={(weight) => alert(`Peso registrado: ${weight} kg`)}
+          />
+          <Registrator
+            type="calories"
+            onSubmit={(calories) => alert(`Calorías registradas: ${calories} kcal`)}
+          />
           <Clock />
         </div>
       </main>
