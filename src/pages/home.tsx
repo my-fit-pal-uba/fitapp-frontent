@@ -4,6 +4,7 @@ import Header from '../components/header';
 import Registrator from '../components/registrator';
 import Clock from '../components/clock';
 import ChartExample from '../components/bar';
+import { getCaloriesHistory } from '../services/history.services';
 
 function Home() {
   return (
@@ -24,8 +25,10 @@ function Home() {
             <Clock />
           </div>
           <div className="charts-wrapper">
-
-            <ChartExample />
+            <ChartExample 
+              chartType='line'
+              fetchData={async () => await getCaloriesHistory()}
+            />
           </div>
         </div>
       </main>

@@ -1,9 +1,7 @@
-/* chart-styles.css */
 
-/* Contenedor principal del gráfico */
 .chart-container {
   width: 30rem;
-  height: 15rem;
+  height: 25rem;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -17,7 +15,6 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Ejes del gráfico */
 .recharts-cartesian-axis-tick-value {
   fill: #64748b; /* Color del texto de los ejes */
   font-size: 0.75rem;
@@ -28,7 +25,6 @@
   stroke: #e2e8f0; /* Color de las líneas de los ejes */
 }
 
-/* Líneas de la cuadrícula */
 .recharts-cartesian-grid line {
   stroke: #f1f5f9; /* Color de las líneas de la cuadrícula */
 }
@@ -37,7 +33,6 @@
   stroke-dasharray: 3 3; /* Líneas punteadas */
 }
 
-/* Barras del gráfico */
 .recharts-bar-rectangle {
   transition: all 0.3s ease;
   rx: 4; /* Bordes redondeados */
