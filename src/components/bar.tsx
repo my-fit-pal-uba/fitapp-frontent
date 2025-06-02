@@ -67,7 +67,7 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
                         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="calories" stroke="#8884d8" name="Calorias consumidas" />
+                        <Line type="monotone" dataKey="calories" stroke="#82ca9d" name="Calorias consumidas" />
                     </LineChart>
                 )}
             </ResponsiveContainer>
