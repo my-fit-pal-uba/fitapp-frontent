@@ -3,18 +3,23 @@ import { Rol } from "../Models/rol";
 
 export async function registerProfile(
   user_id: number,
-  role: number,
+  rol_id: number,
 ) {
   try {
-    // const response = await axios.post(`${DevUrl.baseUrl}/access/signup`, {
-    //   user_id: user_id,
-    //   role: role,
-    // }, {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // // return response;
+    const response = await fetch(`${DevUrl.baseUrl}/profiles/post_user_rol`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user_id,
+        rol_id: rol_id,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
     return true;
   } catch (error) {
     return true;

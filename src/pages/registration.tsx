@@ -22,20 +22,16 @@ function Registration() {
           setError('No hay roles disponibles');
         }
 
-
-
-        console.table(userRoles);
-        let rols = userRoles.map((rol: Rol) => ({
-          id: rol.id,
-          rol_resource_key: rol.rol_resource_key,
-          rol_display_name: rol.rol_display_name,
+        let rols:Rol[] = userRoles.map((rol: any) => ({
+          rol_id: rol.rol_id,
+          resource_key: rol.resource_key,
+          display_name: rol.display_name,
           description: rol.description,
           icon: rol.icon,
         }));
 
         setRoles(rols);
       } catch (err) {
-        setError('Error al cargar los roles');
         console.error('Error fetching roles:', err);
       } finally {
         setLoading(false);
@@ -45,7 +41,7 @@ function Registration() {
     fetchRoles();
   }, []);
 
-  const handleRegistration = async (role_id: number) => {
+  const handleRegistration = async (rol: Rol) => {
     const user: User | null = getToken();
     if (!user) {
       setError('Usuario no autenticado');
@@ -53,7 +49,7 @@ function Registration() {
     }
 
     try {
-      const result = await registerProfile(user.user_id, role_id);
+      const result = await registerProfile(user.user_id, rol.rol_id);
       if (!result) {
         setError('Error al registrar el perfil');
         return;
@@ -88,13 +84,13 @@ function Registration() {
       <div className="rols-wrapper">
         {roles.map((role: Rol) => (
           <button
-            key={role.id}
+            key={role.rol_id}
             type="button"
             className="card-button"
-            onClick={() => handleRegistration(role.id)}
-            aria-label={`Seleccionar ${role.rol_display_name}`}
+            onClick={() => handleRegistration(role)}
+            aria-label={`Seleccionar ${role.display_name}`}
           >
-            <p className='card-title'>{role.rol_display_name}</p>
+            <p className='card-title'>{role.display_name}</p>
             <span className="material-symbols-outlined icons">
               {role.icon}
             </span>
