@@ -17,7 +17,7 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
         const loadData = async () => {
             try {
                 setLoading(true);
-                const result = (await fetchData()).slice(0, 20);
+                const result = await fetchData();
 
                 setData(result);
                 setError(null);
