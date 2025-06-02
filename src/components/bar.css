@@ -5,7 +5,9 @@
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: 20px 0;
   transition: all 0.3s ease;
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -16,8 +18,8 @@
 }
 
 .recharts-cartesian-axis-tick-value {
-  fill: #64748b; /* Color del texto de los ejes */
-  font-size: 0.75rem;
+  fill: #64748b; 
+  font-size: 12px;
 }
 
 .recharts-x-axis .recharts-cartesian-axis-line,
@@ -61,7 +63,7 @@
 }
 
 .recharts-tooltip-item {
-  color: #475569 !important;
+  color: black !important;
 }
 
 /* Leyenda */
@@ -103,35 +105,35 @@
 /* Modo oscuro */
 @media (prefers-color-scheme: dark) {
   .chart-container {
-    background-color: #1e293b;
+    background-color: white;
   }
   
   .recharts-cartesian-axis-tick-value {
-    fill: #94a3b8;
+    fill: black;
   }
   
   .recharts-x-axis .recharts-cartesian-axis-line,
   .recharts-y-axis .recharts-cartesian-axis-line {
-    stroke: #334155;
+    stroke: black;
   }
   
   .recharts-cartesian-grid line {
-    stroke: #334155;
+    stroke: gray;
   }
   
   .recharts-tooltip-wrapper {
-    background-color: rgba(30, 41, 59, 0.95) !important;
+    background-color: blue !important;
   }
   
   .recharts-tooltip-label {
-    color: #f8fafc !important;
+    color: black !important;
   }
   
   .recharts-tooltip-item {
-    color: #cbd5e1 !important;
+    color: black !important;
   }
   
   .recharts-legend-item-text {
-    color: #cbd5e1 !important;
+    color: black !important;
   }
 }
