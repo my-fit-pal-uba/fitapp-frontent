@@ -16,13 +16,14 @@ export async function getCaloriesHistory() {
         }
     
         const data: calories[] = await response.json();
+        console.table(data);
         const chartData: ChartValue[] = data.map(item => {
             return {
                 name: item.date,
                 value: item.calories
             };
         });
-        
+        console.table(chartData);
         return chartData; 
     } catch (error) {
         console.error("Error fetching calories history:", error);

@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import './bar.css';
-
-type ChartData = {
-    date: string;
-    calories: number;
-};
+import { ChartValue } from '../Models/chartValues';
 
 type ChartExampleProps = {
     chartType?: 'bar' | 'line';
-    fetchData: () => Promise<ChartData[]> | ChartData[];
+    fetchData: () => Promise<ChartValue[]> | ChartValue[];
 };
 
 const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
-    const [data, setData] = useState<ChartData[]>([]);
+    const [data, setData] = useState<ChartValue[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -58,16 +54,16 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="ventas" fill="#8884d8" name="Ventas mensuales" />
+                        <Bar dataKey="value" fill="#8884d8" name="Ventas mensuales" />
                     </BarChart>
                 ) : (
                     <LineChart data={data}>
-                        <XAxis dataKey="date" />
+                        <XAxis dataKey="name" />
                         <YAxis />
                         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="calories" stroke="#82ca9d" name="Calorias consumidas" />
+                        <Line type="monotone" dataKey="value" stroke="#82ca9d" name="Calorias consumidas" />
                     </LineChart>
                 )}
             </ResponsiveContainer>
