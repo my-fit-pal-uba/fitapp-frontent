@@ -13,7 +13,7 @@ export async function getCaloriesHistory(user_id: number) {
     });
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      return [];
     }
 
     const data = await response.json();
@@ -41,7 +41,7 @@ export async function getWeightHistory(user_id: number) {
     });
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      return [];
     }
 
     const data = await response.json();

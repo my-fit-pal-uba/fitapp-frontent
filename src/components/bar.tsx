@@ -25,11 +25,11 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
                     return;
                 }
                 const result = await fetchData(token.user_id);
-
                 setData(result);
                 setError(null);
             } catch (err) {
                 setError('Error al cargar los datos');
+                setData([]);
                 console.error('Error fetching chart data:', err);
             } finally {
                 setLoading(false);
@@ -39,16 +39,21 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
         loadData();
     }, [fetchData]);
 
+    // Si no hay datos, devolvemos un contenedor vacío
+    if ( data.length === 0) {
+        return <div className="chart-container empty" />;
+    }
+
+    if ( data === undefined || data === null) {
+        return <div className="chart-container empty" />;
+    }
+
     if (loading) {
         return <div className="chart-container loading">Cargando datos...</div>;
     }
 
     if (error) {
         return <div className="chart-container error">{error}</div>;
-    }
-
-    if (data.length === 0) {
-        return <div className="chart-container empty">No hay datos disponibles</div>;
     }
 
     return (
