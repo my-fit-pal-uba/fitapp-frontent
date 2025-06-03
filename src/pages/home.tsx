@@ -3,10 +3,10 @@ import './home.css';
 import Header from '../components/header';
 import Registrator from '../components/registrator';
 import Clock from '../components/clock';
-import ChartExample from '../components/bar';
 import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
 import { getToken } from '../Models/token';
 import { postCalories, postWeight } from '../services/registration.services';
+import Chart from '../components/bar';
 
 function Home() {
 
@@ -32,14 +32,14 @@ function Home() {
           <div className="charts-wrapper">
             <div className="chart-wrapper">
               <h2>Historial de calorias</h2>
-              <ChartExample
+              <Chart
                 chartType='line'
                 fetchData={async () => await getCaloriesHistory(user_id)}
               />
             </div>
             <div className="chart-wrapper">
               <h2>Historial de peso</h2>
-              <ChartExample
+              <Chart
                 chartType='line'
                 fetchData={async () => await getWeightHistory(user_id)}
               />
