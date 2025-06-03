@@ -4,7 +4,7 @@ import Header from '../components/header';
 import Registrator from '../components/registrator';
 import Clock from '../components/clock';
 import ChartExample from '../components/bar';
-import { getCaloriesHistory } from '../services/history.services';
+import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
 import { getToken } from '../Models/token';
 
 function Home() {
@@ -32,6 +32,10 @@ function Home() {
             <ChartExample 
               chartType='line'
               fetchData={async () => await getCaloriesHistory(user_id)}
+            />
+            <ChartExample 
+              chartType='line'
+              fetchData={async () => await getWeightHistory(user_id)}
             />
           </div>
         </div>

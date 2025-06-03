@@ -1,6 +1,7 @@
 import { DevUrl } from "../env/dev.url.model";
 import { calories } from "../Models/calories";
 import { ChartValue } from "../Models/chartValues";
+import { Weight } from "../Models/weight";
 
 export async function getCaloriesHistory(user_id: number) {
   try {
@@ -30,12 +31,12 @@ export async function getCaloriesHistory(user_id: number) {
   }
 }
 
-export async function getWeightHistory() {
+export async function getWeightHistory(user_id: number) {
   try {
-    const response = await fetch(`${DevUrl.baseUrl}/history/weight_history`, {
+    const response = await fetch(`${DevUrl.baseUrl}/history/weight_history?user_id=${user_id}`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
       },
     });
 
@@ -43,17 +44,17 @@ export async function getWeightHistory() {
       throw new Error("Network response was not ok");
     }
 
-    const data: calories[] = await response.json();
-    const chartData: ChartValue[] = data.map((item) => {
+    const data = await response.json();
+    let weights: Weight[] = data.response;
+    const chartData: ChartValue[] = weights.map((item) => {
       return {
-        name: item.date,
-        value: item.calories,
+      name: item.date,
+      value: item.weight,
       };
     });
-
     return chartData;
-  } catch (error) {
-    console.error("Error fetching calories history:", error);
+    } catch (error) {
+    console.error("Error fetching weight history:", error);
     return [];
   }
 }
