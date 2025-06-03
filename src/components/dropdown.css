@@ -17,6 +17,7 @@
     font-size: 14px;
     transition: background-color 0.3s;
     white-space: nowrap;
+    height: 35px;
     max-width: 100%;
 }
 

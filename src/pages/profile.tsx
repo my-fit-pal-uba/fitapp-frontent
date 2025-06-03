@@ -5,6 +5,7 @@ import { DevUrl } from '../env/dev.url.model';
 import './login.css';
 import { User } from '../Models/user';
 import { getToken } from '../Models/token';
+import { Profile } from '../Models/profile';
 
 function SimpleProfileForm() {
     const [formData, setFormData] = useState({
@@ -17,10 +18,13 @@ function SimpleProfileForm() {
         const fetchProfile = async () => {
             try {
                 const user: User | null = getToken();
-                if (!user?.email) return;
+                
+                if (!user ) {
+                    return 
+                }
 
-                const apiUrl = new URL(`${DevUrl.baseUrl}/users/get_profile`);
-                apiUrl.searchParams.append('email', user.email);
+                const apiUrl = new URL(`${DevUrl.baseUrl}/profiles/get_profile`);
+                apiUrl.searchParams.append('user_id', String(user.user_id));
 
                 const response = await fetch(apiUrl.toString(), {
                     method: 'GET',
@@ -30,15 +34,16 @@ function SimpleProfileForm() {
                 });
 
                 const data = await response.json();
-                if (data?.response && Array.isArray(data.message)) {
-                    const profile = data.message[1];
-                    setFormData(prev => ({
-                        ...prev,
-                        age: profile.age?.toString() || '',
-                        height: profile.height?.toString() || '',
-                        gender: profile.gender || '',
-                    }));
+                if (!data.response) {
+                    return;
                 }
+                const profile: Profile = data.message;
+                setFormData({
+                    age: profile.age !== null ? String(profile.age) : '',
+                    height: profile.height !== null ? String(profile.height) : '',
+                    gender: profile.gender !== null ? String(profile.gender) : '',
+                });
+
             } catch (error) {
                 console.error('Error al cargar el perfil:', error);
             }
@@ -47,43 +52,37 @@ function SimpleProfileForm() {
         fetchProfile();
     }, []);
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: (name === 'age' || name === 'height') ? (value === '' ? '' : Number(value)) : value
         }));
     };
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-          console.log('Datos enviados:', formData);
-          const user: User | null = getToken();
+            const user: User | null = getToken();
+            if (!user) {
+                return;
+            }
+            const apiUrl = new URL(`${DevUrl.baseUrl}/profiles/save_profile`);
+            apiUrl.searchParams.append('user_id', String(user.user_id));
+            apiUrl.searchParams.append('age', String(formData.age));
+            apiUrl.searchParams.append('height', String(formData.height));
+            apiUrl.searchParams.append('gender', formData.gender);
 
-          console.log('Payload:', {
-            email: user?.email,
-            age: Number(formData.age),
-            height: Number(formData.height),
-            gender: formData.gender,
-        });
-
-          const apiUrl = new URL(`${DevUrl.baseUrl}/users/save_profile`);
-          apiUrl.searchParams.append('email', user.email);
-          apiUrl.searchParams.append('age', String(formData.age));
-          apiUrl.searchParams.append('height', String(formData.height));
-          apiUrl.searchParams.append('gender', formData.gender);
-          
-          const response = await fetch(apiUrl.toString(), {
-            method: 'POST',
-          });
-          const data = await response.json();
-          if (!data.response) {
-           return
-          }
+            const response = await fetch(apiUrl.toString(), {
+                method: 'POST',
+            });
+            const data = await response.json();
+            if (!data.response) {
+                return
+            }
         } catch (error) {
-          console.error('Error al guardar los datos:', error);
-          alert('Error al guardar los datos. Por favor, intenta de nuevo completando todos los campos.');
+            console.error('Error al guardar los datos:', error);
+            alert('Error al guardar los datos. Por favor, intenta de nuevo completando todos los campos.');
         }
     };
 
@@ -96,7 +95,6 @@ function SimpleProfileForm() {
                     <div className="form-group">
                         <label htmlFor="age">Edad</label>
                         <input
-                            type="number"
                             id="age"
                             name="age"
                             value={formData.age}
@@ -110,7 +108,6 @@ function SimpleProfileForm() {
                     <div className="form-group">
                         <label htmlFor="height">Altura (cm)</label>
                         <input
-                            type="number"
                             id="height"
                             name="height"
                             value={formData.height}

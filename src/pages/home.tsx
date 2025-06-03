@@ -1,25 +1,43 @@
 import './login.css';
 import './home.css';
 import Header from '../components/header';
-import { useNavigate } from 'react-router';
 import Registrator from '../components/registrator';
+import Clock from '../components/clock';
+import ChartExample from '../components/bar';
+import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
+import { getToken } from '../Models/token';
 
 function Home() {
-  const navigate = useNavigate();
+
+  const user_id = getToken()?.user_id ?? 0;
+
   return (
     <>
       <Header />
       <main className="main-content">
-        <h1>Bienvenido a la Home Page</h1>
-        <p>Esta es la página principal después de iniciar sesión.</p>
-         <button
-          onClick={() => navigate('/exercises')}
-          className="navigate-button"
-        >
-          Ejercicios
-        </button>
         <div className="home-content-wrapper">
-          <Registrator />
+          <div className="inputs-wrapper">
+
+            <Registrator
+              type="weight"
+              onSubmit={(weight) => alert(`Peso registrado: ${weight} kg`)}
+            />
+            <Registrator
+              type="calories"
+              onSubmit={(calories) => alert(`Calorías registradas: ${calories} kcal`)}
+            />
+            <Clock />
+          </div>
+          <div className="charts-wrapper">
+            <ChartExample 
+              chartType='line'
+              fetchData={async () => await getCaloriesHistory(user_id)}
+            />
+            <ChartExample 
+              chartType='line'
+              fetchData={async () => await getWeightHistory(user_id)}
+            />
+          </div>
         </div>
       </main>
     </>

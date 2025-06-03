@@ -1,0 +1,139 @@
+
+.chart-container {
+  width: 30rem;
+  height: 25rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.chart-container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: #64748b; 
+  font-size: 12px;
+}
+
+.recharts-x-axis .recharts-cartesian-axis-line,
+.recharts-y-axis .recharts-cartesian-axis-line {
+  stroke: #e2e8f0; /* Color de las líneas de los ejes */
+}
+
+.recharts-cartesian-grid line {
+  stroke: #f1f5f9; /* Color de las líneas de la cuadrícula */
+}
+
+.recharts-cartesian-grid-horizontal line {
+  stroke-dasharray: 3 3; /* Líneas punteadas */
+}
+
+.recharts-bar-rectangle {
+  transition: all 0.3s ease;
+  rx: 4; /* Bordes redondeados */
+  ry: 4; /* Bordes redondeados */
+}
+
+.recharts-bar-rectangle:hover {
+  opacity: 0.8;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+/* Tooltip (información emergente) */
+.recharts-tooltip-wrapper {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  padding: 12px !important;
+}
+
+.recharts-tooltip-label {
+  color: #334155 !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+
+.recharts-tooltip-item {
+  color: black !important;
+}
+
+/* Leyenda */
+.recharts-legend-wrapper {
+  bottom: -10px !important;
+}
+
+.recharts-default-legend {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px !important;
+}
+
+.recharts-legend-item {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 15px !important;
+}
+
+.recharts-legend-item-text {
+  color: #475569 !important;
+  font-size: 0.8rem !important;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+    padding: 16px;
+  }
+  
+  .recharts-legend-wrapper {
+    position: relative !important;
+    bottom: 0 !important;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .chart-container {
+    background-color: white;
+  }
+  
+  .recharts-cartesian-axis-tick-value {
+    fill: black;
+  }
+  
+  .recharts-x-axis .recharts-cartesian-axis-line,
+  .recharts-y-axis .recharts-cartesian-axis-line {
+    stroke: black;
+  }
+  
+  .recharts-cartesian-grid line {
+    stroke: gray;
+  }
+  
+  .recharts-tooltip-wrapper {
+    background-color: #82ca9d !important;
+  }
+  
+  .recharts-tooltip-label {
+    color: black !important;
+  }
+  
+  .recharts-tooltip-item {
+    color: black !important;
+  }
+  
+  .recharts-legend-item-text {
+    color: black !important;
+  }
+}

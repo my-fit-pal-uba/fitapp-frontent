@@ -44,7 +44,6 @@ function Login(): JSX.Element {
         navigate('/home');
       }
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
       alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
     }
   };

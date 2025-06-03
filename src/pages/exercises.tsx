@@ -1,8 +1,9 @@
-import "./exercises.css";
+import "./exercises.css"
 
 import { useEffect, useState, FormEvent, JSX } from "react";
 import { DevUrl } from "../env/dev.url.model";
 import { Exercise } from "../Models/exercise";
+import Header from "../components/header";
 
 const TYPES = ["Bodyweight", "Weightlifting", "Cardio", "Flexibility", "Machine", "Sport", "Isometric"];
 const PLACES = ["Gym", "Home", "Outdoor"];
@@ -48,18 +49,16 @@ function Exercises(): JSX.Element {
 			}
 
 			const data = await response.json();
-			console.log("Respuesta recibida:", data);
 
 			const exercises = Array.isArray(data.message) && data.message[1]?.exercises;
 
-			if (exercises) {
-				setExercises(exercises);
-				setError("");
-			} else {
-				throw new Error("La estructura de la respuesta no contiene ejercicios");
+
+			if (!exercises || exercises.length === 0) {
+				throw new Error("No se encontraron ejercicios");
 			}
+			setExercises(exercises);
+			setError("");
 		} catch (err) {
-			console.error("Error fetching exercises:", err);
 			setError("No se pudieron obtener los ejercicios. Por favor, inténtalo de nuevo más tarde.");
 			setExercises([]);
 		}
@@ -82,8 +81,10 @@ function Exercises(): JSX.Element {
 	}, []);
 
 	return (
-		<div className="exercises-container">
-			<h1>Ejercicios</h1>
+		<>
+		<Header /><div className="exercises-container">
+
+			<h1 style={{ color: "white" }}>Ejercicios</h1>
 			<form
 				onSubmit={handleSearch}
 				className="search-form"
@@ -93,8 +94,7 @@ function Exercises(): JSX.Element {
 					type="text"
 					placeholder="Buscar por nombre..."
 					value={search}
-					onChange={(e) => setSearch(e.target.value)}
-				/>
+					onChange={(e) => setSearch(e.target.value)} />
 				<button type="submit">Buscar</button>
 			</form>
 			<form
@@ -179,25 +179,21 @@ function Exercises(): JSX.Element {
 							{exercise.photo_guide && (
 								<img
 									src={exercise.photo_guide}
-									alt={`${exercise.name} guía`}
-								/>
+									alt={`${exercise.name} guía`} />
 							)}
 							{exercise.video_guide && (
 								<video controls>
 									<source
 										src={exercise.video_guide}
-										type="video/mp4"
-									/>
+										type="video/mp4" />
 									Tu navegador no soporta la etiqueta de video.
 								</video>
 							)}
 						</div>
 					))
-				) : (
-					<p>No se encontraron ejercicios.</p>
-				)}
+				) : null}
 			</div>
-		</div>
+		</div></>
 	);
 }
 
