@@ -18,6 +18,7 @@ function Home() {
         <div className="home-content-wrapper">
           <div className="inputs-wrapper">
 
+            <Clock />
             <Registrator
               type="weight"
               onSubmit={(weight) => alert(`Peso registrado: ${weight} kg`)}
@@ -26,17 +27,22 @@ function Home() {
               type="calories"
               onSubmit={(calories) => alert(`Calorías registradas: ${calories} kcal`)}
             />
-            <Clock />
           </div>
           <div className="charts-wrapper">
-            <ChartExample 
-              chartType='line'
-              fetchData={async () => await getCaloriesHistory(user_id)}
-            />
-            <ChartExample 
-              chartType='line'
-              fetchData={async () => await getWeightHistory(user_id)}
-            />
+            <div className="chart-wrapper">
+              <h2>Historial de calorias</h2>
+              <ChartExample
+                chartType='line'
+                fetchData={async () => await getCaloriesHistory(user_id)}
+              />
+            </div>
+            <div className="chart-wrapper">
+              <h2>Historial de peso</h2>
+              <ChartExample
+                chartType='line'
+                fetchData={async () => await getWeightHistory(user_id)}
+              />
+            </div>
           </div>
         </div>
       </main>
