@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import './bar.css';
 import { ChartValue } from '../Models/chartValues';
+import { getToken } from '../Models/token';
+import { User } from '../Models/user';
 
 type ChartExampleProps = {
     chartType?: 'bar' | 'line';
-    fetchData: () => Promise<ChartValue[]> | ChartValue[];
+    fetchData: (user_id: number) => Promise<ChartValue[]> | ChartValue[];
 };
 
 const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
@@ -17,7 +19,12 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
         const loadData = async () => {
             try {
                 setLoading(true);
-                const result = await fetchData();
+                const token: User | null = getToken();
+                if (!token) {
+                    setData([]);
+                    return;
+                }
+                const result = await fetchData(token.user_id);
 
                 setData(result);
                 setError(null);

@@ -5,8 +5,12 @@ import Registrator from '../components/registrator';
 import Clock from '../components/clock';
 import ChartExample from '../components/bar';
 import { getCaloriesHistory } from '../services/history.services';
+import { getToken } from '../Models/token';
 
 function Home() {
+
+  const user_id = getToken()?.user_id ?? 0;
+
   return (
     <>
       <Header />
@@ -27,7 +31,7 @@ function Home() {
           <div className="charts-wrapper">
             <ChartExample 
               chartType='line'
-              fetchData={async () => await getCaloriesHistory()}
+              fetchData={async () => await getCaloriesHistory(user_id)}
             />
           </div>
         </div>
