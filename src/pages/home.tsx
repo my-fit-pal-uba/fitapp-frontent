@@ -6,6 +6,7 @@ import Clock from '../components/clock';
 import ChartExample from '../components/bar';
 import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
 import { getToken } from '../Models/token';
+import { postCalories, postWeight } from '../services/registration.services';
 
 function Home() {
 
@@ -21,11 +22,11 @@ function Home() {
             <Clock />
             <Registrator
               type="weight"
-              onSubmit={(weight) => alert(`Peso registrado: ${weight} kg`)}
+              onSubmit={(weight) => postWeight(user_id, Number(weight) ?? 0.0)}
             />
             <Registrator
               type="calories"
-              onSubmit={(calories) => alert(`Calorías registradas: ${calories} kcal`)}
+              onSubmit={(calories) => postCalories(user_id, Number(calories) ?? 0.0)}
             />
           </div>
           <div className="charts-wrapper">
