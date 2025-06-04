@@ -131,7 +131,7 @@ function RealizarEjercicio() {
           </tbody>
         </table>
         <button className="botonEnviar" onClick={handleSubmitSeries}>
-            Enviar Series
+            Confirmar Series
         </button>
       </div>
     </>
