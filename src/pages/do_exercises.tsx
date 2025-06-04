@@ -10,6 +10,7 @@ import { getToken } from '../Models/token';
 import './do_exercises.css';
 
 function RealizarEjercicio() {
+  const navigate = useNavigate();
   const user: User | null = getToken();
   const { id } = useParams();
   const location = useLocation();
@@ -67,7 +68,9 @@ function RealizarEjercicio() {
   };
 
   const handleSubmitSeries = () => {
-    console.log("Series a enviar:", JSON.stringify(series, null, 2));
+    alert(`Series registradas exitosamente`)
+    navigate('/exercises')
+    /*console.log("Series a enviar:", JSON.stringify(series, null, 2));*/
   };
 
   if (loading) return <p>Cargando ejercicio...</p>;
