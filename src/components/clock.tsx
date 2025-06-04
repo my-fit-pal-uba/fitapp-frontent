@@ -64,8 +64,18 @@ const Clock = () => {
           })}
         </div>
         <div className="session-info">
-          <div className="session-label">Tiempo en la aplicación:</div>
-          <div className="session-duration" style={{ color: 'black' }}>{sessionDuration}</div>
+          <div
+            className="session-duration"
+            style={{
+              color: '#1976d2',
+              fontWeight: 700,
+              fontSize: '1.5rem',
+              letterSpacing: '1px',
+              marginTop: '0.25rem'
+            }}
+          >
+            {sessionDuration}
+          </div>
         </div>
       </div>
     </div>
