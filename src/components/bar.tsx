@@ -5,12 +5,12 @@ import { ChartValue } from '../Models/chartValues';
 import { getToken } from '../Models/token';
 import { User } from '../Models/user';
 
-type ChartExampleProps = {
+type ChartProps = {
     chartType?: 'bar' | 'line';
     fetchData: (user_id: number) => Promise<ChartValue[]> | ChartValue[];
 };
 
-const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
+const Chart = ({ chartType = 'bar', fetchData }: ChartProps) => {
     const [data, setData] = useState<ChartValue[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -39,13 +39,26 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
         loadData();
     }, [fetchData]);
 
-    // Si no hay datos, devolvemos un contenedor vacío
-    if ( data.length === 0) {
-        return <div className="chart-container empty" />;
+    if (data.length === 0) {
+        return (
+            <div className="chart-container empty" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 400 }}>
+                <div className="empty-state" style={{ textAlign: 'center' }}>
+                    <h3 className="empty-title" style={{ color: 'black' }}>No hay datos disponibles</h3>
+                    <p className="empty-message" style={{ color: 'black' }}>Aún no has registrado información para este período.</p>
+                </div>
+            </div>
+        );
     }
 
-    if ( data === undefined || data === null) {
-        return <div className="chart-container empty" />;
+    if (data === undefined || data === null) {
+        return (
+            <div className="chart-container empty" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 400 }}>
+                <div className="empty-state" style={{ textAlign: 'center' }}>
+                    <h3 className="empty-title" style={{ color: 'black' }}>No hay datos disponibles</h3>
+                    <p className="empty-message" style={{ color: 'black' }}>Ha ocurrido un error</p>
+                </div>
+            </div>
+        );
     }
 
     if (loading) {
@@ -75,7 +88,7 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
                         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="value" stroke="#82ca9d" name="Calorias consumidas" />
+                        <Line type="monotone" dataKey="value" stroke="#82ca9d" name="tu evolucion " />
                     </LineChart>
                 )}
             </ResponsiveContainer>
@@ -83,4 +96,4 @@ const ChartExample = ({ chartType = 'bar', fetchData }: ChartExampleProps) => {
     );
 };
 
-export default ChartExample;
+export default Chart;

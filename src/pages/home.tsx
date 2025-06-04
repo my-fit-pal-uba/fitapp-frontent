@@ -3,9 +3,10 @@ import './home.css';
 import Header from '../components/header';
 import Registrator from '../components/registrator';
 import Clock from '../components/clock';
-import ChartExample from '../components/bar';
 import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
 import { getToken } from '../Models/token';
+import { postCalories, postWeight } from '../services/registration.services';
+import Chart from '../components/bar';
 
 function Home() {
 
@@ -18,25 +19,31 @@ function Home() {
         <div className="home-content-wrapper">
           <div className="inputs-wrapper">
 
+            <Clock />
             <Registrator
               type="weight"
-              onSubmit={(weight) => alert(`Peso registrado: ${weight} kg`)}
+              onSubmit={(weight) => postWeight(user_id, Number(weight) ?? 0.0)}
             />
             <Registrator
               type="calories"
-              onSubmit={(calories) => alert(`Calorías registradas: ${calories} kcal`)}
+              onSubmit={(calories) => postCalories(user_id, Number(calories) ?? 0.0)}
             />
-            <Clock />
           </div>
           <div className="charts-wrapper">
-            <ChartExample 
-              chartType='line'
-              fetchData={async () => await getCaloriesHistory(user_id)}
-            />
-            <ChartExample 
-              chartType='line'
-              fetchData={async () => await getWeightHistory(user_id)}
-            />
+            <div className="chart-wrapper">
+              <h2>Historial de calorias</h2>
+              <Chart
+                chartType='line'
+                fetchData={async () => await getCaloriesHistory(user_id)}
+              />
+            </div>
+            <div className="chart-wrapper">
+              <h2>Historial de peso</h2>
+              <Chart
+                chartType='line'
+                fetchData={async () => await getWeightHistory(user_id)}
+              />
+            </div>
           </div>
         </div>
       </main>
