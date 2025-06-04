@@ -66,6 +66,10 @@ function RealizarEjercicio() {
     setWeightInput('');
   };
 
+  const handleSubmitSeries = () => {
+    console.log("Series a enviar:", JSON.stringify(series, null, 2));
+  };
+
   if (loading) return <p>Cargando ejercicio...</p>;
   if (!exercise) return <p>No se encontró el ejercicio.</p>;
 
@@ -126,6 +130,9 @@ function RealizarEjercicio() {
             )}
           </tbody>
         </table>
+        <button className="botonEnviar" onClick={handleSubmitSeries}>
+            Enviar Series
+        </button>
       </div>
     </>
   );
