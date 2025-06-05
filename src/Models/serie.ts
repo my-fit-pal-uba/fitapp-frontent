@@ -1,6 +1,4 @@
 export interface Serie {
-  user_id: number;
-  exercise_id: number;
-  reps: number;
+  repetitions: number;
   weight: number;
 }

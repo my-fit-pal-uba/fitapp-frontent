@@ -21,7 +21,7 @@ function RealizarEjercicio() {
 
   const [series, setSeries] = useState<Serie[]>([]);
 
-  const [repsInput, setRepsInput] = useState('');
+  const [repetitionsInput, setRepetitionsInput] = useState('');
   const [weightInput, setWeightInput] = useState('');
 
   useEffect(() => {
@@ -47,30 +47,49 @@ function RealizarEjercicio() {
   const addSerie = (e: FormEvent) => {
     e.preventDefault();
 
-    const reps = parseInt(repsInput);
+    const repetitions = parseInt(repetitionsInput);
     const weight = parseFloat(weightInput);
 
-    if (isNaN(reps) || isNaN(weight)) {
+    if (isNaN(repetitions) || isNaN(weight)) {
       alert('Por favor, ingresa valores válidos para repeticiones y peso.');
       return;
     }
 
     const nuevaSerie: Serie = {
-      user_id: user?.user_id || 0,
-      exercise_id: exercise?.exercise_id || 0,
-      reps,
+      repetitions,
       weight,
     };
 
     setSeries([...series, nuevaSerie]);
-    setRepsInput('');
+    setRepetitionsInput('');
     setWeightInput('');
   };
 
-  const handleSubmitSeries = () => {
-    alert(`Series registradas exitosamente`)
-    navigate('/exercises')
-    /*console.log("Series a enviar:", JSON.stringify(series, null, 2));*/
+  const handleSubmitSeries = async () => {
+    const user_id = user?.user_id;
+    const exercise_id = exercise?.exercise_id;
+    let url = `${DevUrl.baseUrl}/exercises/register_series?user_id=${user_id}&exercise_id=${exercise_id}`;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ series }),
+      });
+      if (!response.ok) {
+        throw new Error('Error al registrar las series');
+        navigate('/exercises')
+      }
+      alert(`Series registradas exitosamente`)
+      navigate('/exercises')
+    } catch (error) {
+      console.error('Error al enviar las series:', error);
+      alert('Error al registrar las series. Por favor, inténtalo de nuevo.');
+    }
+    setSeries([]); // Limpiar las series después de enviar
+    setRepetitionsInput('');
+    setWeightInput('');
   };
 
   if (loading) return <p>Cargando ejercicio...</p>;
@@ -90,14 +109,14 @@ function RealizarEjercicio() {
           <input
             type="number"
             placeholder="Repeticiones"
-            value={repsInput}
-            onChange={(e) => setRepsInput(e.target.value)}
+            value={repetitionsInput}
+            onChange={(e) => setRepetitionsInput(e.target.value)}
             className="inputSerie"
             min={0}
             required
           />
           <input
-            type="number"
+            type="float"
             placeholder="Peso (kg)"
             value={weightInput}
             onChange={(e) => setWeightInput(e.target.value)}
@@ -126,7 +145,7 @@ function RealizarEjercicio() {
               series.map((serie, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{serie.reps}</td>
+                  <td>{serie.repetitions}</td>
                   <td>{serie.weight}</td>
                 </tr>
               ))
