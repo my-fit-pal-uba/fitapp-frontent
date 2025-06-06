@@ -4,6 +4,7 @@ import { useEffect, useState, FormEvent, JSX } from "react";
 import { DevUrl } from "../env/dev.url.model";
 import { Exercise } from "../Models/exercise";
 import Header from "../components/header";
+import { useNavigate } from 'react-router';
 
 const TYPES = ["Bodyweight", "Weightlifting", "Cardio", "Flexibility", "Machine", "Sport", "Isometric"];
 const PLACES = ["Gym", "Home", "Outdoor"];
@@ -79,6 +80,8 @@ function Exercises(): JSX.Element {
 	useEffect(() => {
 		fetchExercises();
 	}, []);
+
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -160,38 +163,38 @@ function Exercises(): JSX.Element {
 			{error && <div className="error-message">{error}</div>}
 			<div className="exercises-list">
 				{exercises.length > 0 ? (
-					exercises.map((exercise) => (
-						<div
-							key={exercise.exercise_id}
-							className="exercise-card"
-						>
+					exercises.map((exercise) => {
+						const handleClick = () => {
+						console.log(`Realizar ejercicio: ${exercise.name}`);
+						navigate(`/realizar/${exercise.exercise_id}`, { state: { exercise } });
+						};
+
+						return (
+						<div key={exercise.exercise_id} className="exercise-card">
+							<div className="exercise-content">
 							<h2>{exercise.name}</h2>
 							<p>{exercise.description}</p>
-							<p>
-								<strong>Tipo:</strong> {exercise.type}
-							</p>
-							<p>
-								<strong>Lugar:</strong> {exercise.place}
-							</p>
-							<p>
-								<strong>Grupo muscular:</strong> {exercise.muscular_group}
-							</p>
-							{exercise.photo_guide && (
-								<img
-									src={exercise.photo_guide}
-									alt={`${exercise.name} guía`} />
-							)}
+							<p><strong>Tipo:</strong> {exercise.type}</p>
+							<p><strong>Lugar:</strong> {exercise.place}</p>
+							<p><strong>Grupo muscular:</strong> {exercise.muscular_group}</p>
+							{exercise.photo_guide && <img src={exercise.photo_guide} alt={`${exercise.name} guía`} />}
 							{exercise.video_guide && (
 								<video controls>
-									<source
-										src={exercise.video_guide}
-										type="video/mp4" />
-									Tu navegador no soporta la etiqueta de video.
+								<source src={exercise.video_guide} type="video/mp4" />
+								Tu navegador no soporta la etiqueta de video.
 								</video>
 							)}
+							</div>
+							<button
+							className="realizar-button"
+							onClick={handleClick}
+							>
+							Realizar
+							</button>
 						</div>
-					))
-				) : null}
+						);
+					})
+					) : null}
 			</div>
 		</div></>
 	);
