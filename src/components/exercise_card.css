@@ -12,7 +12,7 @@
   font-size: 1.5rem;
   line-height: 1.2;
   text-align: left;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem 0.1rem 1.5rem;
 }
 
 .exercise-header {
@@ -25,6 +25,12 @@
   display: flex;
   gap: 3px;
   padding: 0 1rem;
+}
+
+.average-rating{
+  display: flex;
+  gap: 3px;
+  padding: 0rem 1.3rem;
 }
 
 .stars-container {
@@ -40,6 +46,24 @@
   margin-right: 0.1rem;
   color: gray;
   transition: color 0.2s ease;
+}
+
+.star-average-empty {
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 0.1rem;
+  color: gray;
+  transition: color 0.2s ease;
+}
+
+.star.average {
+  font-size: 1rem;  
+  color: #d2691e;        /* naranja cobrizo para promedio */
+}
+
+
+.star.user-rated {
+  color: #17457a;        /* azul para tu valoración */
 }
 
 .star.hovered {
