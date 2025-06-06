@@ -5,7 +5,10 @@ import SignUp from './pages/signup';
 import Registration from './pages/registration';
 import Profile from './pages/profile';
 import Exercises from './pages/exercises';
+import Routines from './pages/routines'
+import CreateRoutine from "./pages/createRoutine";
 import { UserProvider } from './context/user_context.tsx';
+
 
 function App() {
   return (
@@ -17,7 +20,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/profile" element={<Profile />} /> 
-          <Route path="/exercises" element={<Exercises />} /> 
+          <Route path="/exercises" element={<Exercises />} />
+          <Route path="/routines" element={<Routines />} /> 
+          <Route path="/routines/create" element={<CreateRoutine />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>
