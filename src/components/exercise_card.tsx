@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './exercise_card.css';
 
-export default function ExerciseCard({ exercise, onClick }: { exercise: any, onClick: () => void }) {
+export default function ExerciseCard({ exercise, onClick, averageRating = 0, userRating = 0 }: { exercise: any, onClick: () => void, averageRating?: number, userRating?: number }) {
   const [hoverRating, setHoverRating] = useState(0);
 
   return (
@@ -10,17 +10,43 @@ export default function ExerciseCard({ exercise, onClick }: { exercise: any, onC
         <div className="exercise-header">
             <h2>{exercise.name}</h2>
             <div className="rating">
-                {[1, 2, 3, 4, 5].map((star) => (
-                <span
-                    key={star}
-                    className={`star ${hoverRating >= star ? "hovered" : ""}`}
-                    onMouseEnter={() => setHoverRating(star)}
-                    onMouseLeave={() => setHoverRating(0)}
-                >
-                    ★
-                </span>
-                ))}
+                {[1, 2, 3, 4, 5].map((star) => {
+                    if (hoverRating >= star) {
+                        return <span
+                            key={star}
+                            className="star hovered"
+                            onMouseEnter={() => setHoverRating(star)}
+                            onMouseLeave={() => setHoverRating(0)}
+                        >★</span>;
+                    }
+
+                    if (userRating >= star) {
+                        return <span key={star}
+                        className="star user-rated"
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                        >★</span>;
+                    }
+
+                    return <span
+                        key={star}
+                        className="star"
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                    >★</span>;
+                }
+                )}
             </div>
+        </div>
+        <div className="average-rating">
+            {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                key={star}
+                className={star <= Math.round(averageRating) ? "star average" : "star-average-empty"}
+                >
+                ★
+                </span>
+            ))}
         </div>
         <p>{exercise.description}</p>
         <p><strong>Tipo:</strong> {exercise.type}</p>

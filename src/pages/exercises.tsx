@@ -173,6 +173,8 @@ function Exercises(): JSX.Element {
 								onClick={() =>
 								navigate(`/realizar/${exercise.exercise_id}`, { state: { exercise } })
 								}
+								averageRating={4.2}
+								userRating={2.5}
 							/>	
 						);			
 					})
