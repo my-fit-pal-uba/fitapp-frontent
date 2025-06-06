@@ -1,0 +1,47 @@
+.exercise-card {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  margin-bottom: 1rem;
+}
+
+.exercise-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  text-align: left;
+  padding: 0.5rem 1.5rem;
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating{
+  display: flex;
+  gap: 3px;
+  padding: 0 1rem;
+}
+
+.stars-container {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 0.1rem;
+  color: gray;
+  transition: color 0.2s ease;
+}
+
+.star.hovered {
+  color: #17457a;
+}

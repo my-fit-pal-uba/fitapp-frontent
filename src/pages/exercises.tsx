@@ -4,6 +4,7 @@ import { useEffect, useState, FormEvent, JSX } from "react";
 import { DevUrl } from "../env/dev.url.model";
 import { Exercise } from "../Models/exercise";
 import Header from "../components/header";
+import ExerciseCard from "../components/exercise_card";
 import { useNavigate } from 'react-router';
 
 const TYPES = ["Bodyweight", "Weightlifting", "Cardio", "Flexibility", "Machine", "Sport", "Isometric"];
@@ -17,6 +18,7 @@ function Exercises(): JSX.Element {
 	const [muscularGroup, setMuscularGroup] = useState("");
 	const [error, setError] = useState("");
 	const [search, setSearch] = useState("");
+	const [hoverRating, setHoverRating] = useState<number>(0);
 
 	const fetchExercises = async () => {
 		let url = "";
@@ -164,50 +166,15 @@ function Exercises(): JSX.Element {
 			<div className="exercises-list">
 				{exercises.length > 0 ? (
 					exercises.map((exercise) => {
-						const handleClick = () => {
-						console.log(`Realizar ejercicio: ${exercise.name}`);
-						navigate(`/realizar/${exercise.exercise_id}`, { state: { exercise } });
-						};
-
 						return (
-						<div key={exercise.exercise_id} className="exercise-card">
-							<div className="exercise-content">
-							<h2>{exercise.name}</h2>
-							<p>{exercise.description}</p>
-							<p><strong>Tipo:</strong> {exercise.type}</p>
-							<p><strong>Lugar:</strong> {exercise.place}</p>
-							<p><strong>Grupo muscular:</strong> {exercise.muscular_group}</p>
-							{exercise.photo_guide && <img src={exercise.photo_guide} alt={`${exercise.name} guía`} />}
-							{exercise.video_guide && (
-								<video controls>
-								<source src={exercise.video_guide} type="video/mp4" />
-								Tu navegador no soporta la etiqueta de video.
-								</video>
-							)}
-							</div>
-							<div className="rating">
-								{[1, 2, 3, 4, 5].map((star) => (
-									<span
-									key={star}
-									style={{
-										cursor: "pointer",
-										color: "gray",
-										fontSize: "1.5rem",
-										marginRight: "2px"
-									}}
-									>
-									★
-									</span>
-								))}
-							</div>
-							<button
-							className="realizar-button"
-							onClick={handleClick}
-							>
-							Realizar
-							</button>
-						</div>
-						);
+							<ExerciseCard
+								key={exercise.exercise_id}
+								exercise={exercise}
+								onClick={() =>
+								navigate(`/realizar/${exercise.exercise_id}`, { state: { exercise } })
+								}
+							/>	
+						);			
 					})
 					) : null}
 			</div>
