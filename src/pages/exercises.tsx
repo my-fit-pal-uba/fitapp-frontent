@@ -185,6 +185,21 @@ function Exercises(): JSX.Element {
 								</video>
 							)}
 							</div>
+							<div className="rating">
+								{[1, 2, 3, 4, 5].map((star) => (
+									<span
+									key={star}
+									style={{
+										cursor: "pointer",
+										color: "gray",
+										fontSize: "1.5rem",
+										marginRight: "2px"
+									}}
+									>
+									★
+									</span>
+								))}
+							</div>
 							<button
 							className="realizar-button"
 							onClick={handleClick}
