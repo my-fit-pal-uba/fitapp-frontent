@@ -22,7 +22,7 @@ export default function ExerciseCard({ exercise, onClick, averageRating = 0, ini
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: user?.user_id, // esto debe estar disponible, probablemente lo traés por props o contexto
+        user_id: user?.user_id,
         rating: rating,
       }),
     });
@@ -30,7 +30,7 @@ export default function ExerciseCard({ exercise, onClick, averageRating = 0, ini
     const text = await response.text();
     if (text) {
       const data = JSON.parse(text)
-      setUserRating(rating); // actualiza el estado del componente
+      setUserRating(rating);
       setMessage("¡Gracias por tu valoración!");
       setTimeout(() => setMessage(null), 3000);
     } else {
