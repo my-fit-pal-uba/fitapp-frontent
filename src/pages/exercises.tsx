@@ -3,9 +3,12 @@ import "./exercises.css"
 import { useEffect, useState, FormEvent, JSX } from "react";
 import { DevUrl } from "../env/dev.url.model";
 import { Exercise } from "../Models/exercise";
+import { ExerciseRating } from "../Models/exercise_rating";
 import Header from "../components/header";
 import ExerciseCard from "../components/exercise_card";
 import { useNavigate } from 'react-router';
+import { getToken } from '../Models/token';
+import { User } from '../Models/user';
 
 const TYPES = ["Bodyweight", "Weightlifting", "Cardio", "Flexibility", "Machine", "Sport", "Isometric"];
 const PLACES = ["Gym", "Home", "Outdoor"];
@@ -18,7 +21,37 @@ function Exercises(): JSX.Element {
 	const [muscularGroup, setMuscularGroup] = useState("");
 	const [error, setError] = useState("");
 	const [search, setSearch] = useState("");
-	const [hoverRating, setHoverRating] = useState<number>(0);
+	const [userRatings, setUserRatings] = useState<{ [key: number]: number }>({});
+	const [averageRatings, setAverageRatings] = useState<{ [key: number]: number }>({});
+	const user: User | null = getToken();
+
+	const fetchRatings = async () => {
+		try {
+			const res = await fetch(`${DevUrl.baseUrl}/exercises/ratings?user_id=${user?.user_id}`);
+			const data = await res.json();
+			const ratings = data.message.reduce((acc: Record<number, number>, item: ExerciseRating) => {
+				acc[item.exercise_id] = parseFloat(item.rating.toString());
+				return acc;
+			}, {});
+			setUserRatings(ratings);
+		} catch (error) {
+			console.error("Error fetching ratings:", error);
+		}
+	};
+
+	const fetchAverageRatings = async () => {
+		try {
+			const res = await fetch(`${DevUrl.baseUrl}/exercises/average-ratings`);
+			const data = await res.json();
+			const averages = data.message.reduce((acc: Record<number, number>, item: any) => {
+				acc[item.exercise_id] = parseFloat(item.average_rating.toString());
+				return acc;
+			}, {});
+			setAverageRatings(averages);
+		} catch (error) {
+			console.error("Error fetching average ratings:", error);
+		}
+	};
 
 	const fetchExercises = async () => {
 		let url = "";
@@ -79,8 +112,12 @@ function Exercises(): JSX.Element {
 		fetchExercises();
 	};
 
+
+
 	useEffect(() => {
 		fetchExercises();
+		fetchRatings();
+		fetchAverageRatings();
 	}, []);
 
 	const navigate = useNavigate();
@@ -173,8 +210,8 @@ function Exercises(): JSX.Element {
 								onClick={() =>
 								navigate(`/realizar/${exercise.exercise_id}`, { state: { exercise } })
 								}
-								averageRating={4.2}
-								userRating={2.5}
+								averageRating={averageRatings[exercise.exercise_id] ?? 0}
+								initialUserRating={userRatings[exercise.exercise_id] ?? 0}
 							/>	
 						);			
 					})
