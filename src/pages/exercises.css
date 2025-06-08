@@ -1,4 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 .exercises-container {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -7,6 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center ;
+  width: 100%;
 }
 
 .exercises-container h1 {
@@ -19,6 +29,7 @@
 }
 
 .search-form, .filter-form {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -274,6 +285,13 @@ button:hover {
   display: flex;
   flex-direction: column;
   height: 100%;
+  justify-content: space-between;
+}
+
+.exercise-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .exercise-card:hover {
@@ -385,7 +403,26 @@ button:hover {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
-/* Delay animation for each card */
+.realizar-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: stretch;
+}
+
+.realizar-button:hover {
+  background-color: #0056b3;
+}
+
 .exercise-card:nth-child(1) { animation-delay: 0.1s; }
 .exercise-card:nth-child(2) { animation-delay: 0.2s; }
 .exercise-card:nth-child(3) { animation-delay: 0.3s; }
