@@ -6,14 +6,50 @@ import { DevUrl } from "../env/dev.url.model";
 import { Routine } from "../Models/routine";
 import Header from "../components/header";
 import RoutineCard from "../components/routine_card";
+import { RoutineRating } from "../Models/routine_rating";
+import { User } from '../Models/user';
+import { getToken } from '../Models/token';
 
 function Routines(): JSX.Element {
     const [routines, setRoutines] = useState<Routine[]>([]);
     const [error, setError] = useState("");
 	const [search, setSearch] = useState("");
     const [series, setSeries] = useState("");
+    const [userRatings, setUserRatings] = useState<{ [key: number]: number }>({});
+    const [averageRatings, setAverageRatings] = useState<{ [key: number]: number }>({});
+    const user: User | null = getToken();
+    const [message, setMessage] = useState<string | null>(null);
 
     const navigate = useNavigate();
+
+        const fetchRatings = async () => {
+            try {
+                const res = await fetch(`${DevUrl.baseUrl}/routines/ratings?user_id=${user?.user_id}`);
+                const data = await res.json();
+                const ratings = data.message.reduce((acc: Record<number, number>, item: RoutineRating) => {
+                    acc[item.routine_id] = parseFloat(item.rating.toString());
+                    return acc;
+                }, {});
+                setUserRatings(ratings);
+            } catch (error) {
+                console.error("Error fetching ratings:", error);
+            }
+        };
+    
+	const fetchAverageRatings = async () => {
+		try {
+			const res = await fetch(`${DevUrl.baseUrl}/routines/average-ratings`);
+			const data = await res.json();
+			const averages = data.message.reduce((acc: Record<number, number>, item: any) => {
+				acc[item.routine_id] = parseFloat(item.average_rating.toString());
+				return acc;
+			}, {});
+			setAverageRatings(averages);
+		} catch (error) {
+			console.error("Error fetching average ratings:", error);
+		}
+	};
+
 
     const fetchRoutines = async () => {
         let url = "";
@@ -68,10 +104,13 @@ function Routines(): JSX.Element {
 
 	useEffect(() => {
 		fetchRoutines();
+		fetchRatings();
+		fetchAverageRatings();
 	}, []);
 
     return (
         <>
+        {message && <div className="flash-message">{message}</div>}
         <Header />
             <div className="routines-container">
                 <h1>Rutinas</h1>
@@ -103,11 +142,23 @@ function Routines(): JSX.Element {
                             <RoutineCard
                                 key={routine.routine_id}
                                 routine={routine}
-                                onClick={() =>
-                                    navigate(`/realizar/${routine.routine_id}`, { state: { routine } })
+                                onClick={async () => {
+                                            const res = await fetch(`${DevUrl.baseUrl}/routines/register?user_id=${user?.user_id}&routine_id=${routine.routine_id}`, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                }
+                                            })
+                                        if (!res.ok) {
+                                            setMessage("Error al registrar la rutina");
+                                            setTimeout(() => setMessage(null), 3000);
+                                        }
+                                        setMessage("¡Rutina registrada exitosamente!");
+                                        setTimeout(() => setMessage(null), 3000);
+                                    }
                                 }
-                                averageRating={3.0}
-                                initialUserRating={2.0}
+                                averageRating={averageRatings[routine.routine_id] ?? 0}
+                                initialUserRating={userRatings[routine.routine_id] ?? 0}
                             />	
                         );			
                     })}
