@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { DevUrl } from "../env/dev.url.model";
 import { Routine } from "../Models/routine";
 import Header from "../components/header";
+import RoutineCard from "../components/routine_card";
 
 function Routines(): JSX.Element {
     const [routines, setRoutines] = useState<Routine[]>([]);
@@ -97,19 +98,19 @@ function Routines(): JSX.Element {
                 </form>
                 {error && <p className="error-message">{error}</p>}
                 <ul className="routines-list">
-                    {routines.map((routine) => (
-                        <li key={routine.routine_id}>
-                            <h2>{routine.name}</h2>
-                            <p>{routine.description}</p>
-                            <p>Grupo muscular: {routine.muscular_group}</p>
-                            <p>Series: {routine.series}</p>
-                            <ul>
-                                {routine.exercises.map((exercise, index) => (
-                                    <li key={index}>{exercise.name}</li>
-                                ))}
-                            </ul>
-                        </li>
-                    ))}
+                    {routines.map((routine) => {
+                        return (
+                            <RoutineCard
+                                key={routine.routine_id}
+                                routine={routine}
+                                onClick={() =>
+                                    navigate(`/realizar/${routine.routine_id}`, { state: { routine } })
+                                }
+                                averageRating={3.0}
+                                initialUserRating={2.0}
+                            />	
+                        );			
+                    })}
                 </ul>
             </div>
         </>
