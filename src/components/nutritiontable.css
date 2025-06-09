@@ -1,11 +1,9 @@
-.nutrition-container {
+.nutrition-container { 
   font-family: 'Arial', sans-serif;
   padding: 2rem;
-  background-color: #f5f5f5;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .nutrition-container h1 {
   color: #2c3e50;
   text-align: center;
@@ -24,6 +22,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .food-card:hover {
@@ -36,6 +37,8 @@
   margin-bottom: 0.75rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #eee;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .food-description {
@@ -48,14 +51,13 @@
 .nutrition-facts {
   margin: 1.25rem 0;
 }
-
+/*  */
 .nutrition-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
-
 .nutrition-item span:first-child {
   font-weight: 600;
   color: #34495e;
@@ -66,4 +68,53 @@
   font-size: 0.8rem;
   color: #3498db;
   text-align: right;
+}
+
+
+.food-item {
+  background: white;
+  border-left: 4px solid #4CAF50;
+  padding: 1.25rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+
+.food-calories {
+  margin-top: 15px;
+  background: #4CAF50;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.nutrition-value {
+  text-align: center;
+}
+
+.nutrition-value span:first-child {
+  display: block;
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.nutrition-value span:last-child {
+  font-weight: 500;
+  color: #222;
 }

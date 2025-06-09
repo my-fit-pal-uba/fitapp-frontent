@@ -9,33 +9,25 @@ const NutritionTable: React.FC<{ data: Dish[] }> = ({ data }) => {
                     <div key={item.id} className="food-card">
                         <h2 className="food-name">{item.name}</h2>
                         <p className="food-description">{item.description}</p>
-                        
-                        <div className="nutrition-facts">
-                            <div className="nutrition-item">
-                                <span>Calorías:</span>
-                                <span>{item.calories} kcal</span>
-                            </div>
-                            <div className="nutrition-item">
-                                <span>Proteínas:</span>
+                        <div className="nutrition-grid">
+                            <div className="nutrition-value">
+                                <span>Proteínas</span>
                                 <span>{item.proteins}g</span>
                             </div>
-                            <div className="nutrition-item">
-                                <span>Carbohidratos:</span>
+                            <div className="nutrition-value">
+                                <span>Carbs</span>
                                 <span>{item.carbs}g</span>
                             </div>
-                            <div className="nutrition-item">
-                                <span>Grasas:</span>
+                            <div className="nutrition-value">
+                                <span>Grasas</span>
                                 <span>{item.fats}g</span>
                             </div>
-                            <div className="nutrition-item">
-                                <span>Peso:</span>
+                            <div className="nutrition-value">
+                                <span>Peso</span>
                                 <span>{item.weight}g</span>
                             </div>
                         </div>
-                        
-                        <div className="categories">
-                            Categorías: {item.id_dish_category.join(', ')}
-                        </div>
+                        <span className="food-calories">{item.calories} kcal</span>
                     </div>
                 ))}
             </div>
