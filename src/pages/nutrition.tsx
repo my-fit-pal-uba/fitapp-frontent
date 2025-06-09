@@ -5,6 +5,7 @@ import { Dish } from "../Models/dish";
 
 
 import { useState } from "react";
+import NutritionTable from "../components/nutritiontable";
 
 const Nutrition = () => {
     const [dishes, setDishes] = useState<Dish[]>([]);
@@ -22,8 +23,10 @@ const Nutrition = () => {
     return (
         <>
             <Header />
+            <h1 className="nutrition-title">Alimentacion</h1>
             <div className="nutrition-container">
                 <div className="table-wrapper">
+                    <NutritionTable data={dishes}  />
                 </div>
             </div>
         </>
