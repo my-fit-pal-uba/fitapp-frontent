@@ -1,13 +1,15 @@
 import './nutritiontable.css';
 import { Dish } from '../Models/dish';
 
-const NutritionTable: React.FC<{ data: Dish[] }> = ({ data }) => {
+interface NutritionTableProps {
+    data: Dish[];
+    onAddToMeal: (item: Dish) => void;
+}
+export const NutritionTable = ({ data, onAddToMeal }: NutritionTableProps) => {
 
     const handleAddToMeal = (item: Dish) => {
-        // Aquí puedes implementar la lógica para agregar el plato a una comida
         console.log(`Agregado a la comida: ${item.name}`);
         console.log(item);
-        
     }
 
     return (
@@ -39,6 +41,7 @@ const NutritionTable: React.FC<{ data: Dish[] }> = ({ data }) => {
                         <button
                             className="add-button"
                             onClick={() => {
+                                onAddToMeal(item);
                                 handleAddToMeal(item);
                             }}
                         >
