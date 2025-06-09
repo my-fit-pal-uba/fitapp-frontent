@@ -4,6 +4,8 @@ import { useState, useEffect, FormEvent } from 'react';
 import Chart from '../components/bar';
 import { ChartValue } from '../Models/chartValues';
 import Header from "../components/header";
+import { getToken } from '../Models/token';
+import { User } from '../Models/user';
 
 const mockFetchGoalHistory = async (user_id: number): Promise<ChartValue[]> => {
     const today = new Date();
@@ -27,12 +29,34 @@ const GoalsPage = () => {
     const [goal, setGoal] = useState("");
     const [error, setError] = useState("");
 
-    const handleGoalUpdate = () => {
-        const parsedGoal = parseFloat(newGoal);
+    const handleGoalUpdate = async () => {
+        const parsedGoal = parseFloat(goal);
+        const user: User | null = getToken();
+        const user_id = user?.user_id
         if (!isNaN(parsedGoal)) {
-            setCurrentGoal(parsedGoal);
-            // Aquí podrías hacer un fetch PUT o POST para persistirlo
-            setNewGoal('');
+            try {
+                const response = await fetch("http://127.0.0.1:8080/goals/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "accept": "application/json",
+                    },
+                    body: JSON.stringify({
+                        goal_value: parsedGoal,
+                        user_id: user_id,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Error al guardar el objetivo");
+                }
+
+                setCurrentGoal(parsedGoal); // actualiza el número mostrado
+                setGoal(""); // limpia input
+            } catch (err) {
+                setError("No se pudo guardar el objetivo");
+                console.error(err);
+            }
         }
     };
 
