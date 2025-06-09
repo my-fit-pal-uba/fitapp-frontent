@@ -50,6 +50,7 @@ const GoalsPage = () => {
     const [goal, setGoal] = useState("");
     const [error, setError] = useState("");
     const user: User | null = getToken();
+    const [message, setMessage] = useState<string | null>(null); // <-- mensaje de feedback
 
     const handleGoalUpdate = async () => {
         const parsedGoal = parseFloat(goal);
@@ -73,12 +74,22 @@ const GoalsPage = () => {
                     throw new Error("Error al guardar el objetivo");
                 }
 
-                setCurrentGoal(parsedGoal); // actualiza el número mostrado
-                setGoal(""); // limpia input
+                setCurrentGoal(parsedGoal); 
+                setGoal(""); 
+                setError("");
+                setMessage("¡Objetivo actualizado con éxito!");
+                setTimeout(() => setMessage(null), 3000);
             } catch (err) {
                 setError("No se pudo guardar el objetivo");
+                setMessage("No se pudo guardar el objetivo");
                 console.error(err);
+                setTimeout(() => setMessage(null), 3000);
             }
+        } else {
+            setError("Por favor ingresa un valor numérico válido");
+            setMessage("Por favor ingresa un valor numérico válido");
+            setMessage(null);
+            setTimeout(() => setMessage(null), 3000);
         }
     };
 
@@ -129,7 +140,9 @@ const GoalsPage = () => {
 
     return (
         <>
+            
             <Header />
+            {message && <div className="flash-message">{message}</div>}
             <div className="goals-container">
                 <h1 style={{ color: "white" }}>Mis Objetivos</h1>
 
