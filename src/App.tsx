@@ -9,6 +9,7 @@ import Routines from './pages/routines'
 import CreateRoutine from "./pages/createRoutine";
 import RealizarEjercicio from './pages/do_exercises.tsx';
 import { UserProvider } from './context/user_context.tsx';
+import GoalsPage from './pages/goals';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/routines/create" element={<CreateRoutine />} />
           <Route path="/exercises" element={<Exercises />} /> 
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
+          <Route path="/goals" element={<GoalsPage />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

@@ -41,6 +41,11 @@ function DropdownButton() {
         navigator('/routines');
     }
 
+    const onOpenGoals = () => {
+        setIsOpen(false);
+        navigator('/goals');
+    }
+
     return (
         <div className="dropdown-container" ref={dropdownRef}>
             <button
@@ -62,6 +67,9 @@ function DropdownButton() {
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenRutinas(); }}>
                         🏃 Rutinas
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenGoals(); }}>
+                        🎯 Mis Objetivos
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión

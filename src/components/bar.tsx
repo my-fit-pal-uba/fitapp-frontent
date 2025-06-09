@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ReferenceLine } from 'recharts';
 import './bar.css';
 import { ChartValue } from '../Models/chartValues';
 import { getToken } from '../Models/token';
@@ -8,9 +8,10 @@ import { User } from '../Models/user';
 type ChartProps = {
     chartType?: 'bar' | 'line';
     fetchData: (user_id: number) => Promise<ChartValue[]> | ChartValue[];
+    goalLine?: number;
 };
 
-const Chart = ({ chartType = 'bar', fetchData }: ChartProps) => {
+const Chart = ({ chartType = 'bar', fetchData, goalLine }: ChartProps) => {
     const [data, setData] = useState<ChartValue[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -89,6 +90,19 @@ const Chart = ({ chartType = 'bar', fetchData }: ChartProps) => {
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="value" stroke="#82ca9d" name="tu evolucion " />
+                        {goalLine !== undefined && (
+                            <ReferenceLine
+                                y={goalLine}
+                                stroke="red"
+                                strokeDasharray="5 5"
+                                label={{
+                                    value: `Objetivo: ${goalLine} kg`,
+                                    position: 'insideTopRight',
+                                    fill: 'red',
+                                    fontSize: 12,
+                                }}
+                            />
+                        )}
                     </LineChart>
                 )}
             </ResponsiveContainer>
