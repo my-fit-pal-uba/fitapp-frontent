@@ -42,6 +42,7 @@ function Home() {
               <Chart
                 chartType='line'
                 fetchData={async () => await getWeightHistory(user_id)}
+                goalLine={50}
               />
             </div>
           </div>
