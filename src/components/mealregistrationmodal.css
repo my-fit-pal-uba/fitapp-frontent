@@ -22,8 +22,15 @@
 }
 
 @keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-group {
@@ -91,7 +98,7 @@
 }
 
 h2 {
-    color: black;
+  color: black;
 }
 
 .modal-backdrop.active {
@@ -114,16 +121,6 @@ h2 {
   position: relative;
 }
 
-.modal-close-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.7rem;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
 .form-group {
   margin-bottom: 1rem;
 }
@@ -144,14 +141,42 @@ h2 {
 }
 
 .confirm-button {
-  padding: 0.5rem 1rem;
+  padding: 10px;
+  font-size: 15px;
   background-color: #1976d2;
-  color: white;
-  border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
+.modal-close-button {
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: red;
+}
+
 .confirm-button:hover {
   background-color: #115293;
+}
+
+
+.buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  margin-top: 1rem;
+}
+
+
+.input-quantity input {
+  flex: 2;
+  min-width: 250px;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white;
+  color: black;
 }

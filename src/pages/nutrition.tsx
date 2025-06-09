@@ -49,11 +49,10 @@ const Nutrition = () => {
         setIsModalOpen(true);
     };
 
-    const handleRegisterMeal = (quantity: number, date: Date) => {
-        // Aquí implementas la lógica para registrar el consumo
-        console.log(`Registrado: ${quantity}g de ${selectedDish?.name} a las ${date}`);
-        // Puedes hacer una llamada API aquí para guardar en tu backend
+    const handleRegisterMeal = (quantity: number) => {
+        console.log(`Registered ${quantity} grams of ${selectedDish?.id}`);
     };
+
 
 
     return (
