@@ -119,3 +119,13 @@
   font-weight: 500;
   color: #222;
 }
+
+.add-button {
+  background: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}

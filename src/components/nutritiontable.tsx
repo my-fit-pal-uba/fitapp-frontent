@@ -2,6 +2,14 @@ import './nutritiontable.css';
 import { Dish } from '../Models/dish';
 
 const NutritionTable: React.FC<{ data: Dish[] }> = ({ data }) => {
+
+    const handleAddToMeal = (item: Dish) => {
+        // Aquí puedes implementar la lógica para agregar el plato a una comida
+        console.log(`Agregado a la comida: ${item.name}`);
+        console.log(item);
+        
+    }
+
     return (
         <div className="nutrition-container">
             <div className="food-grid">
@@ -28,6 +36,14 @@ const NutritionTable: React.FC<{ data: Dish[] }> = ({ data }) => {
                             </div>
                         </div>
                         <span className="food-calories">{item.calories} kcal</span>
+                        <button
+                            className="add-button"
+                            onClick={() => {
+                                handleAddToMeal(item);
+                            }}
+                        >
+                            +
+                        </button>
                     </div>
                 ))}
             </div>
