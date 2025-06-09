@@ -7,10 +7,40 @@ import { getCaloriesHistory, getWeightHistory } from '../services/history.servic
 import { getToken } from '../Models/token';
 import { postCalories, postWeight } from '../services/registration.services';
 import Chart from '../components/bar';
+import { useEffect, useState } from 'react';
 
 function Home() {
 
   const user_id = getToken()?.user_id ?? 0;
+  const [goalLine, setGoalLine] = useState<number | null>(null);
+
+  const fetchLatestGoal = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8080/goals/current?user_id=${user_id}`, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        console.error("No se pudo obtener el objetivo");
+        return;
+      }
+
+      const data = await response.json();
+      const parsedGoal = parseFloat(data.message.goal_value);
+      if (!isNaN(parsedGoal)) {
+        setGoalLine(parsedGoal);
+      }
+    } catch (error) {
+      console.error("Error al obtener el objetivo:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLatestGoal();
+  }, [user_id]);
 
   return (
     <>
@@ -42,7 +72,7 @@ function Home() {
               <Chart
                 chartType='line'
                 fetchData={async () => await getWeightHistory(user_id)}
-                goalLine={50}
+                goalLine={goalLine ?? undefined}
               />
             </div>
           </div>
