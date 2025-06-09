@@ -56,7 +56,6 @@
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .cancel-button {
@@ -170,6 +169,7 @@ h2 {
 
 
 .input-quantity input {
+  margin-top: 10px;
   flex: 2;
   min-width: 250px;
   padding: 0.85rem 1.25rem;

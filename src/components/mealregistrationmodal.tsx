@@ -30,17 +30,18 @@ export const MealRegistrationModal = ({
 
                     <div className="form-group">
                         <label>Cantidad (gramos):</label>
-                        <input
-                            className="input-quantity"
-                            type="text"
-                            value={quantity}
-                            onChange={(e) => setQuantity(Number(e.target.value))}
-                        />
+                        <div className="input-quantity">
+                            <input
+                                type="text"
+                                value={quantity}
+                                onChange={(e) => setQuantity(Number(e.target.value))}
+                            />
+                        </div>
                     </div>
 
                     <div className="buttons-wrapper">
                         <button className="modal-close-button" onClick={onClose}>
-                            cancela
+                            Cancelar
                         </button>
                         <div className="modal-actions">
                             <button
