@@ -6,6 +6,7 @@ import Registration from './pages/registration';
 import Profile from './pages/profile';
 import Exercises from './pages/exercises';
 import { UserProvider } from './context/user_context.tsx';
+import Nutrition from './pages/nutrition.tsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/exercises" element={<Exercises />} /> 
+          <Route path="/nutrition" element={<Nutrition/>} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>
