@@ -31,25 +31,35 @@ const Nutrition = () => {
 
     return (
         <>
-            <Header />
-            <h1 className="nutrition-title">Alimentacion</h1>
-            <div className="category-filter">
-                <h3 className="filter-title">Filtrar por categoría:</h3>
-                <div className="category-buttons">
-                    <button className="category-button active">Todas</button>
-                    {categories.slice(0, 5).map((category) => (
-                        <button
-                            key={category.id}
-                            className="category-button"
-                        >
-                            {category.description}
-                        </button>
-                    ))}
-                </div>
-            </div>
-            <div className="nutrition-container">
-                <div className="table-wrapper">
-                    <NutritionTable data={dishes} />
+            <div className="nutrition-app">
+                <Header />
+                <div className="content-wrapper">
+                    <main className="nutrition-main">
+                        <div className="title-section">
+                            <h1 className="nutrition-title">
+                                <span className="title-icon">🍏</span>
+                                Alimentación Saludable
+                            </h1>
+                        </div>
+
+                        <div className="category-filter-section">
+                            <div className="category-filter">
+                                <h3 className="filter-title">Filtrar por categoría:</h3>
+                                <div className="category-buttons">
+                                    <button className="category-button active">Todas</button>
+                                    {categories.slice(0, 5).map((category) => (
+                                        <button key={category.id} className="category-button">
+                                            {category.description}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="table-section">
+                            <NutritionTable data={dishes} />
+                        </div>
+                    </main>
                 </div>
             </div>
         </>
