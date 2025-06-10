@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import './header.css';
 import { User } from '../Models/user';
 import { getToken } from '../Models/token';
-import DropdownButton from './dropdown';
+import DropdownButton from './dropdown.tsx';
 
 function Header() {
   const [name, setName] = useState<string>('');
@@ -18,6 +18,7 @@ function Header() {
   }, []);
 
   return (
+    <>
     <header className="app-header">
       <div className="title-wrapper">
         <a href="/home" className="icon-link">
@@ -34,6 +35,7 @@ function Header() {
         <DropdownButton />
       </div>
     </header>
+    </>
   );
 }
 
