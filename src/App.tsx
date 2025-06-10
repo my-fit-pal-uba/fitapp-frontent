@@ -11,6 +11,7 @@ import RoutineHistory from './pages/routine_history';
 import RealizarEjercicio from './pages/do_exercises.tsx';
 import { UserProvider } from './context/user_context.tsx';
 import GoalsPage from './pages/goals';
+import PhotosPage from './pages/my_photos.tsx';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/exercises" element={<Exercises />} /> 
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
           <Route path="/goals" element={<GoalsPage />} />
+          <Route path="/my_photos" element={<PhotosPage />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

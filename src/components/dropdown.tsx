@@ -50,6 +50,11 @@ function DropdownButton() {
         navigator('/rutine-history');
     }
 
+    const onOpenPhotos = () => {
+        setIsOpen(false);
+        navigator('/my_photos');
+    }
+
     return (
         <div className="dropdown-container" ref={dropdownRef}>
             <button
@@ -77,6 +82,9 @@ function DropdownButton() {
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenRutineHistory(); }}>
                         📅 Historial Rutinas
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenPhotos(); }}>
+                        🖼️  Mis Fotos
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
