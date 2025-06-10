@@ -56,6 +56,7 @@ export const MealRegistrationModal = ({
                                 className="confirm-button"
                                 onClick={() => {
                                     onRegister(quantity);
+                                    setQuantity(100);
                                     onClose();
                                 }}
                             >
