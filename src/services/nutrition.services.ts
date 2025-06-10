@@ -1,3 +1,6 @@
+import { DevUrl } from "../env/dev.url.model";
+import { Dish } from "../Models/dish";
+
 export async function getDishes() {
   const response = await fetch("http://localhost:8080/nutrition/get_dishes");
   if (!response.ok) {
@@ -50,4 +53,27 @@ export async function registerDishConsumption(
 
   const data = await response.json();
   return data;
+}
+
+
+
+export async function postDish(newDish: Dish) {
+  try {
+    const response = await fetch(`${DevUrl.baseUrl}/nutrition/post_dish`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newDish),
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error posting dish:", error);
+    return false;
+  }
 }

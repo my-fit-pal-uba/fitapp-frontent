@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../components/header";
-import { getDishCategories, getDishes, registerDishConsumption } from "../services/nutrition.services";
+import { getDishCategories, getDishes, postDish, registerDishConsumption } from "../services/nutrition.services";
 import { Dish } from "../Models/dish";
 import "./nutrition.css";
 import NutritionTable from "../components/nutritiontable";
@@ -66,11 +66,11 @@ const Nutrition = () => {
     };
 
 
-    const handleRegisterNewDish = async (newDish: NewDish) => {
+    const handleRegisterNewDish = async (newDish: Dish) => {
         try {
             // Aquí implementa la llamada a tu servicio para registrar el nuevo alimento
-            console.log("Nuevo alimento a registrar:", newDish);
-
+            const result = await postDish(newDish);
+            console.log("Nuevo alimento registrado:", result);
             // Actualizar la lista de alimentos
             const updatedDishes = await getDishes();
             setAllDishes(updatedDishes);

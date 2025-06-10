@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import "./modalnuevoplato.css"; // Asegúrate de crear este archivo CSS
-import { NewDish } from "../Models/newdish";
+import "./modalnuevoplato.css"; 
 import { MealCategory } from "../Models/meal_categorie";
+import { Dish } from "../Models/dish";
 
 interface ModalNuevoPlatoProps {
     isOpen: boolean;
     onClose: () => void;
-    onRegistrar: (alimento: NewDish) => void;
+    onRegistrar: (alimento: Dish) => void;
     meal_categories: MealCategory[];
 }
 
 export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: ModalNuevoPlatoProps) {
-    const [nuevoAlimento, setNuevoAlimento] = useState<NewDish>({
+    const [nuevoAlimento, setNuevoAlimento] = useState<Dish>({
         name: "",
         calories: 0,
-        carbohydrates: 0,
+        carbs: 0,
         description: "",
         fats: 0,
         id: 0,
@@ -72,7 +72,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
         }
         setNuevoAlimento({
             ...nuevoAlimento,
-            carbohydrates: value,
+            carbs: value,
         });
 
     };
@@ -95,10 +95,10 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
         });
     };
 
-    const baseDish: NewDish = {
+    const baseDish: Dish = {
         name: "",
         calories: 0,
-        carbohydrates: 0,
+        carbs: 0,
         description: "",
         fats: 0,
         id: 0,
@@ -144,7 +144,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
             return;
         }
 
-        const alimento: NewDish = {
+        const alimento: Dish = {
             ...nuevoAlimento,
             id: 0, 
         };
@@ -212,7 +212,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
                                 <label>Carbohidratos (g):</label>
                                 <input
                                     name="carbohidratos"
-                                    value={nuevoAlimento.carbohydrates}
+                                    value={nuevoAlimento.carbs}
                                     onChange={handleChangeCarbohidrates}
                                     required
                                 />
