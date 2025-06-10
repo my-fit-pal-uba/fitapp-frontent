@@ -19,6 +19,14 @@ export const MealRegistrationModal = ({
 
     if (!isOpen || !dish) return null;
 
+    const validateQuantity = (value: string) => {
+        const numValue = Number(value);
+        if (isNaN(numValue) || numValue < 0) {
+            return;
+        }
+        setQuantity(numValue);
+    }
+
     return (
         <>
             <div className={`modal-backdrop ${isOpen ? 'active' : ''}`} onClick={onClose}></div>
@@ -34,7 +42,7 @@ export const MealRegistrationModal = ({
                             <input
                                 type="text"
                                 value={quantity}
-                                onChange={(e) => setQuantity(Number(e.target.value))}
+                                onChange={(e) => validateQuantity(e.target.value)}
                             />
                         </div>
                     </div>

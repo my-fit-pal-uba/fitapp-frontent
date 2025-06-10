@@ -7,11 +7,6 @@ interface NutritionTableProps {
 }
 export const NutritionTable = ({ data, onAddToMeal }: NutritionTableProps) => {
 
-    const handleAddToMeal = (item: Dish) => {
-        console.log(`Agregado a la comida: ${item.name}`);
-        console.log(item);
-    }
-
     return (
         <div className="nutrition-container">
             <div className="food-grid">
@@ -42,7 +37,6 @@ export const NutritionTable = ({ data, onAddToMeal }: NutritionTableProps) => {
                             className="add-button"
                             onClick={() => {
                                 onAddToMeal(item);
-                                handleAddToMeal(item);
                             }}
                         >
                             +

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Header from "../components/header";
-import { getDishCategories, getDishes } from "../services/nutrition.services";
+import { getDishCategories, getDishes, registerDishConsumption } from "../services/nutrition.services";
 import { Dish } from "../Models/dish";
 import "./nutrition.css";
 import NutritionTable from "../components/nutritiontable";
 import { MealCategory } from "../Models/meal_categorie";
 import { MealRegistrationModal } from "../components/mealregistrationmodal";
+import { getToken } from "../Models/token";
 
 const Nutrition = () => {
     const [dishes, setDishes] = useState<Dish[]>([]);
@@ -51,6 +52,14 @@ const Nutrition = () => {
 
     const handleRegisterMeal = (quantity: number) => {
         console.log(`Registered ${quantity} grams of ${selectedDish?.id}`);
+        const userToken = getToken();
+        if (!userToken || !selectedDish) {
+            console.error("User token is not available.");
+            return;
+        }
+        const user_id = userToken.user_id ?? 0;
+        const dish_id = selectedDish.id ?? 0;
+        registerDishConsumption(dish_id, user_id, quantity)
     };
 
 
