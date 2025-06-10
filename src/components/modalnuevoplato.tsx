@@ -22,9 +22,10 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
         weight: 100,
         id_dish_category: [],
     });
-
+    const [formError, setFormError] = useState<string | null>(null);
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
         setNuevoAlimento({
             ...nuevoAlimento,
             name: e.target.value,
@@ -46,7 +47,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
         const value = Number(e.target.value);
         if (isNaN(value)) {
             return;
-        }   
+        }
         setNuevoAlimento({
             ...nuevoAlimento,
             calories: value,
@@ -127,20 +128,47 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
     };
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+        // e.preventDefault();
+        // const alimento: NewDish = {
+        //     name: nuevoAlimento.name,
+        //     calories: nuevoAlimento.calories,
+        //     carbohydrates: nuevoAlimento.carbohydrates,
+        //     description: nuevoAlimento.description,
+        //     fats: nuevoAlimento.fats,
+        //     id: 0,
+        //     proteins: nuevoAlimento.proteins,
+        //     weight: nuevoAlimento.weight,
+        //     id_dish_category: nuevoAlimento.id_dish_category,
+        // };
+        // onRegistrar(alimento);
+        // setNuevoAlimento(baseDish);
+        // onClose();  e.preventDefault();
+
+        // Validaciones
+        if (nuevoAlimento.name.trim().length < 3) {
+            setFormError("El nombre del alimento debe tener al menos 3 caracteres.");
+            return;
+        }
+
+        if (nuevoAlimento.weight <= 0) {
+            setFormError("El peso debe ser mayor que 0 gramos.");
+            return;
+        }
+
+        if (nuevoAlimento.id_dish_category.length === 0) {
+            setFormError("Debes seleccionar al menos una categoría.");
+            return;
+        }
+
+        // Si pasa validaciones
         const alimento: NewDish = {
-            name: nuevoAlimento.name,
-            calories: nuevoAlimento.calories,
-            carbohydrates: nuevoAlimento.carbohydrates,
-            description: "",
-            fats: nuevoAlimento.fats,
-            id: 0,
-            proteins: nuevoAlimento.proteins,
-            weight: nuevoAlimento.weight,
-            id_dish_category: [],
+            ...nuevoAlimento,
+            id: 0, // asegúrate de que esto esté bien manejado en el backend
         };
+
         onRegistrar(alimento);
         setNuevoAlimento(baseDish);
+        setFormError(null);
         onClose();
     };
 
@@ -152,6 +180,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
             <div className="modal-container">
                 <div className="modal-content">
                     <h2 className="modal-title">Registrar Nuevo Alimento</h2>
+                    {formError && <div className="form-error">{formError}</div>}
 
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
