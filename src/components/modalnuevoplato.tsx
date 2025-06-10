@@ -128,23 +128,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
     };
 
     const handleSubmit = (e: React.FormEvent) => {
-        // e.preventDefault();
-        // const alimento: NewDish = {
-        //     name: nuevoAlimento.name,
-        //     calories: nuevoAlimento.calories,
-        //     carbohydrates: nuevoAlimento.carbohydrates,
-        //     description: nuevoAlimento.description,
-        //     fats: nuevoAlimento.fats,
-        //     id: 0,
-        //     proteins: nuevoAlimento.proteins,
-        //     weight: nuevoAlimento.weight,
-        //     id_dish_category: nuevoAlimento.id_dish_category,
-        // };
-        // onRegistrar(alimento);
-        // setNuevoAlimento(baseDish);
-        // onClose();  e.preventDefault();
-
-        // Validaciones
+        e.preventDefault();
         if (nuevoAlimento.name.trim().length < 3) {
             setFormError("El nombre del alimento debe tener al menos 3 caracteres.");
             return;
@@ -160,10 +144,9 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
             return;
         }
 
-        // Si pasa validaciones
         const alimento: NewDish = {
             ...nuevoAlimento,
-            id: 0, // asegúrate de que esto esté bien manejado en el backend
+            id: 0, 
         };
 
         onRegistrar(alimento);
