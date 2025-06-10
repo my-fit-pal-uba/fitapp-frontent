@@ -54,7 +54,6 @@ const Nutrition = () => {
     };
 
     const handleRegisterMeal = (quantity: number) => {
-        console.log(`Registered ${quantity} grams of ${selectedDish?.id}`);
         const userToken = getToken();
         if (!userToken || !selectedDish) {
             console.error("User token is not available.");
@@ -68,10 +67,7 @@ const Nutrition = () => {
 
     const handleRegisterNewDish = async (newDish: Dish) => {
         try {
-            // Aquí implementa la llamada a tu servicio para registrar el nuevo alimento
             const result = await postDish(newDish);
-            console.log("Nuevo alimento registrado:", result);
-            // Actualizar la lista de alimentos
             const updatedDishes = await getDishes();
             setAllDishes(updatedDishes);
             setDishes(updatedDishes);

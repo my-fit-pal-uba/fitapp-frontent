@@ -25,15 +25,12 @@ function RealizarEjercicio() {
   const [weightInput, setWeightInput] = useState('');
 
   useEffect(() => {
-    console.log("ID del ejercicio:", id);
     if (!exercise && id) {
         fetch(`${DevUrl}/exercises/${id}`)
         .then(res => {
-            console.log("Respuesta fetch status:", res.status);
             return res.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
             setExercise(data);
             setLoading(false);
         })
