@@ -39,37 +39,52 @@ function DropdownButton() {
     const onOpenNutricion = () => {
         setIsOpen(false);
         navigator('/nutrition');
+
+        const onOpenRutinas = () => {
+            setIsOpen(false);
+            navigator('/routines');
+        }
+
+        const onOpenGoals = () => {
+            setIsOpen(false);
+            navigator('/goals');
+        }
+
+        return (
+            <div className="dropdown-container" ref={dropdownRef}>
+                <button
+                    className="dropdown-button"
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-expanded={isOpen}
+                >
+                    Menú
+                    <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
+                </button>
+
+                {isOpen && (
+                    <div className="dropdown-menu">
+                        <button className="dropdown-item" onClick={() => { onOpenProfile(); }}>
+                            👤 Ver Perfil
+                        </button>
+                        <button className="dropdown-item" onClick={() => { onOpenEjercicios(); }}>
+                            🏋️ Ejercicios
+                        </button>
+                        <button className="dropdown-item" onClick={() => { onOpenNutricion(); }}>
+                            🥗 Nutrición
+                        </button>
+                        <button className="dropdown-item" onClick={() => { onOpenRutinas(); }}>
+                            🏃 Rutinas
+                        </button>
+                        <button className="dropdown-item" onClick={() => { onOpenGoals(); }}>
+                            🎯 Mis Objetivos
+                        </button>
+                        <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
+                            🚪 Cerrar Sesión
+                        </button>
+                    </div>
+                )}
+            </div>
+        );
     }
-
-    return (
-        <div className="dropdown-container" ref={dropdownRef}>
-            <button
-                className="dropdown-button"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-expanded={isOpen}
-            >
-                Menú
-                <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
-            </button>
-
-            {isOpen && (
-                <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => { onOpenProfile(); }}>
-                        👤 Ver Perfil
-                    </button>
-                    <button className="dropdown-item" onClick={() => { onOpenEjercicios(); }}>
-                        🏋️ Ejercicios
-                    </button>
-                    <button className="dropdown-item" onClick={() => { onOpenNutricion(); }}>
-                        🥗 Nutrición
-                    </button>
-                    <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
-                        🚪 Cerrar Sesión
-                    </button>
-                </div>
-            )}
-        </div>
-    );
 }
-
 export default DropdownButton;

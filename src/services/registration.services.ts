@@ -47,3 +47,53 @@ export async function getUserRols(){
     return [];
   }
 }
+
+export async function postWeight(user_id: number, weight: number) {
+  try {
+    const response = await fetch(`${DevUrl.baseUrl}/profiles/post_daily_weight`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user_id,
+        weight: weight,
+      }),
+    });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error posting weight:", error);
+    return false;
+  }
+}
+
+
+export async function postCalories(user_id: number, calories: number) {
+  try {
+
+    const response = await fetch(`${DevUrl.baseUrl}/profiles/post_daily_calories`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user_id,
+        calories: calories,
+      }),
+    });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error posting weight:", error);
+    return false;
+  }
+}
