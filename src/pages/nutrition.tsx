@@ -140,6 +140,7 @@ const Nutrition = () => {
                         isOpen={isNewDishModalOpen}
                         onClose={() => setIsNewDishModalOpen(false)}
                         onRegistrar={handleRegisterNewDish}
+                        meal_categories={categories}
                     />
                 </main>
             </div>

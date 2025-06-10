@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./modalnuevoplato.css"; // Asegúrate de crear este archivo CSS
 import { NewDish } from "../Models/newdish";
+import { MealCategory } from "../Models/meal_categorie";
 
 interface ModalNuevoPlatoProps {
     isOpen: boolean;
     onClose: () => void;
     onRegistrar: (alimento: NewDish) => void;
+    meal_categories: MealCategory[];
 }
 
-export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoProps) {
+export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: ModalNuevoPlatoProps) {
     const [nuevoAlimento, setNuevoAlimento] = useState<NewDish>({
         name: "",
         calories: 0,
@@ -21,11 +23,74 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
         id_dish_category: [],
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNuevoAlimento({
             ...nuevoAlimento,
-            [name]: name === "nombre" ? value : Number(value),
+            name: e.target.value,
+        });
+    };
+
+    const handleChangeCantidad = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        if (isNaN(value)) {
+            return;
+        }
+        setNuevoAlimento({
+            ...nuevoAlimento,
+            weight: value,
+        });
+    }
+
+    const handleChangeCalories = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        if (isNaN(value)) {
+            return;
+        }   
+        setNuevoAlimento({
+            ...nuevoAlimento,
+            calories: value,
+        });
+    };
+
+    const handleChangeProteins = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        if (isNaN(value)) {
+            return;
+        }
+        setNuevoAlimento({
+            ...nuevoAlimento,
+            proteins: value,
+        });
+    };
+
+    const handleChangeCarbohidrates = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        if (isNaN(value)) {
+            return;
+        }
+        setNuevoAlimento({
+            ...nuevoAlimento,
+            carbohydrates: value,
+        });
+
+    };
+
+    const handleChangeFats = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        if (isNaN(value)) {
+            return;
+        }
+        setNuevoAlimento({
+            ...nuevoAlimento,
+            fats: value,
+        });
+    };
+
+    const handleChangeDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNuevoAlimento({
+            ...nuevoAlimento,
+            description: e.target.value,
         });
     };
 
@@ -40,6 +105,26 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
         weight: 100,
         id_dish_category: [],
     }
+
+    const toggleCategoria = (categoryId: number) => {
+        setNuevoAlimento(prev => {
+            if (prev.id_dish_category.includes(categoryId)) {
+                return {
+                    ...prev,
+                    id_dish_category: prev.id_dish_category.filter(id => id !== categoryId)
+                };
+            }
+            return {
+                ...prev,
+                id_dish_category: [...prev.id_dish_category, categoryId]
+            };
+        });
+    };
+
+    const handleClose = () => {
+        setNuevoAlimento(baseDish);
+        onClose();
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -75,7 +160,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                                 type="text"
                                 name="nombre"
                                 value={nuevoAlimento.name}
-                                onChange={handleChange}
+                                onChange={handleNameChange}
                                 required
                             />
                         </div>
@@ -85,7 +170,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                             <input
                                 name="cantidad"
                                 value={nuevoAlimento.weight}
-                                onChange={handleChange}
+                                onChange={handleChangeCantidad}
                                 required
                             />
                         </div>
@@ -96,7 +181,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                                 <input
                                     name="calorias"
                                     value={nuevoAlimento.calories}
-                                    onChange={handleChange}
+                                    onChange={handleChangeCalories}
                                     required
                                 />
                             </div>
@@ -106,7 +191,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                                 <input
                                     name="proteinas"
                                     value={nuevoAlimento.proteins}
-                                    onChange={handleChange}
+                                    onChange={handleChangeProteins}
                                     required
                                 />
                             </div>
@@ -116,7 +201,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                                 <input
                                     name="carbohidratos"
                                     value={nuevoAlimento.carbohydrates}
-                                    onChange={handleChange}
+                                    onChange={handleChangeCarbohidrates}
                                     required
                                 />
                             </div>
@@ -126,9 +211,61 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                                 <input
                                     name="grasas"
                                     value={nuevoAlimento.fats}
-                                    onChange={handleChange}
+                                    onChange={handleChangeFats}
                                     required
                                 />
+                            </div>
+
+                        </div>
+
+                        <div className="form-group">
+                            <label>Descripción:</label>
+                            <input
+                                type="text"
+                                name="descripcion"
+                                value={nuevoAlimento.description}
+                                onChange={handleChangeDescription}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Selecciona las categorías aplicables:</label>
+                            <div className="categorias-container">
+                                {meal_categories.map(categoria => (
+                                    <div
+                                        key={categoria.id}
+                                        className={`categoria-option ${nuevoAlimento.id_dish_category.includes(categoria.id) ? 'selected' : ''
+                                            }`}
+                                        onClick={() => toggleCategoria(categoria.id)}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={nuevoAlimento.id_dish_category.includes(categoria.id)}
+                                            readOnly
+                                            className="hidden-checkbox"
+                                        />
+                                        <span className="categoria-name">{categoria.description}</span>
+                                        {nuevoAlimento.id_dish_category.includes(categoria.id) && (
+                                            <span className="check-icon">✓</span>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="selected-categories">
+                                {nuevoAlimento.id_dish_category.length > 0 && (
+                                    <>
+                                        <span>Categorías seleccionadas: </span>
+                                        {nuevoAlimento.id_dish_category.map(id => {
+                                            const cat = meal_categories.find(c => c.id === id);
+                                            return cat ? (
+                                                <span key={id} className="selected-tag">
+                                                    {cat.description}
+                                                </span>
+                                            ) : null;
+                                        })}
+                                    </>
+                                )}
                             </div>
                         </div>
 
@@ -136,12 +273,13 @@ export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoPr
                             <button
                                 type="button"
                                 className="modal-close-button"
-                                onClick={onClose}
+                                onClick={handleClose}
                             >
                                 Cancelar
                             </button>
                             <div className="modal-actions">
-                                <button type="submit" className="confirm-button">
+                                <button type="submit" className="confirm-button"
+                                    onClick={handleSubmit}>
                                     Registrar Alimento
                                 </button>
                             </div>
