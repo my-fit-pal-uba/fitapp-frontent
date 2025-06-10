@@ -1,23 +1,14 @@
 import React, { useState } from "react";
-import "./ModalNuevoPlato.css"; // Asegúrate de crear este archivo CSS
+import "./modalnuevoplato.css"; // Asegúrate de crear este archivo CSS
 import { NewDish } from "../Models/newdish";
-
-interface NuevoAlimento {
-    nombre: string;
-    cantidad: number;
-    calorias: number;
-    proteinas: number;
-    carbohidratos: number;
-    grasas: number;
-}
 
 interface ModalNuevoPlatoProps {
     isOpen: boolean;
     onClose: () => void;
-    onRegistrar: (alimento: NuevoAlimento) => void;
+    onRegistrar: (alimento: NewDish) => void;
 }
 
-export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoProps) {
+export function NewDishModal({ isOpen, onClose, onRegistrar }: ModalNuevoPlatoProps) {
     const [nuevoAlimento, setNuevoAlimento] = useState<NewDish>({
         name: "",
         calories: 0,
@@ -49,16 +40,19 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
         weight: 100,
         id_dish_category: [],
     }
-        
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const alimento: NuevoAlimento = {
-            nombre: nuevoAlimento.name,
-            cantidad: nuevoAlimento.weight,
-            calorias: nuevoAlimento.calories,
-            proteinas: nuevoAlimento.proteins,
-            carbohidratos: nuevoAlimento.carbohydrates,
-            grasas: nuevoAlimento.fats,
+        const alimento: NewDish = {
+            name: nuevoAlimento.name,
+            calories: nuevoAlimento.calories,
+            carbohydrates: nuevoAlimento.carbohydrates,
+            description: "",
+            fats: nuevoAlimento.fats,
+            id: 0,
+            proteins: nuevoAlimento.proteins,
+            weight: nuevoAlimento.weight,
+            id_dish_category: [],
         };
         onRegistrar(alimento);
         setNuevoAlimento(baseDish);
@@ -89,9 +83,7 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
                         <div className="form-group">
                             <label>Cantidad (gramos):</label>
                             <input
-                                type="number"
                                 name="cantidad"
-                                min="1"
                                 value={nuevoAlimento.weight}
                                 onChange={handleChange}
                                 required
@@ -102,10 +94,7 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
                             <div className="form-group">
                                 <label>Calorías (kcal):</label>
                                 <input
-                                    type="number"
                                     name="calorias"
-                                    min="0"
-                                    step="0.1"
                                     value={nuevoAlimento.calories}
                                     onChange={handleChange}
                                     required
@@ -115,10 +104,7 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
                             <div className="form-group">
                                 <label>Proteínas (g):</label>
                                 <input
-                                    type="number"
                                     name="proteinas"
-                                    min="0"
-                                    step="0.1"
                                     value={nuevoAlimento.proteins}
                                     onChange={handleChange}
                                     required
@@ -128,10 +114,7 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
                             <div className="form-group">
                                 <label>Carbohidratos (g):</label>
                                 <input
-                                    type="number"
                                     name="carbohidratos"
-                                    min="0"
-                                    step="0.1"
                                     value={nuevoAlimento.carbohydrates}
                                     onChange={handleChange}
                                     required
@@ -141,10 +124,7 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
                             <div className="form-group">
                                 <label>Grasas (g):</label>
                                 <input
-                                    type="number"
                                     name="grasas"
-                                    min="0"
-                                    step="0.1"
                                     value={nuevoAlimento.fats}
                                     onChange={handleChange}
                                     required
@@ -173,4 +153,4 @@ export function ModalNuevoPlato({ isOpen, onClose, onRegistrar }: ModalNuevoPlat
     );
 }
 
-export default ModalNuevoPlato;
+export default NewDishModal;

@@ -7,6 +7,8 @@ import NutritionTable from "../components/nutritiontable";
 import { MealCategory } from "../Models/meal_categorie";
 import { MealRegistrationModal } from "../components/mealregistrationmodal";
 import { getToken } from "../Models/token";
+import NewDishModal from "../components/modalnuevoplato";
+import { NewDish } from "../Models/newdish";
 
 const Nutrition = () => {
     const [dishes, setDishes] = useState<Dish[]>([]);
@@ -15,6 +17,7 @@ const Nutrition = () => {
     const [activeCategory, setActiveCategory] = useState<number | null>(null);
     const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isNewDishModalOpen, setIsNewDishModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchDishes = async () => {
@@ -63,6 +66,21 @@ const Nutrition = () => {
     };
 
 
+    const handleRegisterNewDish = async (newDish: NewDish) => {
+        try {
+            // Aquí implementa la llamada a tu servicio para registrar el nuevo alimento
+            console.log("Nuevo alimento a registrar:", newDish);
+
+            // Actualizar la lista de alimentos
+            const updatedDishes = await getDishes();
+            setAllDishes(updatedDishes);
+            setDishes(updatedDishes);
+            setIsNewDishModalOpen(false);
+        } catch (error) {
+            console.error("Error al registrar nuevo alimento:", error);
+        }
+    };
+
 
     return (
         <div className="nutrition-app">
@@ -96,6 +114,12 @@ const Nutrition = () => {
                                     </button>
                                 ))}
                             </div>
+                            <button
+                                className="add-new-food-button"
+                                onClick={() => setIsNewDishModalOpen(true)}
+                            >
+                                + Nuevo Alimento
+                            </button>
                         </div>
                     </div>
                     <div className="table-section">
@@ -110,6 +134,12 @@ const Nutrition = () => {
                         onClose={() => setIsModalOpen(false)}
                         dish={selectedDish}
                         onRegister={handleRegisterMeal}
+                    />
+
+                    <NewDishModal
+                        isOpen={isNewDishModalOpen}
+                        onClose={() => setIsNewDishModalOpen(false)}
+                        onRegistrar={handleRegisterNewDish}
                     />
                 </main>
             </div>
