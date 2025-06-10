@@ -45,6 +45,10 @@ function DropdownButton() {
         setIsOpen(false);
         navigator('/goals');
     }
+    const onOpenRutineHistory = () => {
+        setIsOpen(false);
+        navigator('/rutine-history');
+    }
 
     return (
         <div className="dropdown-container" ref={dropdownRef}>
@@ -70,6 +74,9 @@ function DropdownButton() {
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenGoals(); }}>
                         🎯 Mis Objetivos
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenRutineHistory(); }}>
+                        📅 Historial Rutinas
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
