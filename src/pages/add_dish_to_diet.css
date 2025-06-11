@@ -1,0 +1,129 @@
+.add-dish-container {
+  margin: 150px auto 0;
+  padding: 2rem;
+  max-width: 800px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+}
+
+.add-dish-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.add-dish-form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.add-dish-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.add-dish-form select,
+.add-dish-form input[type="number"] {
+  margin-top: 0.4rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #000;
+  background-color: #fff;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.add-dish-form select:focus,
+.add-dish-form input[type="number"]:focus {
+  border-color: #4d90fe;
+  box-shadow: 0 0 0 2px rgba(77, 144, 254, 0.2);
+  outline: none;
+}
+
+.add-dish-form button {
+  align-self: flex-end;
+  padding: 0.85rem 1.75rem;
+  background-color: #4d90fe;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-dish-form button:hover {
+  background-color: #357ae8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.success-message {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #c8e6c9;
+  text-align: center;
+  font-weight: 600;
+}
+
+.error-message {
+  color: #d32f2f;
+  background-color: #fce8e6;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #f5c6cb;
+}
+
+.dish-details {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.dish-details h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.dish-details p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .add-dish-container {
+    padding: 1.5rem;
+  }
+
+  .add-dish-form button {
+    width: 100%;
+    align-self: stretch;
+  }
+}
