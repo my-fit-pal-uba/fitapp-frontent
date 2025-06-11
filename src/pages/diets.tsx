@@ -58,7 +58,7 @@ const Diets = () => {
                             className="add-new-diet-button"
                             onClick={() => setIsNewDietModalOpen(true)}
                         >
-                            + Nuevo Alimento
+                            + Nueva Dieta
                         </button>
                         <DietsTable
                             data={diets}

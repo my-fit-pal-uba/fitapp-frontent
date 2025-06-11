@@ -32,7 +32,7 @@ export const DietRegistrationModal = ({
         e.preventDefault();
         setNuevaDieta({
             ...nuevaDieta,
-            name: e.target.value,
+            observation: e.target.value,
         });
     };
 
@@ -114,7 +114,7 @@ export const DietRegistrationModal = ({
                             <div className="modal-actions">
                                 <button type="submit" className="confirm-button"
                                     onClick={handleSubmit}>
-                                    Registrar Alimento
+                                    Registrar Dieta
                                 </button>
                             </div>
                         </div>
