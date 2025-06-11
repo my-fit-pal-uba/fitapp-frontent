@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import Header from "../components/header";
-import { getDiets, createDiet, addDish } from "../services/diets.services";
+import { getDiets, createDiet } from "../services/diets.services";
 import { Diet } from "../Models/diet";
 import "./diets.css";
 import DietsTable from "../components/dietstable";
+import { User } from '../Models/user';
 import { DietRegistrationModal } from "../components/dietregistrationmodal";
 import { getToken } from "../Models/token";
 
@@ -13,25 +15,26 @@ const Diets = () => {
     const [selectedDiet, setSelectedDiet] = useState<Diet | null>(null);
     const [isNewDietModalOpen, setIsNewDietModalOpen] = useState(false);
 
+    const user: User | null = getToken();
+    const userId = user?.user_id;
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchDiets = async () => {
-            const data = await getDiets();
+            if (!userId) return;
+            const data = await getDiets(userId);
             setAllDiets(data);
             setDiets(data);
         };
 
         fetchDiets();
-    }, []);
-
-    const handleAddToDiet = (item: Diet) => {
-        setSelectedDiet(item);
-        setIsNewDietModalOpen(true);
-    };
+    }, [userId]);
 
     const handleRegisterNewDiet = async (newDiet: Diet) => {
         try {
-            const result = await createDiet(newDiet);
-            const updatedDiets = await getDiets();
+            if (!userId) return;
+            const result = await createDiet(newDiet, userId);
+            const updatedDiets = await getDiets(userId);
             setAllDiets(updatedDiets);
             setDiets(updatedDiets);
             setIsNewDietModalOpen(false);
@@ -40,7 +43,11 @@ const Diets = () => {
         }
     };
 
-    
+    // Redirige a la página para agregar plato a la dieta seleccionada
+    const handleAddToDiet = (item: Diet) => {
+        navigate(`/diet/${item.id}/add-dish`);
+    };
+
     return (
         <div className="diet-app">
             <Header />
@@ -73,8 +80,8 @@ const Diets = () => {
                     />
                 </main>
             </div>
-        </div >
+        </div>
     );
-}
+};
 
 export default Diets;

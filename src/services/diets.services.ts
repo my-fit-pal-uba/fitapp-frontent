@@ -1,8 +1,9 @@
 import { DevUrl } from "../env/dev.url.model";
 import { Diet } from "../Models/diet";
+import { DishToDiet } from "../Models/dish_to_diet";
 
-export async function getDiets() {
-  const response = await fetch("http://localhost:8080/nutrition/get_diets");
+export async function getDiets(user_id: number) {
+  const response = await fetch(`${DevUrl.baseUrl}/diet/get_diets?user_id=${user_id}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -13,9 +14,9 @@ export async function getDiets() {
   return data.message;
 }
 
-export async function createDiet(newDiet: Diet) {
+export async function createDiet(newDiet: Diet, user_id: number) {
   try {
-    const response = await fetch(`${DevUrl.baseUrl}/nutrition/create_diet`, {
+    const response = await fetch(`${DevUrl.baseUrl}/diet/create_diet?user_id=${user_id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,14 +35,14 @@ export async function createDiet(newDiet: Diet) {
   }
 }
 
-export async function addDish(diet: Diet) {
+export async function addDish(dish: DishToDiet, diet_id: number) {
   try {
-    const response = await fetch(`${DevUrl.baseUrl}/nutrition/add_dish`, {
+    const response = await fetch(`${DevUrl.baseUrl}/diet/add_dish?diet_id=${diet_id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(diet),
+      body: JSON.stringify(dish),
     });
 
     if (!response.ok) {
