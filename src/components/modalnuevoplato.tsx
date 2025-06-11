@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./modalnuevoplato.css"; 
+import "./modalnuevoplato.css";
 import { MealCategory } from "../Models/meal_categorie";
 import { Dish } from "../Models/dish";
 
@@ -146,7 +146,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
 
         const alimento: Dish = {
             ...nuevoAlimento,
-            id: 0, 
+            id: 0,
         };
 
         onRegistrar(alimento);
@@ -281,22 +281,24 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
                             </div>
                         </div>
 
-                        <div className="buttons-wrapper">
-                            <button
-                                type="button"
-                                className="modal-close-button"
-                                onClick={handleClose}
-                            >
-                                Cancelar
-                            </button>
-                            <div className="modal-actions">
-                                <button type="submit" className="confirm-button"
-                                    onClick={handleSubmit}>
-                                    Registrar Alimento
-                                </button>
-                            </div>
-                        </div>
                     </form>
+
+                </div>
+
+                <div className="buttons-wrapper">
+                    <button
+                        type="button"
+                        className="modal-close-button"
+                        onClick={handleClose}
+                    >
+                        Cancelar
+                    </button>
+                    <div className="modal-actions">
+                        <button type="submit" className="confirm-button"
+                            onClick={handleSubmit}>
+                            Registrar Alimento
+                        </button>
+                    </div>
                 </div>
             </div>
         </>

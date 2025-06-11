@@ -67,6 +67,7 @@ const Nutrition = () => {
     const handleRegisterNewDish = async (newDish: Dish) => {
         try {
             const result = await postDish(newDish);
+            console.log("Nuevo alimento registrado:", result);
             const updatedDishes = await getDishes();
             setAllDishes(updatedDishes);
             setDishes(updatedDishes);
