@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router';
 function DropdownButton() {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-
     const navigator = useNavigate();
+
     // Cerrar dropdown al hacer clic fuera
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -24,16 +24,46 @@ function DropdownButton() {
         setIsOpen(false);
         ereaseToken();
         navigator('/login');
-    }
+    };
 
     const onOpenProfile = () => {
         setIsOpen(false);
         navigator('/profile');
-    }
+    };
 
     const onOpenEjercicios = () => {
         setIsOpen(false);
         navigator('/exercises');
+    };
+
+    const onOpenRutinas = () => {
+        setIsOpen(false);
+        navigator('/routines');
+    };
+
+    const onOpenNutricion = () => {
+        setIsOpen(false);
+        navigator('/nutrition');
+    };
+
+    const onOpenDiets = () => {
+        setIsOpen(false);
+        navigator('/diets');
+    };
+
+    const onOpenGoals = () => {
+        setIsOpen(false);
+        navigator('/goals');
+    };
+    
+    const onOpenRutineHistory = () => {
+        setIsOpen(false);
+        navigator('/rutine-history');
+    }
+
+    const onOpenPhotos = () => {
+        setIsOpen(false);
+        navigator('/my_photos');
     }
 
     return (
@@ -49,11 +79,29 @@ function DropdownButton() {
 
             {isOpen && (
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => { onOpenProfile(); }}>
+                    <button className="dropdown-item" onClick={onOpenProfile}>
                         👤 Ver Perfil
                     </button>
-                    <button className="dropdown-item" onClick={() => { onOpenEjercicios(); }}>
+                    <button className="dropdown-item" onClick={onOpenEjercicios}>
                         🏋️ Ejercicios
+                    </button>
+                    <button className="dropdown-item" onClick={onOpenRutinas}>
+                        🏃 Rutinas
+                    </button>
+                    <button className="dropdown-item" onClick={onOpenNutricion}>
+                        🥗 Nutrición
+                    </button>
+                    <button className="dropdown-item" onClick={onOpenDiets}>
+                        📋 Dietas
+                    </button>
+                    <button className="dropdown-item" onClick={onOpenGoals}>
+                        🎯 Mis Objetivos
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenRutineHistory(); }}>
+                        📅 Historial Rutinas
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenPhotos(); }}>
+                        🖼️  Mis Fotos
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
