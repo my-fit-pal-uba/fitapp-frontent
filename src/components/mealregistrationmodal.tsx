@@ -47,22 +47,23 @@ export const MealRegistrationModal = ({
                         </div>
                     </div>
 
-                    <div className="buttons-wrapper">
-                        <button className="modal-close-button" onClick={onClose}>
-                            Cancelar
+                </div>
+
+                <div className="buttons-wrapper">
+                    <button className="modal-close-button" onClick={onClose}>
+                        Cancelar
+                    </button>
+                    <div className="modal-actions">
+                        <button
+                            className="confirm-button"
+                            onClick={() => {
+                                onRegister(quantity);
+                                setQuantity(100);
+                                onClose();
+                            }}
+                        >
+                            Registrar Consumo
                         </button>
-                        <div className="modal-actions">
-                            <button
-                                className="confirm-button"
-                                onClick={() => {
-                                    onRegister(quantity);
-                                    setQuantity(100);
-                                    onClose();
-                                }}
-                            >
-                                Registrar Consumo
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
