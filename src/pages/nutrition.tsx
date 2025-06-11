@@ -8,7 +8,6 @@ import { MealCategory } from "../Models/meal_categorie";
 import { MealRegistrationModal } from "../components/mealregistrationmodal";
 import { getToken } from "../Models/token";
 import NewDishModal from "../components/modalnuevoplato";
-import { NewDish } from "../Models/newdish";
 
 const Nutrition = () => {
     const [dishes, setDishes] = useState<Dish[]>([]);

@@ -109,9 +109,9 @@ function Routines(): JSX.Element {
 	}, []);
 
     return (
-        <>
-        {message && <div className="flash-message">{message}</div>}
+        <> 
         <Header />
+        {message && <div className="flash-message">{message}</div>}
             <div className="routines-container">
                 <h1>Rutinas</h1>
                 <button onClick={() => navigate("/routines/create")}>
