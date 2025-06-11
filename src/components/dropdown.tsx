@@ -36,14 +36,19 @@ function DropdownButton() {
         navigator('/exercises');
     };
 
+    const onOpenRutinas = () => {
+        setIsOpen(false);
+        navigator('/routines');
+    };
+
     const onOpenNutricion = () => {
         setIsOpen(false);
         navigator('/nutrition');
     };
 
-    const onOpenRutinas = () => {
+    const onOpenDiets = () => {
         setIsOpen(false);
-        navigator('/routines');
+        navigator('/diets');
     };
 
     const onOpenGoals = () => {
@@ -80,11 +85,14 @@ function DropdownButton() {
                     <button className="dropdown-item" onClick={onOpenEjercicios}>
                         🏋️ Ejercicios
                     </button>
+                    <button className="dropdown-item" onClick={onOpenRutinas}>
+                        🏃 Rutinas
+                    </button>
                     <button className="dropdown-item" onClick={onOpenNutricion}>
                         🥗 Nutrición
                     </button>
-                    <button className="dropdown-item" onClick={onOpenRutinas}>
-                        🏃 Rutinas
+                    <button className="dropdown-item" onClick={onOpenDiets}>
+                        📋 Dietas
                     </button>
                     <button className="dropdown-item" onClick={onOpenGoals}>
                         🎯 Mis Objetivos

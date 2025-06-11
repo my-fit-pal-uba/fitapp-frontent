@@ -60,6 +60,7 @@
 
 .modal-content img {
   border-radius: 0.75rem;
+  background: transparent;
   max-width: 100%;
   max-height: 100vh;
   object-fit: contain;
@@ -133,4 +134,19 @@ form {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+.modal-content--photo {
+  background: none;
+  padding: 0;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto !important;
+}
+
+.modal-content--photo img {
+  border-radius: 1rem;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
