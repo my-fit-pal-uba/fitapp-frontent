@@ -106,7 +106,7 @@ const PhotosPage = () => {
                 onClick={() => setActivePhoto(null)}
               >
                 <div
-                  className="modal-content relative max-w-full max-h-full p-4"
+                  className="modal-content--photo relative max-w-full max-h-full p-4"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <img
