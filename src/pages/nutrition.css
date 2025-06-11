@@ -1,0 +1,224 @@
+/* Variables de color */
+:root {
+  --primary: #3a86ff;
+  --primary-light: #ebf2ff;
+  --text-dark: #2d3748;
+  --text-medium: #4a5568;
+  --text-light: #718096;
+  --border-color: #e2e8f0;
+  --bg-color: #f8fafc;
+  --white: #ffffff;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Reset y estilos base */
+.nutrition-app {
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  margin-top: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+}
+
+/* Sección de título */
+.title-section {
+  text-align: center;
+  margin: 1.5rem 0 3rem;
+  padding: 0 1rem;
+}
+
+.nutrition-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  line-height: 4;
+  letter-spacing: -0.5px;
+}
+
+.nutrition-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  margin-top: 0.5rem;
+}
+
+.title-icon {
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+/* Filtro de categorías */
+.category-filter-section {
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.category-filter {
+  background: var(--white);
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-title {
+  font-size: 1rem;
+  color: var(--text-medium);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.category-button {
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--white);
+  color: var(--text-medium);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.category-button:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.category-button.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(58, 134, 255, 0.3);
+}
+
+/* Sección de tabla */
+.table-section {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+}
+
+.add-new-food-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: background-color 0.3s;
+}
+
+.add-new-food-button:hover {
+    background-color: #45a049;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nutrition-title {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.title-icon {
+    margin-right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    padding: 1.75rem 2rem;
+  }
+  
+  .nutrition-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .title-section {
+    margin: 1rem 0 2.5rem;
+  }
+  
+  .nutrition-title {
+    font-size: 1.9rem;
+  }
+  
+  .nutrition-subtitle {
+    font-size: 1rem;
+  }
+  
+  .category-filter {
+    padding: 1.5rem;
+  }
+  
+  .table-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 1.25rem 1rem;
+  }
+  
+  .nutrition-title {
+    font-size: 1.7rem;
+  }
+  
+  .category-button {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .table-section {
+    padding: 1.25rem;
+  }
+}
