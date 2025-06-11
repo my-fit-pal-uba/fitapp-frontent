@@ -165,7 +165,7 @@ export function NewDishModal({ isOpen, onClose, onRegistrar, meal_categories }: 
                     <h2 className="modal-title">Registrar Nuevo Alimento</h2>
                     {formError && <div className="form-error">{formError}</div>}
 
-                    <form onSubmit={handleSubmit}>
+                    <form className="form-wrapper" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label>Nombre del alimento:</label>
                             <input

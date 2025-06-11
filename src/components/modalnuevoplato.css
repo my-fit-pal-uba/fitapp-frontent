@@ -156,7 +156,7 @@
   flex-direction: column;
 }
 
-form {
+.form-wrapper {
   display: flex;
   flex-direction: column;
 }
