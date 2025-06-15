@@ -19,17 +19,29 @@ function Clients() {
   const [success, setSuccess] = useState('');
   const user: User | null = getToken();
 
-  const hardcodedClients: Client[] = [
-    { id: 1, name: 'Juan Pérez' },
-    { id: 2, name: 'María González' },
-    { id: 3, name: 'Carlos López' },
-    { id: 4, name: 'Ana Torres' },
-    { id: 5, name: 'Lucía Fernández' },
-  ];
+  const fetchClients = async () => {
+    try {
+        const response = await fetch(`${DevUrl.baseUrl}/trainer/clients/${user?.user_id}`, {
+        headers: {
+            'Accept': 'application/json',
+        },
+        });
 
-  const fetchClients = () => {
-    setClients(hardcodedClients);
-  };
+        if (!response.ok) {
+        throw new Error('Error al obtener clientes');
+        }
+
+        const data = await response.json();
+        const formattedClients: Client[] = data.map((client: any) => ({
+        id: client.user_id,
+        name: `${client.first_name} ${client.last_name}`,
+        }));
+        setClients(formattedClients);
+    } catch (error) {
+        console.error(error);
+        setClients([]);
+    }
+    };
 
   const handleAssociate = async () => {
   const trimmedCode = code.trim();
@@ -63,6 +75,7 @@ function Clients() {
     setCode('');
     setSuccess(`Cliente asociado con el código: ${trimmedCode}`);
     setError('');
+    await fetchClients();
   } catch (error) {
     setError('No se pudo conectar con el servidor.');
     setSuccess('');
