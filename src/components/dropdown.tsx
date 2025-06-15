@@ -66,6 +66,11 @@ function DropdownButton() {
         navigator('/my_photos');
     }
 
+    const onOpenClients = () => {
+        setIsOpen(false);
+        navigator('/clients');
+    }
+
     return (
         <div className="dropdown-container" ref={dropdownRef}>
             <button
@@ -102,6 +107,9 @@ function DropdownButton() {
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenPhotos(); }}>
                         🖼️  Mis Fotos
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenClients(); }}>
+                        👥 Mis Clientes
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión

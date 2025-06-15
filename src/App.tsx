@@ -15,6 +15,7 @@ import Diets from './pages/diets.tsx';
 import AddDishToDiet from './pages/add_dish_to_diet';
 import GoalsPage from './pages/goals';
 import PhotosPage from './pages/my_photos.tsx';
+import Clients from './pages/clients.tsx';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
           <Route path="/goals" element={<GoalsPage />} />
           <Route path="/my_photos" element={<PhotosPage />} />
+          <Route path="/clients" element={<Clients />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>
