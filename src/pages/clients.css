@@ -118,6 +118,10 @@ h1,
   color: black;
 }
 
+.associate-section input {
+  color: black;
+}
+
 .success {
   color: green;
   margin-top: 1rem;
