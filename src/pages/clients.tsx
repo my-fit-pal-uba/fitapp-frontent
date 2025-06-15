@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/header';
+import { getToken } from '../Models/token';
+import { User } from '../Models/user';
+import { useNavigate } from 'react-router';
+import { DevUrl } from "../env/dev.url.model";
 import './clients.css';
 
 type Client = {
@@ -13,6 +17,7 @@ function Clients() {
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const user: User | null = getToken();
 
   const hardcodedClients: Client[] = [
     { id: 1, name: 'Juan Pérez' },
@@ -26,24 +31,43 @@ function Clients() {
     setClients(hardcodedClients);
   };
 
-  const handleAssociate = () => {
-    const trimmedCode = code.trim();
-    if (trimmedCode === '') {
-      setError('Ingresá un código válido.');
+  const handleAssociate = async () => {
+  const trimmedCode = code.trim();
+  if (trimmedCode === '') {
+    setError('Ingresá un código válido.');
+    setSuccess('');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${DevUrl.baseUrl}/trainer/register_client`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        patient_key: trimmedCode,
+        trainer_id: user?.user_id,  // acá podrías usar un estado o prop para que sea dinámico
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      setError(errorData.message || 'Error al asociar cliente');
       setSuccess('');
       return;
     }
 
-    const fakeNewClient: Client = {
-      id: clients.length + 1,
-      name: `Cliente Asociado ${trimmedCode}`,
-    };
-
-    setClients((prev) => [...prev, fakeNewClient]);
+    const result = await response.json();
     setCode('');
     setSuccess(`Cliente asociado con el código: ${trimmedCode}`);
     setError('');
-  };
+  } catch (error) {
+    setError('No se pudo conectar con el servidor.');
+    setSuccess('');
+  }
+};
 
   useEffect(() => {
     fetchClients();
