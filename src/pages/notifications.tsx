@@ -4,7 +4,7 @@ import Header from '../components/header';
 
 type Notification = {
     description: string;
-    date: Date,
+    date: Date;
 };
 
 function Notifications() {
@@ -13,22 +13,45 @@ function Notifications() {
         date: new Date(),
     };
     const [newNotification, setNewNotification] = useState<Notification>(emptyNotification);
+    const [hours, setHours] = useState<number>(0);
+    const [minutes, setMinutes] = useState<number>(0);
 
-
-    const handleRegisterDate = (date: string): void => {
-        console.table(date);
-        if (!date) {
+    const handleRegisterDate = (dateString: string): void => {
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) {
             console.error("Invalid date provided");
             return;
         }
-        const parsedDate = new Date(date);
-        console.table(parsedDate);
-        console.table(typeof parsedDate);
+        
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        
         setNewNotification({
             ...newNotification,
-            date: parsedDate,
+            date: date,
         });
-        console.table(newNotification);
+    }
+
+    const handleTimeChange = (type: 'hours' | 'minutes', value: string) => {
+        const numValue = parseInt(value) || 0;
+        
+        if (type === 'hours') {
+            setHours(Math.min(23, Math.max(0, numValue)));
+        } else {
+            setMinutes(Math.min(59, Math.max(0, numValue)));
+        }
+        
+        const newDate = new Date(newNotification.date);
+        if (type === 'hours') {
+            newDate.setHours(numValue);
+        } else {
+            newDate.setMinutes(numValue);
+        }
+        
+        setNewNotification({
+            ...newNotification,
+            date: newDate
+        });
     }
 
     const handleNotificationNameChange = (name: string) => {
@@ -38,9 +61,13 @@ function Notifications() {
         });
     }
 
+    const formatDateForInput = (date: Date) => {
+        return date.toISOString().split('T')[0];
+    };
+
     return (
         <>
-            <Header></Header>
+            <Header />
             <div className="notifications-container">
                 <p className="notifications-title">Notificaciones</p>
 
@@ -55,7 +82,7 @@ function Notifications() {
                             <div className="date-input-container">
                                 <input
                                     type="date"
-                                    value={newNotification.date.toISOString().split('T')[0]}
+                                    value={formatDateForInput(newNotification.date)}
                                     onChange={(e) => handleRegisterDate(e.target.value)}
                                     className="date-input-new"
                                 />
@@ -65,50 +92,55 @@ function Notifications() {
                                     </svg>
                                 </span>
                             </div>
-                    </div>
-                    <div className="hour-min-wrapper">
+                        </div>
+                        
+                        <div className="hour-min-wrapper">
+                            <div className="date-input-wrapper">
+                                <label>Hora:</label>
+                                <input
+                                    value={hours}
+                                    onChange={(e) => handleTimeChange('hours', e.target.value)}
+                                    placeholder="Hora"
+                                    min="0"
+                                    max="23"
+                                />
+                            </div>
+                            <div className="date-input-wrapper">
+                                <label>Minuto:</label>
+                                <input
+                                    value={minutes}
+                                    onChange={(e) => handleTimeChange('minutes', e.target.value)}
+                                    placeholder="Minutos"
+                                    min="0"
+                                    max="59"
+                                />
+                            </div>
+                        </div>
+
                         <div className="date-input-wrapper">
-                            <label >Hora:</label>
+                            <label>Descripción:</label>
                             <input
                                 type="text"
-                                value={0}
-                                onChange={(e) => handleRegisterDate(e.target.value)}
-                                placeholder="Hora"
-                            />
-                        </div>
-                        <div className="date-input-wrapper">
-                            <label >Minuto:</label>
-                            <input
-                                type="text"
-                                value={0}
-                                onChange={(e) => handleRegisterDate(e.target.value)}
-                                placeholder="Minutos"
+                                value={newNotification.description}
+                                onChange={(e) => handleNotificationNameChange(e.target.value)}
+                                placeholder="Escribe tu notificación..."
                             />
                         </div>
                     </div>
-
-                    <div className="date-input-wrapper">
-
-                        <label>Descripcion:</label>
-                        <input
-                            type="text"
-                            value={newNotification.description}
-                            onChange={(e) => handleNotificationNameChange(e.target.value)}
-                            placeholder="Escribe tu notificación..."
-                        />
+                    
+                    <div className="notification-button-wrapper">
+                        <button className="notification-button"
+                            onClick={() => {
+                                console.log("Nueva notificación:", newNotification);
+                            }}
+                        >
+                            Agregar Notificación
+                        </button>
                     </div>
-                </div>
-                <div className="notification-button-wrapper">
-                    <button className="notification-button">
-                        Agregar Notificación
-                    </button>
                 </div>
             </div>
-
-        </div >
         </>
     );
-
 }
 
 export default Notifications;
