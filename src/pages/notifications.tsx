@@ -15,11 +15,20 @@ function Notifications() {
     const [newNotification, setNewNotification] = useState<Notification>(emptyNotification);
 
 
-    const handleRegisterDate = (date: Date): void => {
+    const handleRegisterDate = (date: string): void => {
+        console.table(date);
+        if (!date) {
+            console.error("Invalid date provided");
+            return;
+        }
+        const parsedDate = new Date(date);
+        console.table(parsedDate);
+        console.table(typeof parsedDate);
         setNewNotification({
             ...newNotification,
-            date: date,
+            date: parsedDate,
         });
+        console.table(newNotification);
     }
 
     const handleNotificationNameChange = (name: string) => {
@@ -47,7 +56,7 @@ function Notifications() {
                                 <input
                                     type="date"
                                     value={newNotification.date.toISOString().split('T')[0]}
-                                    onChange={(e) => handleRegisterDate(new Date(e.target.value))}
+                                    onChange={(e) => handleRegisterDate(e.target.value)}
                                     className="date-input-new"
                                 />
                                 <span className="calendar-icon">
@@ -63,7 +72,7 @@ function Notifications() {
                             <input
                                 type="text"
                                 value={0}
-                                onChange={(e) => handleRegisterDate(new Date(e.target.value))}
+                                onChange={(e) => handleRegisterDate(e.target.value)}
                                 placeholder="Hora"
                             />
                         </div>
@@ -72,7 +81,7 @@ function Notifications() {
                             <input
                                 type="text"
                                 value={0}
-                                onChange={(e) => handleRegisterDate(new Date(e.target.value))}
+                                onChange={(e) => handleRegisterDate(e.target.value)}
                                 placeholder="Minutos"
                             />
                         </div>
@@ -88,6 +97,11 @@ function Notifications() {
                             placeholder="Escribe tu notificación..."
                         />
                     </div>
+                </div>
+                <div className="notification-button-wrapper">
+                    <button className="notification-button">
+                        Agregar Notificación
+                    </button>
                 </div>
             </div>
 
