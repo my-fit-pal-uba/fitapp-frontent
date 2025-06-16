@@ -19,6 +19,8 @@ function Clients() {
   const [success, setSuccess] = useState('');
   const user: User | null = getToken();
 
+  const navigate = useNavigate();
+
   const fetchClients = async () => {
     try {
         const response = await fetch(`${DevUrl.baseUrl}/trainer/clients/${user?.user_id}`, {
@@ -90,6 +92,12 @@ function Clients() {
     client.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const handleDropdownChange = (clientId: number, value: string) => {
+    if (value === 'weight_calories') {
+      navigate(`/clients/${clientId}`);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -112,8 +120,17 @@ function Clients() {
                 <h2>{client.name}</h2>
               </div>
               <div className="client-actions">
-                {/* Acá podrías agregar botones como "Ver más" o "Eliminar" */}
-                <button className="client-button">Ver más</button>
+                <select
+                  onChange={(e) => handleDropdownChange(client.id, e.target.value)}
+                  defaultValue=""  // valor vacío para el placeholder
+                  className="client-dropdown"
+                >
+                  <option value="" disabled>
+                    Ver Más
+                  </option>
+                  <option value="weight_calories">Peso y calorías</option>
+                  {/* Podés agregar más opciones aquí */}
+                </select>
               </div>
             </div>
           ))}
