@@ -96,6 +96,9 @@ function Clients() {
     if (value === 'weight_calories') {
       navigate(`/clients/${clientId}`);
     }
+    else if (value === 'profile') {
+      navigate(`/clients/${clientId}/profile`);
+    }
   };
 
   return (
@@ -122,12 +125,13 @@ function Clients() {
               <div className="client-actions">
                 <select
                   onChange={(e) => handleDropdownChange(client.id, e.target.value)}
-                  defaultValue=""  // valor vacío para el placeholder
+                  defaultValue="aa" 
                   className="client-dropdown"
                 >
                   <option value="" disabled>
                     Ver Más
                   </option>
+                  <option value="profile">Ver Perfil</option>
                   <option value="weight_calories">Peso y calorías</option>
                   {/* Podés agregar más opciones aquí */}
                 </select>

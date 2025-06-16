@@ -168,3 +168,7 @@ h1,
   border-color: #2c5fb3;
   box-shadow: 0 0 0 2px rgba(44, 95, 179, 0.4);
 }
+
+.client-profile-title {
+  color: white;
+}
