@@ -3,7 +3,6 @@ import "./notifications.css";
 import Header from '../components/header';
 import { Notification } from '../Models/notification';
 
-
 function Notifications() {
     const emptyNotification: Notification = {
         id: 0,
@@ -13,11 +12,49 @@ function Notifications() {
     const [newNotification, setNewNotification] = useState<Notification>(emptyNotification);
     const [hours, setHours] = useState<number>(0);
     const [minutes, setMinutes] = useState<number>(0);
+    const [errors, setErrors] = useState({
+        description: '',
+        date: '',
+        time: ''
+    });
+
+    const validateForm = () => {
+        const newErrors = {
+            description: '',
+            date: '',
+            time: ''
+        };
+        let isValid = true;
+
+        if (!newNotification.description.trim()) {
+            newErrors.description = 'La descripción es requerida';
+            isValid = false;
+        }
+
+        if (isNaN(newNotification.date.getTime())) {
+            newErrors.date = 'Fecha inválida';
+            isValid = false;
+        } else if (newNotification.date < new Date()) {
+            newErrors.date = 'La fecha no puede ser en el pasado';
+            isValid = false;
+        }
+
+        if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+            newErrors.time = 'Hora inválida (00:00 - 23:59)';
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
 
     const handleRegisterDate = (dateString: string): void => {
         const date = new Date(dateString);
+        
+        setErrors(prev => ({...prev, date: ''}));
+        
         if (isNaN(date.getTime())) {
-            console.error("Invalid date provided");
+            setErrors(prev => ({...prev, date: 'Fecha inválida'}));
             return;
         }
 
@@ -31,19 +68,24 @@ function Notifications() {
     }
 
     const handleTimeChange = (type: 'hours' | 'minutes', value: string) => {
+        setErrors(prev => ({...prev, time: ''}));
+        
         const numValue = parseInt(value) || 0;
+        const clampedValue = type === 'hours' 
+            ? Math.min(23, Math.max(0, numValue)) 
+            : Math.min(59, Math.max(0, numValue));
 
         if (type === 'hours') {
-            setHours(Math.min(23, Math.max(0, numValue)));
+            setHours(clampedValue);
         } else {
-            setMinutes(Math.min(59, Math.max(0, numValue)));
+            setMinutes(clampedValue);
         }
 
         const newDate = new Date(newNotification.date);
         if (type === 'hours') {
-            newDate.setHours(numValue);
+            newDate.setHours(clampedValue);
         } else {
-            newDate.setMinutes(numValue);
+            newDate.setMinutes(clampedValue);
         }
 
         setNewNotification({
@@ -53,6 +95,7 @@ function Notifications() {
     }
 
     const handleNotificationNameChange = (name: string) => {
+        setErrors(prev => ({...prev, description: ''}));
         setNewNotification({
             ...newNotification,
             description: name,
@@ -64,21 +107,19 @@ function Notifications() {
     };
 
     const handleRegisterNewNotification = () => {
-        if (!newNotification.description || !newNotification.date) {
-            console.error("Notification description and date are required");
+        if (!validateForm()) {
             return;
         }
 
-        if (newNotification.date < new Date()) {
-            console.error("Notification date cannot be in the past");
-            return;
-        }
-
-        console.table(newNotification);
         console.log("Nueva notificación registrada:", newNotification);
         setNewNotification(emptyNotification);
         setHours(0);
         setMinutes(0);
+        setErrors({
+            description: '',
+            date: '',
+            time: ''
+        });
     }
 
     return (
@@ -100,7 +141,7 @@ function Notifications() {
                                     type="date"
                                     value={formatDateForInput(newNotification.date)}
                                     onChange={(e) => handleRegisterDate(e.target.value)}
-                                    className="date-input-new"
+                                    className={`date-input-new ${errors.date ? 'error' : ''}`}
                                 />
                                 <span className="calendar-icon">
                                     <svg viewBox="0 0 24 24" width="20" height="20">
@@ -108,6 +149,7 @@ function Notifications() {
                                     </svg>
                                 </span>
                             </div>
+                            {errors.date && <span className="error-message">{errors.date}</span>}
                         </div>
 
                         <div className="hour-min-wrapper">
@@ -119,6 +161,7 @@ function Notifications() {
                                     placeholder="Hora"
                                     min="0"
                                     max="23"
+                                    className={errors.time ? 'error' : ''}
                                 />
                             </div>
                             <div className="date-input-wrapper">
@@ -129,8 +172,10 @@ function Notifications() {
                                     placeholder="Minutos"
                                     min="0"
                                     max="59"
+                                    className={errors.time ? 'error' : ''}
                                 />
                             </div>
+                            {errors.time && <span className="error-message time-error">{errors.time}</span>}
                         </div>
 
                         <div className="date-input-wrapper">
@@ -140,15 +185,16 @@ function Notifications() {
                                 value={newNotification.description}
                                 onChange={(e) => handleNotificationNameChange(e.target.value)}
                                 placeholder="Escribe tu notificación..."
+                                className={errors.description ? 'error' : ''}
                             />
+                            {errors.description && <span className="error-message">{errors.description}</span>}
                         </div>
                     </div>
 
                     <div className="notification-button-wrapper">
-                        <button className="notification-button"
-                            onClick={() => {
-                                handleRegisterNewNotification();
-                            }}
+                        <button 
+                            className="notification-button"
+                            onClick={handleRegisterNewNotification}
                         >
                             Agregar Notificación
                         </button>

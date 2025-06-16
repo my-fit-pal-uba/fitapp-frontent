@@ -222,3 +222,36 @@
     padding: 1.25rem;
   }
 }
+
+.error {
+    border-color: #e74c3c !important;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.time-error {
+    grid-column: span 2;
+}
+
+/* Para el diseño responsive del mensaje de error de tiempo */
+@media (min-width: 768px) {
+    .hour-min-wrapper {
+        position: relative;
+    }
+    
+    .time-error {
+        position: absolute;
+        bottom: -1.5rem;
+        left: 0;
+    }
+}
+
+.date-input-wrapper {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
