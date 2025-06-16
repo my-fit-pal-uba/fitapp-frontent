@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import "./notifications.css";
 import Header from '../components/header';
+import { Notification } from '../Models/notification';
 
-type Notification = {
-    description: string;
-    date: Date;
-};
 
 function Notifications() {
     const emptyNotification: Notification = {
+        id: 0,
         description: '',
         date: new Date(),
     };
@@ -22,10 +20,10 @@ function Notifications() {
             console.error("Invalid date provided");
             return;
         }
-        
+
         date.setHours(hours);
         date.setMinutes(minutes);
-        
+
         setNewNotification({
             ...newNotification,
             date: date,
@@ -34,20 +32,20 @@ function Notifications() {
 
     const handleTimeChange = (type: 'hours' | 'minutes', value: string) => {
         const numValue = parseInt(value) || 0;
-        
+
         if (type === 'hours') {
             setHours(Math.min(23, Math.max(0, numValue)));
         } else {
             setMinutes(Math.min(59, Math.max(0, numValue)));
         }
-        
+
         const newDate = new Date(newNotification.date);
         if (type === 'hours') {
             newDate.setHours(numValue);
         } else {
             newDate.setMinutes(numValue);
         }
-        
+
         setNewNotification({
             ...newNotification,
             date: newDate
@@ -76,8 +74,9 @@ function Notifications() {
             return;
         }
 
+        console.table(newNotification);
         console.log("Nueva notificación registrada:", newNotification);
-        setNewNotification(emptyNotification); 
+        setNewNotification(emptyNotification);
         setHours(0);
         setMinutes(0);
     }
@@ -110,7 +109,7 @@ function Notifications() {
                                 </span>
                             </div>
                         </div>
-                        
+
                         <div className="hour-min-wrapper">
                             <div className="date-input-wrapper">
                                 <label>Hora:</label>
@@ -144,7 +143,7 @@ function Notifications() {
                             />
                         </div>
                     </div>
-                    
+
                     <div className="notification-button-wrapper">
                         <button className="notification-button"
                             onClick={() => {
