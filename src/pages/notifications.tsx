@@ -65,6 +65,23 @@ function Notifications() {
         return date.toISOString().split('T')[0];
     };
 
+    const handleRegisterNewNotification = () => {
+        if (!newNotification.description || !newNotification.date) {
+            console.error("Notification description and date are required");
+            return;
+        }
+
+        if (newNotification.date < new Date()) {
+            console.error("Notification date cannot be in the past");
+            return;
+        }
+
+        console.log("Nueva notificación registrada:", newNotification);
+        setNewNotification(emptyNotification); 
+        setHours(0);
+        setMinutes(0);
+    }
+
     return (
         <>
             <Header />
@@ -131,7 +148,7 @@ function Notifications() {
                     <div className="notification-button-wrapper">
                         <button className="notification-button"
                             onClick={() => {
-                                console.log("Nueva notificación:", newNotification);
+                                handleRegisterNewNotification();
                             }}
                         >
                             Agregar Notificación
