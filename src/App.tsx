@@ -18,6 +18,7 @@ import PhotosPage from './pages/my_photos.tsx';
 import Clients from './pages/clients.tsx';
 import ClientDetails from './pages/client_details.tsx';
 import ClientProfile from './pages/client_profile.tsx';
+import ClientRoutineHistory from './pages/client_routine_history.tsx';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/clients" element={<Clients />} />
           <Route path="/clients/:clientId" element={<ClientDetails />} />
           <Route path="/clients/:clientId/profile" element={<ClientProfile />} />
+          <Route path="/clients/:clientId/routine-history" element={<ClientRoutineHistory />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

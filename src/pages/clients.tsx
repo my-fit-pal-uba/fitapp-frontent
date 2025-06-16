@@ -99,6 +99,9 @@ function Clients() {
     else if (value === 'profile') {
       navigate(`/clients/${clientId}/profile`);
     }
+    else if (value === 'routine_history') {
+      navigate(`/clients/${clientId}/routine-history`);
+    }
   };
 
   return (
@@ -125,7 +128,7 @@ function Clients() {
               <div className="client-actions">
                 <select
                   onChange={(e) => handleDropdownChange(client.id, e.target.value)}
-                  defaultValue="aa" 
+                  defaultValue=" " 
                   className="client-dropdown"
                 >
                   <option value="" disabled>
@@ -133,6 +136,7 @@ function Clients() {
                   </option>
                   <option value="profile">Ver Perfil</option>
                   <option value="weight_calories">Peso y calorías</option>
+                  <option value="routine_history">Historial rutinas</option>
                   {/* Podés agregar más opciones aquí */}
                 </select>
               </div>
