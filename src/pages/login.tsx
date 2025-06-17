@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { DevUrl } from '../env/dev.url.model';
 import './login.css';
 import { setToken } from '../Models/token';
+import { GoogleLogin } from '@react-oauth/google';
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState<string>('');
@@ -47,6 +48,25 @@ function Login(): JSX.Element {
       alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
     }
   };
+
+  const handleGoogleLogin = async (credentialResponse: any) => {
+  try {
+    const response = await fetch(`${DevUrl.baseUrl}/access/login/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: credentialResponse.credential }),
+    });
+    const data = await response.json();
+    if (response.ok && data.response) {
+      setToken(data.response);
+      navigate('/home');
+    } else {
+      alert('Error al iniciar sesión con Google.');
+    }
+  } catch (error) {
+    alert('Error al iniciar sesión con Google.');
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} >
@@ -102,6 +122,12 @@ function Login(): JSX.Element {
           <button type="submit">
             Ingresar
           </button>
+           <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                alert('Error al iniciar sesión con Google');
+              }}
+            />
         </div>
       </div>
     </form>
