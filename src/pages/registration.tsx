@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getToken } from '../Models/token';
+import { getToken, setToken } from '../Models/token';
 import { User } from '../Models/user';
 import { getUserRols, registerProfile } from '../services/registration.services';
 import './registration.css';
@@ -54,6 +54,7 @@ function Registration() {
         setError('Error al registrar el perfil');
         return;
       }
+      setToken(result);
       navigator('/home');
     } catch (err) {
       setError('Error al procesar la solicitud');
