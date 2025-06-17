@@ -85,7 +85,7 @@ export async function markAssRead(notification: Notification, user_email: string
         },
         body: JSON.stringify({
           notification_id: notification.id,
-          user_email: user_email, // CAMBIAR,
+          user_email: user_email,
         }),
       }
     );
