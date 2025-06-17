@@ -77,7 +77,6 @@
   background-color: #3a7bc8;
 }
 
-/* Estilos responsive */
 @media (max-width: 600px) {
   .simple-profile-container {
     padding: 15px;
@@ -86,4 +85,18 @@
   .simple-profile-form {
     padding: 20px 15px;
   }
+}
+
+.profile-view {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 1rem auto;
+  font-size: 1.1rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.profile-view p {
+  margin-bottom: 0.8rem;
 }
