@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import './dropdown.css';
-import { ereaseToken } from '../Models/token';
+import { ereaseToken, getToken } from '../Models/token';
 import { useNavigate } from 'react-router';
 
 function DropdownButton() {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const navigator = useNavigate();
+    const user = getToken();
 
     // Cerrar dropdown al hacer clic fuera
     useEffect(() => {
@@ -108,9 +109,11 @@ function DropdownButton() {
                     <button className="dropdown-item" onClick={() => { onOpenPhotos(); }}>
                         🖼️  Mis Fotos
                     </button>
-                    <button className="dropdown-item" onClick={() => { onOpenClients(); }}>
-                        👥 Mis Clientes
-                    </button>
+                    {user?.rol === "personal_trainer" && (
+                        <button className="dropdown-item" onClick={() => { onOpenClients(); }}>
+                            👥 Mis Clientes
+                        </button>
+                    )}
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
                     </button>

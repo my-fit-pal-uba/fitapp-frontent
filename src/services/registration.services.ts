@@ -8,21 +8,15 @@ export async function registerProfile(
   try {
     const response = await fetch(`${DevUrl.baseUrl}/profiles/post_user_rol`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: user_id,
-        rol_id: rol_id,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id, rol_id }),
     });
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
+    if (!response.ok) return null;
 
-    return true;
-  } catch (error) {
-    return true;
+    const data = await response.json();
+    return data.token ?? null;
+  } catch {
+    return null;
   }
 }
 

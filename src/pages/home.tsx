@@ -13,6 +13,7 @@ function Home() {
 
   const user_id = getToken()?.user_id ?? 0;
   const [goalLine, setGoalLine] = useState<number | null>(null);
+  const user = getToken();
 
   const fetchLatestGoal = async () => {
     try {
@@ -39,8 +40,11 @@ function Home() {
   };
 
   useEffect(() => {
+    if (user) {
+      console.log("Rol del usuario:", user.rol);
+    }
     fetchLatestGoal();
-  }, [user_id]);
+  }, [user_id, user]);
 
   return (
     <>
