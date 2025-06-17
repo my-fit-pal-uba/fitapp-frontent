@@ -5,4 +5,5 @@ export interface Notification  {
     description: string;
     date: Date;
     user_id?: number;
+    active?: boolean;
 };

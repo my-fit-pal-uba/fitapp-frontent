@@ -33,7 +33,7 @@ export async function postNotification(
 export async function getNotifications(userId: number) {
   try {
     const response = await fetch(
-      `${DevUrl.baseUrl}/notifications/get_notifications/${userId}`
+      `${DevUrl.baseUrl}/notifications/get_notification?user_id=${userId}`
     );
 
     if (!response.ok) {
