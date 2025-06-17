@@ -2,6 +2,8 @@ import { useState } from 'react';
 import "./notifications.css";
 import Header from '../components/header';
 import { Notification } from '../Models/notification';
+import { postNotification } from '../services/notifications.services';
+import { getToken } from '../Models/token';
 
 function Notifications() {
     const emptyNotification: Notification = {
@@ -106,12 +108,15 @@ function Notifications() {
         return date.toISOString().split('T')[0];
     };
 
-    const handleRegisterNewNotification = () => {
+    const handleRegisterNewNotification = async () => {
         if (!validateForm()) {
             return;
         }
 
         console.log("Nueva notificación registrada:", newNotification);
+        const token = getToken();
+        const userId = token && token.user_id ? token.user_id : 0;
+        await postNotification(newNotification, userId);
         setNewNotification(emptyNotification);
         setHours(0);
         setMinutes(0);
