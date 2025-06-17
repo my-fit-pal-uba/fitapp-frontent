@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import './notificationbell.css';
-import { getNotifications } from "../services/notifications.services";
+import { getNotifications, markAllAsRead} from "../services/notifications.services";
 import { getToken } from "../Models/token";
 import type { Notification } from "../Models/notification";
 
@@ -15,15 +15,19 @@ const NotificationBell = () => {
             const user_id = getToken()?.user_id ?? 0;
             try {
                 const notifications = await getNotifications(user_id);
-                setNotifications(notifications);
-                setUnreadCount(notifications.filter((n: Notification) => !n.active).length);
+                const filtered = notifications.filter((n: Notification) => new Date(n.date) < new Date());
+                setNotifications(filtered);
+                setUnreadCount(filtered.length);
+                // alert(`Tienes ${filtered.length} notificaciones nuevas`);
+                markAllAsRead(filtered);
+
             } catch (error) {
                 console.error("Error fetching notifications:", error);
             }
         };
 
         fetchNotifications();
-        const interval = setInterval(fetchNotifications, 60000); // Actualizar cada minuto
+        const interval = setInterval(fetchNotifications, 60000);
 
         return () => clearInterval(interval);
     }, []);
@@ -39,27 +43,9 @@ const NotificationBell = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const handleNotificationClick = async (notificationId: number) => {
-        try {
-            setNotifications(notifications.map(n => 
-                n.id === notificationId ? {...n, is_read: true} : n
-            ));
-            setUnreadCount(prev => prev - 1);
-        } catch (error) {
-            console.error("Error marking notification as read:", error);
-        }
-    };
-
     const handleClearAll = async () => {
         try {
-            const unreadIds = notifications
-                .filter(n => !n)
-                .map(n => n.id);
-            
-            setNotifications(notifications.map(n => 
-                unreadIds.includes(n.id) ? {...n, is_read: true} : n
-            ));
-            
+            setNotifications([]);
             setUnreadCount(0);
         } catch (error) {
             console.error("Error clearing notifications:", error);
@@ -105,13 +91,11 @@ const NotificationBell = () => {
                                     <div 
                                         key={notification.id} 
                                         className={`notification-item ${notification.active ? 'read' : 'unread'}`}
-                                        onClick={() => handleNotificationClick(notification.id)}
                                     >
-                                        {!notification.active && <div className="unread-dot">
-                                            <p>
-                                                {notification.description}
-                                            </p>    
-                                        </div>}
+                                        {!notification.active && <span className="unread-dot" />}
+                                        <div className="notification-text">
+                                            {notification.description}
+                                        </div>
                                     </div>
                                 ))
                         )}
