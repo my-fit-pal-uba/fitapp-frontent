@@ -1,0 +1,67 @@
+.share-dish-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.share-dish-container h2 {
+  text-align: center;
+  color: #2d3a4b;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.share-dish-container ul {
+  list-style: none;
+  color: #000000;
+  padding: 0;
+}
+
+.share-dish-container li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7fafd;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 8px rgba(60, 120, 200, 0.04);
+  font-size: 1.08rem;
+}
+
+.share-dish-container button {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.share-dish-container button:hover {
+  background: #2563eb;
+}
+
+.share-dish-container p {
+  text-align: center;
+  color: #6b7a8f;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .share-dish-container {
+    padding: 1rem;
+  }
+  .share-dish-container li {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+}

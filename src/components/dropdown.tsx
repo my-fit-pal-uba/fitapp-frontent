@@ -77,6 +77,11 @@ function DropdownButton() {
         navigator('/clients');
     }
 
+    const onOpenCompartidos = () => {
+        setIsOpen(false);
+        navigator('/shared');
+    }
+
     return (
         <div className="dropdown-container" ref={dropdownRef}>
             <button
@@ -122,6 +127,9 @@ function DropdownButton() {
                             👥 Mis Clientes
                         </button>
                     )}
+                    <button className="dropdown-item" onClick={() => { onOpenCompartidos(); }}>
+                        🔗 Compartido
+                    </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
                     </button>

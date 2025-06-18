@@ -202,18 +202,20 @@ function Exercises(): JSX.Element {
 			{error && <div className="error-message">{error}</div>}
 			<div className="exercises-list">
 				{exercises.length > 0 ? (
+					console.log(user?.rol),
 					exercises.map((exercise) => {
 						return (
+						<div key={exercise.exercise_id} style={{ position: "relative" }}>
 							<ExerciseCard
-								key={exercise.exercise_id}
-								exercise={exercise}
-								onClick={() =>
+							exercise={exercise}
+							onClick={() =>
 								navigate(`/realizar/${exercise.exercise_id}`, { state: { exercise } })
-								}
-								averageRating={averageRatings[exercise.exercise_id] ?? 0}
-								initialUserRating={userRatings[exercise.exercise_id] ?? 0}
-							/>	
-						);			
+							}
+							averageRating={averageRatings[exercise.exercise_id] ?? 0}
+							initialUserRating={userRatings[exercise.exercise_id] ?? 0}
+							/>
+						</div>
+						);
 					})
 					) : null}
 			</div>
