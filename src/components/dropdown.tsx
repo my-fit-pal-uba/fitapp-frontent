@@ -56,7 +56,7 @@ function DropdownButton() {
         setIsOpen(false);
         navigator('/goals');
     };
-    
+
     const onOpenRutineHistory = () => {
         setIsOpen(false);
         navigator('/rutine-history');
@@ -65,6 +65,11 @@ function DropdownButton() {
     const onOpenPhotos = () => {
         setIsOpen(false);
         navigator('/my_photos');
+    }
+
+    const onOpenNotifications = () => {
+        setIsOpen(false);
+        navigator('/notifications');
     }
 
     const onOpenClients = () => {
@@ -113,6 +118,9 @@ function DropdownButton() {
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenPhotos(); }}>
                         🖼️  Mis Fotos
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenNotifications(); }}>
+                        🔔 Notificaciones
                     </button>
                     {user?.rol === "personal_trainer" && (
                         <button className="dropdown-item" onClick={() => { onOpenClients(); }}>

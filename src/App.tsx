@@ -15,6 +15,7 @@ import Diets from './pages/diets.tsx';
 import AddDishToDiet from './pages/add_dish_to_diet';
 import GoalsPage from './pages/goals';
 import PhotosPage from './pages/my_photos.tsx';
+import Notifications from './pages/notifications.tsx';
 import Clients from './pages/clients.tsx';
 import ClientDetails from './pages/client_details.tsx';
 import ClientProfile from './pages/client_profile.tsx';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/compartir-ejercicio/:exerciseId" element={<ShareExercise />} />
           <Route path="/compartir-plato/:dishId" element={<ShareDish />} />
           <Route path="/shared" element={<SharedItems />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route
             path="/clients"
             element={

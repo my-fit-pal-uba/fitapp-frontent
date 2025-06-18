@@ -89,7 +89,7 @@ const Chart = ({ chartType = 'bar', fetchData, goalLine }: ChartProps) => {
                         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="value" stroke="#82ca9d" name="tu evolucion " />
+                        <Line type="monotone" dataKey="value" stroke="#ff7d00" name="tu evolucion " strokeWidth={3}/>
                         {goalLine !== undefined && (
                             <ReferenceLine
                                 y={goalLine}
