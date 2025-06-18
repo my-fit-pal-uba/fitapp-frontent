@@ -20,7 +20,9 @@ import ClientDetails from './pages/client_details.tsx';
 import ClientProfile from './pages/client_profile.tsx';
 import ClientRoutineHistory from './pages/client_routine_history.tsx';
 import RoleProtectedRoute from './components/role_protected_route.tsx';
-
+import ShareExercise from "./pages/share_exercise";
+import ShareDish from './pages/share_dish.tsx';
+import SharedItems from './pages/shared';
 
 function App() {
   return (
@@ -42,6 +44,9 @@ function App() {
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
           <Route path="/goals" element={<GoalsPage />} />
           <Route path="/my_photos" element={<PhotosPage />} />
+          <Route path="/compartir-ejercicio/:exerciseId" element={<ShareExercise />} />
+          <Route path="/compartir-plato/:dishId" element={<ShareDish />} />
+          <Route path="/shared" element={<SharedItems />} />
           <Route
             path="/clients"
             element={
