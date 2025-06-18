@@ -92,7 +92,7 @@ function RoutineHistory() {
       <Header />
       <div className="routine-history-container">
         <h1>Historial de Rutinas</h1>
-        <form onSubmit={handleFilter}>
+        <form className="filter-form" onSubmit={handleFilter}>
           <label>
             Filtrar por fecha:{" "}
             <input

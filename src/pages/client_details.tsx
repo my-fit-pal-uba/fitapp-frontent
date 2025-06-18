@@ -1,19 +1,15 @@
-import './login.css';
 import './home.css';
 import Header from '../components/header';
-import Registrator from '../components/registrator';
 import Clock from '../components/clock';
-import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
-import { getToken } from '../Models/token';
-import { postCalories, postWeight } from '../services/registration.services';
 import Chart from '../components/bar';
+import { getCaloriesHistory, getWeightHistory } from '../services/history.services';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
-function Home() {
-
-  const user_id = getToken()?.user_id ?? 0;
+function ClientDetails() {
+  const { clientId } = useParams<{ clientId: string }>();
+  const user_id = parseInt(clientId ?? '0', 10);
   const [goalLine, setGoalLine] = useState<number | null>(null);
-  const user = getToken();
 
   const fetchLatestGoal = async () => {
     try {
@@ -40,41 +36,26 @@ function Home() {
   };
 
   useEffect(() => {
-    if (user) {
-      console.log("Rol del usuario:", user.rol);
-    }
     fetchLatestGoal();
-  }, [user_id, user]);
+  }, [user_id]);
 
   return (
     <>
       <Header />
       <main className="main-content">
         <div className="home-content-wrapper">
-          <div className="inputs-wrapper">
-
-            <Clock />
-            <Registrator
-              type="weight"
-              onSubmit={(weight) => postWeight(user_id, Number(weight) ?? 0.0)}
-            />
-            <Registrator
-              type="calories"
-              onSubmit={(calories) => postCalories(user_id, Number(calories) ?? 0.0)}
-            />
-          </div>
           <div className="charts-wrapper">
             <div className="chart-wrapper">
-              <h2>Historial de calorias</h2>
+              <h2 className="chart-title">Historial de calorías</h2>
               <Chart
-                chartType='line'
+                chartType="line"
                 fetchData={async () => await getCaloriesHistory(user_id)}
               />
             </div>
             <div className="chart-wrapper">
-              <h2>Historial de peso</h2>
+              <h2 className="chart-title">Historial de peso</h2>
               <Chart
-                chartType='line'
+                chartType="line"
                 fetchData={async () => await getWeightHistory(user_id)}
                 goalLine={goalLine ?? undefined}
               />
@@ -86,4 +67,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default ClientDetails;

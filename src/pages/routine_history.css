@@ -126,7 +126,7 @@
   }
 
   .routine-history-container form {
-    flex-direction: column;
+    flex-direction: row;
     padding: 1.25rem;
   }
 
@@ -137,4 +137,13 @@
   .routine-list {
     grid-template-columns: 1fr;
   }
+}
+
+.routine-history-container .search-form,
+.routine-history-container .filter-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }

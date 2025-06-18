@@ -105,6 +105,10 @@
   opacity: 0.5;
 }
 
+.login-button-wrapper > div {
+  margin-top: 1rem;
+}
+
 @media (max-width: 480px) {
   .email-input-wrapper,
   .password-input-wrapper {

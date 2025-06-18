@@ -16,6 +16,11 @@ import AddDishToDiet from './pages/add_dish_to_diet';
 import GoalsPage from './pages/goals';
 import PhotosPage from './pages/my_photos.tsx';
 import Notifications from './pages/notifications.tsx';
+import Clients from './pages/clients.tsx';
+import ClientDetails from './pages/client_details.tsx';
+import ClientProfile from './pages/client_profile.tsx';
+import ClientRoutineHistory from './pages/client_routine_history.tsx';
+import RoleProtectedRoute from './components/role_protected_route.tsx';
 
 
 function App() {
@@ -39,6 +44,38 @@ function App() {
           <Route path="/goals" element={<GoalsPage />} />
           <Route path="/my_photos" element={<PhotosPage />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route
+            path="/clients"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <Clients />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientDetails />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/profile"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientProfile />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/routine-history"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientRoutineHistory />
+              </RoleProtectedRoute>
+            }
+          />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>
