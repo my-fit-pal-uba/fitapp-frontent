@@ -11,8 +11,8 @@
   --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 8px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Reset y estilos base */
@@ -134,37 +134,37 @@
 }
 
 .add-new-food-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 20px;
-    transition: background-color 0.3s;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 20px;
+  transition: background-color 0.3s;
 }
 
 .add-new-food-button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .title-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .nutrition-title {
-    display: flex;
-    align-items: center;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
 .title-icon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 /* Responsive Design */
@@ -172,7 +172,7 @@
   .content-wrapper {
     padding: 1.75rem 2rem;
   }
-  
+
   .nutrition-title {
     font-size: 2.2rem;
   }
@@ -182,23 +182,23 @@
   .content-wrapper {
     padding: 1.5rem 1.25rem;
   }
-  
+
   .title-section {
     margin: 1rem 0 2.5rem;
   }
-  
+
   .nutrition-title {
     font-size: 1.9rem;
   }
-  
+
   .nutrition-subtitle {
     font-size: 1rem;
   }
-  
+
   .category-filter {
     padding: 1.5rem;
   }
-  
+
   .table-section {
     padding: 1.5rem;
   }
@@ -208,17 +208,50 @@
   .content-wrapper {
     padding: 1.25rem 1rem;
   }
-  
+
   .nutrition-title {
     font-size: 1.7rem;
   }
-  
+
   .category-button {
     padding: 0.5rem 1.25rem;
     font-size: 0.9rem;
   }
-  
+
   .table-section {
     padding: 1.25rem;
   }
+}
+
+.error {
+  border-color: #e74c3c !important;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 10px;
+  display: block;
+}
+
+.time-error {
+  grid-column: span 2;
+}
+
+/* Para el diseño responsive del mensaje de error de tiempo */
+@media (min-width: 768px) {
+  .hour-min-wrapper {
+    position: relative;
+  }
+
+  .time-error {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+  }
+}
+
+.date-input-wrapper {
+  margin-bottom: 1.5rem;
+  position: relative;
 }
