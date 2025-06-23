@@ -1,4 +1,9 @@
-/* Utiliza las mismas variables que tu sistema */
+:root {
+  --card-dark-bg: #062c30;
+  --card-title-light: #ffffff;
+  --card-subtext: #a0cfd6;
+}
+
 .clock-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
@@ -6,10 +11,11 @@
   padding: 1rem;
 }
 
+
 .clock-card {
-  background: var(--white);
+  background: var(--card-dark-bg);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   padding: 1.5rem 2rem;
   min-width: 250px;
   transition: transform 0.3s ease;
@@ -25,33 +31,33 @@
   align-items: center;
   font-size: 2.5rem;
   font-weight: 600;
-  color: var(--black);
+  color: var(--white);
 }
 
-.clock-hours, .clock-minutes, .clock-seconds {
+.clock-hours, .clock-minutes {
   padding: 0.2rem 0.4rem;
   border-radius: 8px;
-  background-color: var(--light-gray);
+  background-color: rgba(255, 255, 255, 0.1);
   margin: 0 0.1rem;
-}
-
-.clock-separator {
-  animation: blink 1s infinite;
-  color: var(--secondary-color);
+  color: var(--white);
 }
 
 .clock-seconds {
   font-size: 1.5rem;
-  align-self: flex-end;
   margin-bottom: 0.3rem;
+  background: transparent;
   color: var(--accent-color);
-  background-color: transparent;
+}
+
+.clock-separator {
+  color: var(--white);
+  animation: blink 1s infinite;
 }
 
 .clock-date {
   margin-top: 1rem;
   font-size: 1rem;
-  color: var(--dark-gray);
+  color: var(--card-subtext);
   text-align: center;
   text-transform: capitalize;
 }
@@ -62,7 +68,7 @@
   align-items: center;
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: var(--dark-gray);
+  color: var(--card-subtext);
 }
 
 @keyframes blink {

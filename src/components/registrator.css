@@ -7,6 +7,9 @@
     --dark-gray: #7f8c8d;
     --white: #ffffff;
     --black: #2c3e50;
+    --card-dark-bg: #062c30;
+    --card-title-light: #ffffff;
+    --card-border-light: #00b894;
 }
 
 /* Estilos base mejorados */
@@ -17,9 +20,9 @@
 }
 
 .registrator-card {
-    background: var(--white);
+    background: var(--card-dark-bg);
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     padding: 2rem;
     transition: all 0.3s ease;
     display: flex;
@@ -28,25 +31,27 @@
     align-items: center;
 }
 
+.registrator-title {
+    color: var(--card-title-light);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+
 .registrator-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-.registrator-title {
-    color: var(--secondary-color);
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-}
-
 .registrator-form {
+    background: var(--card-dark-bg);
     padding: 0.8rem 1rem;
     border-radius: 10px;
     font-size: 1rem;
     transition: all 0.2s ease;
-    background-color: var(--white);
     color: var(--black);
     width: 100%;
     display: flex;
@@ -54,6 +59,7 @@
 }
 
 .input-group {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,21 +67,13 @@
 }
 
 .input-label {
-    color: var(--secondary-color);
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin-left: 0.3rem;
+    color: var(--light-gray);
 }
 
 .registrator-input {
-    padding: 0.8rem 1rem;
-    border: 2px solid var(--medium-gray);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.2s ease;
     background-color: var(--white);
+    border: 2px solid var(--card-border-light);
     color: var(--black);
-    width: 15rem;
 }
 
 .registrator-input:focus {
