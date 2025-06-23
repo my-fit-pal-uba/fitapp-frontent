@@ -58,10 +58,10 @@ const FoodTracking = () => {
         <>
             <Header />
             <div className="tracking-app">
-                <h1>Tracking Page</h1>
+                <h1>Historial de consumos</h1>
                 <div className="graphics-wrapper">
                     <div className="chart-wrapper">
-                        <h2 className='graph-title'>consumo calorico</h2>
+                        <h2 className='graph-title'>Consumo calorico</h2>
                         <Chart
                             chartType='line'
                             fetchData={() => getCaloriesHistory()}

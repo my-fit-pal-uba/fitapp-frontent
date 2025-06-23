@@ -1,25 +1,16 @@
-/* .graphics-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    gap: 16px;
-}
-
-.graph-title {
-    color: white;
-} */
-
 .tracking-app {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .tracking-app h1 {
     text-align: center;
-    color: #2c3e50;
+    color: white;
     margin-bottom: 30px;
     font-size: 2.2rem;
+    margin-top: 60px;
 }
 
 .graphics-wrapper {
