@@ -93,6 +93,9 @@ function Clients() {
   );
 
   const handleDropdownChange = (clientId: number, value: string) => {
+    
+    if(value === '') return;
+
     if (value === 'weight_calories') {
       navigate(`/clients/${clientId}`);
     }
@@ -128,12 +131,9 @@ function Clients() {
               <div className="client-actions">
                 <select
                   onChange={(e) => handleDropdownChange(client.id, e.target.value)}
-                  defaultValue=" " 
                   className="client-dropdown"
                 >
-                  <option value="" disabled>
-                    Ver Más
-                  </option>
+                  <option value="">Ver Más</option>
                   <option value="profile">Ver Perfil</option>
                   <option value="weight_calories">Peso y calorías</option>
                   <option value="routine_history">Historial rutinas</option>
