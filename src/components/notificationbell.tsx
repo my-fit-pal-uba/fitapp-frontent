@@ -18,8 +18,10 @@ const NotificationBell = () => {
                 const filtered = notifications.filter((n: Notification) => new Date(n.date) < new Date());
                 setNotifications(filtered);
                 setUnreadCount(filtered.length);
-                // alert(`Tienes ${filtered.length} notificaciones nuevas`);
-                markAllAsRead(filtered);
+                if (filtered.length > 0) {
+                    alert(`Tienes ${filtered.length} notificaciones nuevas`);
+                    markAllAsRead(filtered);
+                }
 
             } catch (error) {
                 console.error("Error fetching notifications:", error);
