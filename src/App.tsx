@@ -21,6 +21,7 @@ import ClientDetails from './pages/client_details.tsx';
 import ClientProfile from './pages/client_profile.tsx';
 import ClientRoutineHistory from './pages/client_routine_history.tsx';
 import RoleProtectedRoute from './components/role_protected_route.tsx';
+import Tracking from './pages/food_tracking.tsx';
 
 
 function App() {
@@ -76,6 +77,12 @@ function App() {
               </RoleProtectedRoute>
             }
           />
+          <Route
+            path='/food-tracking'
+            element={
+              <Tracking></Tracking>
+            }
+          ></Route>
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

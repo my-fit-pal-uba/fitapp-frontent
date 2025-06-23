@@ -8,6 +8,7 @@ import { MealCategory } from "../Models/meal_categorie";
 import { MealRegistrationModal } from "../components/mealregistrationmodal";
 import { getToken } from "../Models/token";
 import NewDishModal from "../components/modalnuevoplato";
+import { useNavigate } from "react-router";
 
 const Nutrition = () => {
     const [dishes, setDishes] = useState<Dish[]>([]);
@@ -17,6 +18,7 @@ const Nutrition = () => {
     const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isNewDishModalOpen, setIsNewDishModalOpen] = useState(false);
+    const navigator = useNavigate();
 
     useEffect(() => {
         const fetchDishes = async () => {
@@ -77,6 +79,11 @@ const Nutrition = () => {
         }
     };
 
+    const handleRedirect = () => {
+        console.log("Redirecting to tracking page");
+        navigator('/food-tracking');
+    }
+
 
     return (
         <div className="nutrition-app">
@@ -110,12 +117,17 @@ const Nutrition = () => {
                                     </button>
                                 ))}
                             </div>
-                            <button
-                                className="add-new-food-button"
-                                onClick={() => setIsNewDishModalOpen(true)}
-                            >
-                                + Nuevo Alimento
-                            </button>
+                            <div className="nutrition-button-wrapper">
+                                <button className="add-new-food-button" onClick={() => handleRedirect()}>
+                                    Seguimiento
+                                </button>
+                                <button
+                                    className="add-new-food-button"
+                                    onClick={() => setIsNewDishModalOpen(true)}
+                                >
+                                    + Nuevo Alimento
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className="table-section">
