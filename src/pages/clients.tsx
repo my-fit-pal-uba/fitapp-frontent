@@ -104,6 +104,8 @@ function Clients() {
     }
     else if (value === 'routine_history') {
       navigate(`/clients/${clientId}/routine-history`);
+    } else if (value === 'exercise_history') {
+      navigate(`/clients/${clientId}/exercise-history`);
     }
   };
 
@@ -137,7 +139,7 @@ function Clients() {
                   <option value="profile">Ver Perfil</option>
                   <option value="weight_calories">Peso y calorías</option>
                   <option value="routine_history">Historial rutinas</option>
-                  {/* Podés agregar más opciones aquí */}
+                  <option value="exercise_history">Historial ejercicios</option>
                 </select>
               </div>
             </div>

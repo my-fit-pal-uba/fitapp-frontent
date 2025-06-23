@@ -82,6 +82,11 @@ function DropdownButton() {
         navigator('/shared');
     }
 
+    const onOpenExerciseHistory = () => {
+        setIsOpen(false);
+        navigator('/exercise-history');
+    };
+
     return (
         <div className="dropdown-container" ref={dropdownRef}>
             <button
@@ -112,6 +117,9 @@ function DropdownButton() {
                     </button>
                     <button className="dropdown-item" onClick={onOpenGoals}>
                         🎯 Mis Objetivos
+                    </button>
+                    <button className="dropdown-item" onClick={() => onOpenExerciseHistory()}>
+                        📜 Historial Ejercicios
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenRutineHistory(); }}>
                         📅 Historial Rutinas

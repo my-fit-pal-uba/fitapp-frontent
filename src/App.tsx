@@ -24,6 +24,8 @@ import RoleProtectedRoute from './components/role_protected_route.tsx';
 import ShareExercise from "./pages/share_exercise";
 import ShareDish from './pages/share_dish.tsx';
 import SharedItems from './pages/shared';
+import ExerciseHistory from "./pages/exercises_history.tsx";
+import ClientExerciseHistory from './pages/client_exercise_history.tsx';
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
           <Route path="/compartir-plato/:dishId" element={<ShareDish />} />
           <Route path="/shared" element={<SharedItems />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/exercise-history" element={<ExerciseHistory />} />
           <Route
             path="/clients"
             element={
@@ -78,6 +81,14 @@ function App() {
             element={
               <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
                 <ClientRoutineHistory />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/exercise-history"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientExerciseHistory />
               </RoleProtectedRoute>
             }
           />
