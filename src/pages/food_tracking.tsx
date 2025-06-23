@@ -61,7 +61,7 @@ const FoodTracking = () => {
                 <h1>Tracking Page</h1>
                 <div className="graphics-wrapper">
                     <div className="chart-wrapper">
-                        <h2 className='graph-title'>Historial de peso</h2>
+                        <h2 className='graph-title'>consumo calorico</h2>
                         <Chart
                             chartType='line'
                             fetchData={() => getCaloriesHistory()}
@@ -69,7 +69,7 @@ const FoodTracking = () => {
                     </div>
 
                     <div className="chart-wrapper">
-                        <h2 className='graph-title'>Historial de peso</h2>
+                        <h2 className='graph-title'>Consumo de grasas</h2>
                         <Chart
                             chartType='line'
                             fetchData={() => getFatsHistory()}
@@ -77,7 +77,7 @@ const FoodTracking = () => {
                     </div>
 
                     <div className="chart-wrapper">
-                        <h2 className='graph-title'>Historial de peso</h2>
+                        <h2 className='graph-title'>Consumo de proteinas</h2>
                         <Chart
                             chartType='line'
                             fetchData={() => getProteinsHistory()}
@@ -85,7 +85,7 @@ const FoodTracking = () => {
                     </div>
 
                     <div className="chart-wrapper">
-                        <h2 className='graph-title'>Historial de peso</h2>
+                        <h2 className='graph-title'>Consumo de carbohidratos</h2>
                         <Chart
                             chartType='line'
                             fetchData={() => getCarbsHistory()}

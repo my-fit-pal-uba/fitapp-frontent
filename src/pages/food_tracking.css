@@ -1,4 +1,4 @@
-.graphics-wrapper {
+/* .graphics-wrapper {
     display: grid;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 16px;
@@ -6,4 +6,77 @@
 
 .graph-title {
     color: white;
+} */
+
+.tracking-app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tracking-app h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+
+.graphics-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(500px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.chart-wrapper {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chart-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.graph-title {
+    color: #34495e;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1100px) {
+    .graphics-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+@media (max-width: 850px) {
+    .graphics-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .tracking-app h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-wrapper {
+        padding: 15px;
+    }
+
+    .graph-title {
+        font-size: 1.1rem;
+    }
 }
