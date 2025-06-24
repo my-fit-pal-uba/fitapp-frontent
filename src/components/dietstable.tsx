@@ -17,6 +17,7 @@ export const DietsTable = ({ data, onAddToDiet }: DietsTableProps) => {
                         <div className="diet-dishes-section">
                             <h3>Platos</h3>
                             {item.dishes && item.dishes.length > 0 ? (
+                                console.log(item.dishes),
                                 <ul className="diet-dishes-list">
                                     {item.dishes.map((dish: Dish) => (
                                         <li key={dish.id}>
