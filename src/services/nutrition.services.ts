@@ -15,7 +15,7 @@ export async function getDishes() {
 
 export async function getDishCategories() {
   const response = await fetch(
-    "http://localhost:8080/nutrition/get_meal_categories"
+    `${DevUrl.baseUrl}/nutrition/get_meal_categories`
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -33,7 +33,7 @@ export async function registerDishConsumption(
   quantity: number
 ) {
   const response = await fetch(
-    "http://localhost:8080/nutrition/post_dish_consumption",
+    `${DevUrl.baseUrl}/nutrition/post_dish_consumption`,
     {
       method: "POST",
       headers: {
