@@ -3,4 +3,5 @@ export interface User {
     username: string;
     email: string;
     access_time: string;
+    rol: string;
 }

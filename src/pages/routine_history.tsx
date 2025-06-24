@@ -19,7 +19,7 @@ async function getRoutineHistory(user_id: number) {
     }
 
     const data = await response.json();
-    // Ajuste aquí:
+
     return data.message && data.message[1]?.routine_history
       ? data.message[1].routine_history
       : [];
@@ -92,7 +92,7 @@ function RoutineHistory() {
       <Header />
       <div className="routine-history-container">
         <h1>Historial de Rutinas</h1>
-        <form onSubmit={handleFilter}>
+        <form className="filter-form" onSubmit={handleFilter}>
           <label>
             Filtrar por fecha:{" "}
             <input

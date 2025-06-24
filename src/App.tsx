@@ -15,7 +15,17 @@ import Diets from './pages/diets.tsx';
 import AddDishToDiet from './pages/add_dish_to_diet';
 import GoalsPage from './pages/goals';
 import PhotosPage from './pages/my_photos.tsx';
-
+import Notifications from './pages/notifications.tsx';
+import Clients from './pages/clients.tsx';
+import ClientDetails from './pages/client_details.tsx';
+import ClientProfile from './pages/client_profile.tsx';
+import ClientRoutineHistory from './pages/client_routine_history.tsx';
+import RoleProtectedRoute from './components/role_protected_route.tsx';
+import ShareExercise from "./pages/share_exercise";
+import ShareDish from './pages/share_dish.tsx';
+import SharedItems from './pages/shared';
+import ExerciseHistory from "./pages/exercises_history.tsx";
+import ClientExerciseHistory from './pages/client_exercise_history.tsx';
 
 function App() {
   return (
@@ -37,6 +47,51 @@ function App() {
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
           <Route path="/goals" element={<GoalsPage />} />
           <Route path="/my_photos" element={<PhotosPage />} />
+          <Route path="/compartir-ejercicio/:exerciseId" element={<ShareExercise />} />
+          <Route path="/compartir-plato/:dishId" element={<ShareDish />} />
+          <Route path="/shared" element={<SharedItems />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/exercise-history" element={<ExerciseHistory />} />
+          <Route
+            path="/clients"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <Clients />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientDetails />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/profile"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientProfile />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/routine-history"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientRoutineHistory />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/exercise-history"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientExerciseHistory />
+              </RoleProtectedRoute>
+            }
+          />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import './signup.css';
 import { setToken } from '../Models/token';
 import { DevUrl } from '../env/dev.url.model';
+import { GoogleLogin } from '@react-oauth/google';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -48,6 +49,26 @@ function SignUp() {
       navigator('/login');
     }
   };
+
+  const handleGoogleSignUp = async (credentialResponse: any) => {
+  try {
+    const response = await fetch(`${DevUrl.baseUrl}/access/signup/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: credentialResponse.credential }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setToken(data.response);
+      navigator('/registration');
+    } else {
+      // Maneja el error según tu lógica
+      navigator('/registration');
+    }
+  } catch (error) {
+    navigator('/login');
+  }
+};
 
   return (
     <div className="sign-up-card-wrapper">
@@ -101,6 +122,12 @@ function SignUp() {
           <button type="button" onClick={() => { handleSignUp() }}>
             Crear Cuenta
           </button>
+          <GoogleLogin
+            onSuccess={handleGoogleSignUp}
+            onError={() => {
+              alert('Error al registrarse con Google');
+            }}
+          />
         </div>
       </form>
     </div>

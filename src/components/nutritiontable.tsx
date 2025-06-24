@@ -1,12 +1,16 @@
 import './nutritiontable.css';
 import { Dish } from '../Models/dish';
+import { useNavigate } from "react-router";
+import { getToken } from "../Models/token";
 
 interface NutritionTableProps {
     data: Dish[];
     onAddToMeal: (item: Dish) => void;
 }
 export const NutritionTable = ({ data, onAddToMeal }: NutritionTableProps) => {
-
+    const navigate = useNavigate();
+    const user = getToken();
+    
     return (
         <div className="nutrition-container">
             <div className="food-grid">
@@ -41,6 +45,15 @@ export const NutritionTable = ({ data, onAddToMeal }: NutritionTableProps) => {
                         >
                             +
                         </button>
+                        {user?.rol === "personal_trainer" && (
+                            <button
+                                className="share-btn"
+                                style={{ marginTop: "0.5rem", width: "100%" }}
+                                onClick={() => navigate(`/compartir-plato/${item.id}`)}
+                            >
+                                Compartir
+                            </button>
+                        )}
                     </div>
                 ))}
             </div>

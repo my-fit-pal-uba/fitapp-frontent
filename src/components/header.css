@@ -7,7 +7,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  z-index: 1000; 
+  z-index: 1000;
+  height: 60px;
 }
 
 .title-wrapper {
@@ -26,6 +27,13 @@
     margin-left: 10px;
     font-weight: bold;
   }
+}
+
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
 }
 
 .user-info {

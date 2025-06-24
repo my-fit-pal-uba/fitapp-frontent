@@ -104,7 +104,7 @@ function CreateRoutine() {
             <Header />
             <div className="create-routine-container">
                 <h1>Crear Rutina</h1>
-                <form onSubmit={handleSubmit}>
+                <form className="filter-form" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Nombre"
@@ -133,7 +133,7 @@ function CreateRoutine() {
                     <button type="submit">Crear Rutina</button>
                     {error && <p className="error-message">{error}</p>}
                 </form>
-                <h2>Selecciona ejercicios para la rutina</h2>
+                <h2 style={{ color: 'white' }}>Selecciona ejercicios para la rutina</h2>
                 <form className="filter-form" style={{ marginBottom: "1rem" }}>
                     <div className="filter-group">
                         <label htmlFor="type">Tipo:</label>

@@ -1,27 +1,94 @@
+.home-greeting {
+  padding: 1.5rem 2rem;
+  background-color: #062c3000;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
 .main-content {
-  padding: 80px 2rem 1rem 2rem;
+  padding-top: 60px; /* mismo alto que el header */
 }
 
-
-.home-content-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;   
-  height: 50vh;
+.home-greeting h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
+.home-greeting p {
+  margin-right: 0px;
+  font-size: 1rem;
+  color: #ffffff;
+}
 
-.inputs-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+.home-section {
+  margin-bottom: 3rem;
+  padding: 1rem 2rem;
+}
+
+.home-section h2 {
+  color: #222;
+  border-left: 4px solid #ff7d00;
+  padding-left: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+  flex: 1;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
 .charts-wrapper {
   display: flex;
-  gap: 1rem;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.home-section h2 {
+  color: white;
+  border-left: 4px solid #ff7d00;
+  padding-left: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+  flex: 1;
+  background-color: #062c30;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.chart-wrapper h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+
+.registrator-card {
+  background-color: #062c30;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dashboard-subtitle {
+  color: #cccccc;
+  font-size: 1.1rem;
+  text-align: center;
 }

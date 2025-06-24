@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import './dropdown.css';
-import { ereaseToken } from '../Models/token';
+import { ereaseToken, getToken } from '../Models/token';
 import { useNavigate } from 'react-router';
 
 function DropdownButton() {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const navigator = useNavigate();
+    const user = getToken();
 
     // Cerrar dropdown al hacer clic fuera
     useEffect(() => {
@@ -55,7 +56,7 @@ function DropdownButton() {
         setIsOpen(false);
         navigator('/goals');
     };
-    
+
     const onOpenRutineHistory = () => {
         setIsOpen(false);
         navigator('/rutine-history');
@@ -65,6 +66,26 @@ function DropdownButton() {
         setIsOpen(false);
         navigator('/my_photos');
     }
+
+    const onOpenNotifications = () => {
+        setIsOpen(false);
+        navigator('/notifications');
+    }
+
+    const onOpenClients = () => {
+        setIsOpen(false);
+        navigator('/clients');
+    }
+
+    const onOpenCompartidos = () => {
+        setIsOpen(false);
+        navigator('/shared');
+    }
+
+    const onOpenExerciseHistory = () => {
+        setIsOpen(false);
+        navigator('/exercise-history');
+    };
 
     return (
         <div className="dropdown-container" ref={dropdownRef}>
@@ -97,11 +118,25 @@ function DropdownButton() {
                     <button className="dropdown-item" onClick={onOpenGoals}>
                         🎯 Mis Objetivos
                     </button>
+                    <button className="dropdown-item" onClick={() => onOpenExerciseHistory()}>
+                        📜 Historial Ejercicios
+                    </button>
                     <button className="dropdown-item" onClick={() => { onOpenRutineHistory(); }}>
                         📅 Historial Rutinas
                     </button>
                     <button className="dropdown-item" onClick={() => { onOpenPhotos(); }}>
                         🖼️  Mis Fotos
+                    </button>
+                    <button className="dropdown-item" onClick={() => { onOpenNotifications(); }}>
+                        🔔 Notificaciones
+                    </button>
+                    {user?.rol === "personal_trainer" && (
+                        <button className="dropdown-item" onClick={() => { onOpenClients(); }}>
+                            👥 Mis Clientes
+                        </button>
+                    )}
+                    <button className="dropdown-item" onClick={() => { onOpenCompartidos(); }}>
+                        🔗 Compartido
                     </button>
                     <button className="dropdown-item" onClick={() => { onCloseSession(); }}>
                         🚪 Cerrar Sesión
