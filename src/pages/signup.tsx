@@ -118,7 +118,7 @@ function SignUp() {
             />
           </div>
         </div>
-        <div className="login-button-wrapper">
+        <div className="signin-button-wrapper">
           <button type="button" onClick={() => { handleSignUp() }}>
             Crear Cuenta
           </button>

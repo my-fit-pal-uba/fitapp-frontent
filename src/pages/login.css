@@ -1,48 +1,51 @@
 .app-title {
-    color: #28666E;
-    font-size: 40px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
+  color: #28666E;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
 
-p{
-    margin:0
+p {
+  margin: 0;
+  padding: 15px;
 }
 
 .login-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #c7fdd6;
-    height: 300px;
-    width: 500px;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #c7fdd6;
+  height: 400px;
+  width: 500px;
+  border-radius: 20px;
 }
 
-.input-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.email-input-wrapper, 
+.email-input-wrapper,
 .password-input-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  position: relative; /* Para posicionar elementos hijos */
-  gap: 12px; /* Espacio entre label e input */
+  position: relative;
+  /* Para posicionar elementos hijos */
+  gap: 12px;
+  /* Espacio entre label e input */
 }
 
 .email-input-wrapper.vertical,
@@ -54,22 +57,24 @@ p{
 
 .email-input-wrapper label,
 .password-input-wrapper label {
-  min-width: 100px; /* Ancho consistente */
+  min-width: 100px;
+  /* Ancho consistente */
   text-align: right;
   font-weight: 500;
-  color: #2d3748; /* Color oscuro legible */
+  color: #2d3748;
+  /* Color oscuro legible */
   transition: all 0.2s ease;
 }
 
 .email-input-wrapper input,
 .password-input-wrapper input {
   flex: 1;
-  padding: 10px 14px;
+  padding: 15px 15px;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   font-size: 14px;
   transition: all 0.3s ease;
-  max-width: 80%;
+  max-width: 85%;
   background-color: white;
 }
 
@@ -77,9 +82,9 @@ p{
   color: black
 }
 
-.input{
+.input {
   color: black
-} 
+}
 
 .email-input-wrapper input:focus,
 .password-input-wrapper input:focus {
@@ -101,13 +106,14 @@ p{
 }
 
 @media (max-width: 480px) {
+
   .email-input-wrapper,
   .password-input-wrapper {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
   }
-  
+
   .email-input-wrapper label,
   .password-input-wrapper label {
     text-align: left;
@@ -116,24 +122,36 @@ p{
 }
 
 label {
-    color: black;
+  color: black;
 }
 
 input {
-    width: 200px;
-    height: 20px;
-    color: white;
-    padding-left: 10px;
-    background-color: #E6EBE0;
+  width: 200px;
+  height: 20px;
+  color: white;
+  padding-left: 10px;
+  background-color: #E6EBE0;
 }
 
 .login-button-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
-    background-color: #28666E;
-    margin-right: 10px;
+  background-color: #28666E;
+  margin-right: 10px;
+}
+
+.other-options-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  button {
+    margin-top: 10px;
+  }
 }

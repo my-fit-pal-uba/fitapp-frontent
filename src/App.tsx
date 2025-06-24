@@ -21,6 +21,10 @@ import ClientDetails from './pages/client_details.tsx';
 import ClientProfile from './pages/client_profile.tsx';
 import ClientRoutineHistory from './pages/client_routine_history.tsx';
 import RoleProtectedRoute from './components/role_protected_route.tsx';
+import Tracking from './pages/food_tracking.tsx';
+import ChangePassword from './pages/change_password_mail.tsx';
+import ChangePasswordPage from './pages/change_password.tsx';
+
 import ShareExercise from "./pages/share_exercise";
 import ShareDish from './pages/share_dish.tsx';
 import SharedItems from './pages/shared';
@@ -36,13 +40,13 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/profile" element={<Profile />} /> 
-          <Route path="/routines" element={<Routines />} /> 
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/routines" element={<Routines />} />
           <Route path="/routines/create" element={<CreateRoutine />} />
           <Route path="/rutine-history" element={<RoutineHistory />} />
-          <Route path="/exercises" element={<Exercises />} /> 
-          <Route path="/nutrition" element={<Nutrition/>} />
-          <Route path="/diets" element={<Diets/>} />
+          <Route path="/exercises" element={<Exercises />} />
+          <Route path="/nutrition" element={<Nutrition />} />
+          <Route path="/diets" element={<Diets />} />
           <Route path="/diet/:dietId/add-dish" element={<AddDishToDiet />} />
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
           <Route path="/goals" element={<GoalsPage />} />
@@ -84,6 +88,16 @@ function App() {
               </RoleProtectedRoute>
             }
           />
+          <Route
+            path='/food-tracking'
+            element={
+              <Tracking></Tracking>
+            }
+          ></Route>
+          <Route path="password-mail" element={<ChangePassword />}
+          ></Route>
+          <Route path="password-reset" element={<ChangePasswordPage />}
+          ></Route>
           <Route
             path="/clients/:clientId/exercise-history"
             element={

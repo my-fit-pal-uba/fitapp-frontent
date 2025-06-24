@@ -39,7 +39,7 @@ function Login(): JSX.Element {
       });
       const data = await response.json();
       if (!data.response) {
-        return 
+        return
       } else {
         setToken(data.response);
         navigate('/home');
@@ -50,23 +50,23 @@ function Login(): JSX.Element {
   };
 
   const handleGoogleLogin = async (credentialResponse: any) => {
-  try {
-    const response = await fetch(`${DevUrl.baseUrl}/access/login/google`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ credential: credentialResponse.credential }),
-    });
-    const data = await response.json();
-    if (response.ok && data.response) {
-      setToken(data.response);
-      navigate('/home');
-    } else {
+    try {
+      const response = await fetch(`${DevUrl.baseUrl}/access/login/google`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential: credentialResponse.credential }),
+      });
+      const data = await response.json();
+      if (response.ok && data.response) {
+        setToken(data.response);
+        navigate('/home');
+      } else {
+        alert('Error al iniciar sesión con Google.');
+      }
+    } catch (error) {
       alert('Error al iniciar sesión con Google.');
     }
-  } catch (error) {
-    alert('Error al iniciar sesión con Google.');
-  }
-};
+  };
 
   return (
     <form onSubmit={handleSubmit} >
@@ -113,21 +113,32 @@ function Login(): JSX.Element {
             </button>
           </div>
         </div>
+
         <div className="login-button-wrapper">
-          <button type="button" onClick={() =>
-            navigate('/signup')
-          }>
-            Crear Cuenta
-          </button>
-          <button type="submit">
-            Ingresar
-          </button>
-           <GoogleLogin
+          <div className="access-buttons">
+
+            <button type="button" onClick={() =>
+              navigate('/signup')
+            }>
+              Crear Cuenta
+            </button>
+            <button type="submit">
+              Ingresar
+            </button>
+
+          </div>
+          <div className="other-options-wrapper">
+
+            <GoogleLogin
               onSuccess={handleGoogleLogin}
               onError={() => {
                 alert('Error al iniciar sesión con Google');
               }}
             />
+            <button type="button" onClick={() => navigate('/password-mail')}>
+              Olvidé mi contraseña
+            </button>
+          </div>
         </div>
       </div>
     </form>
