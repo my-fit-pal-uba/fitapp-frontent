@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import Header from '../components/header';
-import "./food_tracking.css"
+import "./food_tracking.css";
 import { TrackingHistory } from '../Models/tracking_history';
 import { getTrackingHistory } from '../services/food_tracking';
-import { getToken } from '../Models/token';
-import { User } from '../Models/user';
 import Chart from '../components/bar';
-const FoodTracking = () => {
 
+const ClientFoodTracking = () => {
+    const { clientId } = useParams<{ clientId: string }>();
+    const numericClientId = parseInt(clientId ?? "0", 10);
 
     const [history, setHistory] = useState<TrackingHistory[]>([]);
-    const user: User | null = getToken();
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchHistory = async () => {
-            const history = await getTrackingHistory(user.user_id);
-            console.table(history);
-            setHistory(history);
+            try {
+                const history = await getTrackingHistory(numericClientId);
+                setHistory(history);
+            } catch (err) {
+                console.error(err);
+                setError("No se pudo obtener el historial del cliente.");
+            }
         };
         fetchHistory();
-    }, []);
+    }, [numericClientId]);
 
     const getCaloriesHistory = () => {
         return history.map((entry: TrackingHistory) => (
@@ -56,7 +61,6 @@ const FoodTracking = () => {
             }
         ));
     }
-
     return (
         <>
             <Header />
@@ -95,8 +99,9 @@ const FoodTracking = () => {
                         />
                     </div>
                 </div>
-            </div></>
+            </div>
+        </>
     );
-}
+};
 
-export default FoodTracking;
+export default ClientFoodTracking;

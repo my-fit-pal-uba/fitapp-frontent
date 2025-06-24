@@ -6,6 +6,19 @@
     padding: 0 1.5rem;
 }
 
+.notification-input-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.notification-header h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
 .notifications-title {
     text-align: center;
     color: white;
@@ -59,7 +72,7 @@ input[type="date"]:focus::-webkit-calendar-picker-indicator {
 }
 
 .notification-card {
-    background: #ffffff;
+    background: #062c30;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 2rem;
@@ -177,7 +190,7 @@ input[type="date"]:focus::-webkit-calendar-picker-indicator {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #4a5568;
+  color: #ffffff;
 }
 
 .date-input-container {
@@ -226,4 +239,15 @@ input[type="date"]:focus::-webkit-calendar-picker-indicator {
 .date-input::-webkit-clear-button {
   display: none;
   -webkit-appearance: none;
+}
+
+.notification-button {
+  background-color: #ff7d00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }

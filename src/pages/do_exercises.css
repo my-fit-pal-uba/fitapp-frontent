@@ -2,16 +2,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  margin: 2rem 0;
   width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+}
+
+.serie-h2{
+  color: white
 }
 
 .inputRow {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .inputColumna {
@@ -24,14 +27,14 @@
 
 .inputSerie {
   padding: 0.85rem 0.875rem;
-  background-color: white;
-  color: #000;
-  border: none;
+  background-color: #143c3f;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   width: 100%;
   box-sizing: border-box;
   margin-top: 1rem; 
@@ -39,12 +42,33 @@
 
 .inputSerie:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #4d90fe33;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+  border-color: #4a90e2;
 }
 
 .botonAgregar {
   padding: 0.85rem 1.75rem;
-  background-color: #4d90fe;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  margin-top: 1rem;
+  align-self: center;
+  width: 100%;
+}
+
+.botonAgregar:hover {
+  background-color: #3a7bc8;
+}
+
+.botonEnviar {
+  padding: 0.85rem 1.75rem;
+  background-color: #0f1f26;
   color: white;
   border: none;
   border-radius: 8px;
@@ -58,29 +82,19 @@
   width: 100%;
 }
 
-.botonEnviar{
-  padding: 0.85rem 1.75rem;
-  background-color: #142333;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
-  align-self: center;
-  width: 100%;
+.botonEnviar:hover {
+  background-color: #213843;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th, td {
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 8px;
   color: white;
   text-align: center;
@@ -91,15 +105,12 @@ thead {
 }
 
 tbody td {
-  background-color: #1a2e45; /* fondo oscuro más claro que el header */
+  background-color: #1a2e45;
 }
 
-
-/* Fondo de cada fila */
 tbody td:nth-child(1) {
-  background-color: #264c6e; /* fondo oscuro más claro que el header */
+  background-color: #264c6e;
 }
-
 
 tbody tr:nth-child(odd) {
   background-color: rgba(255, 255, 255, 0.05);

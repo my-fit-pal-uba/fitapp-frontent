@@ -24,6 +24,7 @@ import RoleProtectedRoute from './components/role_protected_route.tsx';
 import Tracking from './pages/food_tracking.tsx';
 import ChangePassword from './pages/change_password_mail.tsx';
 import ChangePasswordPage from './pages/change_password.tsx';
+import ClientFoodTracking from './pages/client_food_tracking.tsx';
 
 import ShareExercise from "./pages/share_exercise";
 import ShareDish from './pages/share_dish.tsx';
@@ -103,6 +104,14 @@ function App() {
             element={
               <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
                 <ClientExerciseHistory />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/food-tracking"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientFoodTracking />
               </RoleProtectedRoute>
             }
           />

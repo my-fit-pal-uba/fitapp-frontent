@@ -106,6 +106,8 @@ function Clients() {
       navigate(`/clients/${clientId}/routine-history`);
     } else if (value === 'exercise_history') {
       navigate(`/clients/${clientId}/exercise-history`);
+    } else if (value === 'food_tracking') {
+      navigate(`/clients/${clientId}/food-tracking`);
     }
   };
 
@@ -140,6 +142,7 @@ function Clients() {
                   <option value="weight_calories">Peso y calorías</option>
                   <option value="routine_history">Historial rutinas</option>
                   <option value="exercise_history">Historial ejercicios</option>
+                  <option value="food_tracking">Historial alimenticio</option>
                 </select>
               </div>
             </div>

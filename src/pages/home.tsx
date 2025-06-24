@@ -7,6 +7,7 @@ import { getToken } from '../Models/token';
 import { postCalories, postWeight } from '../services/registration.services';
 import Chart from '../components/bar';
 import { useEffect, useState } from 'react';
+import { DevUrl } from "../env/dev.url.model";
 
 function Home() {
   const user = getToken();
@@ -15,7 +16,7 @@ function Home() {
 
   const fetchLatestGoal = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8080/goals/current?user_id=${user_id}`, {
+      const response = await fetch(`${DevUrl.baseUrl}/goals/current?user_id=${user_id}`, {
         method: 'GET',
         headers: { accept: 'application/json' },
       });
@@ -61,11 +62,11 @@ function Home() {
         <section className="home-section">
           <h2>📈 Tu progreso</h2>
           <div className="charts-wrapper">
-            <div className="chart-wrapper">
+            <div className="home-chart-wrapper">
               <h3>Historial de calorías</h3>
               <Chart chartType='line' fetchData={() => getCaloriesHistory(user_id)} />
             </div>
-            <div className="chart-wrapper">
+            <div className="home-chart-wrapper">
               <h3>Historial de peso</h3>
               <Chart chartType='line' fetchData={() => getWeightHistory(user_id)} goalLine={goalLine ?? undefined} />
             </div>

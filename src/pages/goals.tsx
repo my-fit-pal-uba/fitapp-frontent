@@ -151,15 +151,16 @@ const GoalsPage = () => {
                     <div className="bg-white rounded-2xl shadow p-6">
 
                         <h3 className="text-xl font-semibold mb-4">Objetivo actual: {currentGoal}kg</h3>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2  w-full">
                             <input
                                 type="text"
                                 placeholder="Nuevo objetivo..."
                                 value={goal}
-                                onChange={(e) => setGoal(e.target.value)} />
+                                onChange={(e) => setGoal(e.target.value)}
+                                className="w-1/2 border border-gray-300 rounded px-3 py-2" />
                             <button
                                 onClick={handleGoalUpdate}
-                                className="submit"
+                                className="submit px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
                             >
                                 Actualizar
                             </button>

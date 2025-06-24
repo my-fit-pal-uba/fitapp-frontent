@@ -81,7 +81,7 @@ function ExerciseHistory() {
 
         <ul className="routine-list">
           {filtered.map((s, idx) => (
-            <li key={idx} className="routine-card">
+            <li key={idx} className="history-routine-card">
               <p><strong>Ejercicio:</strong> {s.exercise_name}</p>
               <p><strong>Repeticiones:</strong> {s.repetitions}</p>
               <p><strong>Peso:</strong> {s.weight} kg</p>

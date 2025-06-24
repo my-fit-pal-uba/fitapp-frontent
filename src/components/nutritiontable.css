@@ -17,6 +17,20 @@
   gap: 2rem;
 }
 
+p {
+    display: block;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    margin-bottom: 0px;
+}
+
+p {
+  margin: 0;
+}
+
 .food-card {
   background: white;
   border-radius: 8px;
