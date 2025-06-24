@@ -59,3 +59,36 @@
   font-size: 1rem;
   transition: background-color 0.3s ease;
 }
+
+.diet-dishes-section {
+  margin: 1rem 0 1.5rem 0;
+}
+
+.diet-dishes-section h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+  color: #3e5871;
+  font-weight: 600;
+}
+
+.diet-dishes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.diet-dishes-list li {
+  background: #f7fafd;
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 1rem;
+  color: #2c3e50;
+  box-shadow: 0 1px 4px rgba(60, 120, 200, 0.04);
+}
+
+.no-dishes {
+  color: #b0b0b0;
+  font-size: 0.98rem;
+  font-style: italic;
+}
