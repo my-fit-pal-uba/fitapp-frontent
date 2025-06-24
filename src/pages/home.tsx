@@ -7,6 +7,7 @@ import { getToken } from '../Models/token';
 import { postCalories, postWeight } from '../services/registration.services';
 import Chart from '../components/bar';
 import { useEffect, useState } from 'react';
+import { DevUrl } from "../env/dev.url.model";
 
 function Home() {
   const user = getToken();
@@ -15,7 +16,7 @@ function Home() {
 
   const fetchLatestGoal = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8080/goals/current?user_id=${user_id}`, {
+      const response = await fetch(`${DevUrl.baseUrl}/goals/current?user_id=${user_id}`, {
         method: 'GET',
         headers: { accept: 'application/json' },
       });
