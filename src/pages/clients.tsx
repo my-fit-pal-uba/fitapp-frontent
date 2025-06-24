@@ -108,6 +108,8 @@ function Clients() {
       navigate(`/clients/${clientId}/exercise-history`);
     } else if (value === 'food_tracking') {
       navigate(`/clients/${clientId}/food-tracking`);
+    } else if (value === 'client_notifications') {
+      navigate(`/clients/${clientId}/notifications`);
     }
   };
 
@@ -143,6 +145,7 @@ function Clients() {
                   <option value="routine_history">Historial rutinas</option>
                   <option value="exercise_history">Historial ejercicios</option>
                   <option value="food_tracking">Historial alimenticio</option>
+                  <option value="client_notifications">Notificaciones</option>
                 </select>
               </div>
             </div>

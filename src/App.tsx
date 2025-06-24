@@ -25,6 +25,7 @@ import Tracking from './pages/food_tracking.tsx';
 import ChangePassword from './pages/change_password_mail.tsx';
 import ChangePasswordPage from './pages/change_password.tsx';
 import ClientFoodTracking from './pages/client_food_tracking.tsx';
+import ClientNotifications from './pages/client_notifications.tsx';
 
 import ShareExercise from "./pages/share_exercise";
 import ShareDish from './pages/share_dish.tsx';
@@ -112,6 +113,14 @@ function App() {
             element={
               <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
                 <ClientFoodTracking />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/clients/:clientId/notifications"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientNotifications />
               </RoleProtectedRoute>
             }
           />
