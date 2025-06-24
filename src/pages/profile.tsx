@@ -14,6 +14,13 @@ function SimpleProfileForm() {
         gender: '',
     });
 
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+
+    const showToast = (message: string, type: "success" | "error" = "success") => {
+        setToast({ message, type });
+        setTimeout(() => setToast(null), 3000);
+    };
+
     useEffect(() => {
         const fetchProfile = async () => {
             try {
@@ -82,7 +89,7 @@ function SimpleProfileForm() {
             }
         } catch (error) {
             console.error('Error al guardar los datos:', error);
-            alert('Error al guardar los datos. Por favor, intenta de nuevo completando todos los campos.');
+            showToast('Error al guardar los datos. Por favor, intenta de nuevo completando todos los campos.', 'error');
         }
     };
 
@@ -138,6 +145,51 @@ function SimpleProfileForm() {
                     </button>
                 </div >
             </form>
+            {getToken() &&
+                <div className="link-code-container">
+                    <button
+                        type="button"
+                        className="copy-link-btn"
+                        onClick={async () => {
+                            try {
+                                const user: User | null = getToken();
+                                if (!user) return;
+
+                                const apiUrl = new URL(`${DevUrl.baseUrl}/profiles/get_code`);
+                                apiUrl.searchParams.append('user_id', String(user.user_id));
+
+                                const res = await fetch(apiUrl.toString(), {
+                                    method: 'GET',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                    },
+                                });
+
+                                const data = await res.json();
+
+                                if (!data.code) {
+                                    alert("No se pudo obtener el código.");
+                                    return;
+                                }
+
+                                const code = data.code;
+                                await navigator.clipboard.writeText(code);
+                                showToast("Código copiado al portapapeles.", "success");
+                            } catch (err) {
+                                console.error("Error copiando el código:", err);
+                                showToast("No se pudo obtener el código.", "error");
+                            }
+                        }}
+                    >
+                        Copiar código de vinculación
+                    </button>
+                </div>
+            }
+            {toast && (
+                <div className='flash-message'>
+                    {toast.message}
+                </div>
+            )}
         </div>
     );
 }

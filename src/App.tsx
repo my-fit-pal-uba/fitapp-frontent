@@ -25,6 +25,11 @@ import Tracking from './pages/food_tracking.tsx';
 import ChangePassword from './pages/change_password_mail.tsx';
 import ChangePasswordPage from './pages/change_password.tsx';
 
+import ShareExercise from "./pages/share_exercise";
+import ShareDish from './pages/share_dish.tsx';
+import SharedItems from './pages/shared';
+import ExerciseHistory from "./pages/exercises_history.tsx";
+import ClientExerciseHistory from './pages/client_exercise_history.tsx';
 
 function App() {
   return (
@@ -35,18 +40,22 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/profile" element={<Profile />} /> 
-          <Route path="/routines" element={<Routines />} /> 
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/routines" element={<Routines />} />
           <Route path="/routines/create" element={<CreateRoutine />} />
           <Route path="/rutine-history" element={<RoutineHistory />} />
-          <Route path="/exercises" element={<Exercises />} /> 
-          <Route path="/nutrition" element={<Nutrition/>} />
-          <Route path="/diets" element={<Diets/>} />
+          <Route path="/exercises" element={<Exercises />} />
+          <Route path="/nutrition" element={<Nutrition />} />
+          <Route path="/diets" element={<Diets />} />
           <Route path="/diet/:dietId/add-dish" element={<AddDishToDiet />} />
           <Route path="/realizar/:id" element={<RealizarEjercicio />} />
           <Route path="/goals" element={<GoalsPage />} />
           <Route path="/my_photos" element={<PhotosPage />} />
+          <Route path="/compartir-ejercicio/:exerciseId" element={<ShareExercise />} />
+          <Route path="/compartir-plato/:dishId" element={<ShareDish />} />
+          <Route path="/shared" element={<SharedItems />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/exercise-history" element={<ExerciseHistory />} />
           <Route
             path="/clients"
             element={
@@ -85,10 +94,18 @@ function App() {
               <Tracking></Tracking>
             }
           ></Route>
-          <Route path="password-mail" element={<ChangePassword/>}
+          <Route path="password-mail" element={<ChangePassword />}
           ></Route>
-          <Route path="password-reset" element={<ChangePasswordPage/>}
+          <Route path="password-reset" element={<ChangePasswordPage />}
           ></Route>
+          <Route
+            path="/clients/:clientId/exercise-history"
+            element={
+              <RoleProtectedRoute allowedRoles={["personal_trainer"]}>
+                <ClientExerciseHistory />
+              </RoleProtectedRoute>
+            }
+          />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

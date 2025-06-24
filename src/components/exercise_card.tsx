@@ -3,6 +3,7 @@ import { getToken } from '../Models/token';
 import { DevUrl } from "../env/dev.url.model";
 import './exercise_card.css';
 import { User } from '../Models/user';
+import { useNavigate } from 'react-router';
 
 export default function ExerciseCard({ exercise, onClick, averageRating = 0, initialUserRating = 0 }: { exercise: any, onClick: () => void, averageRating?: number, initialUserRating?: number }) {
   const [hoverRating, setHoverRating] = useState(0);
@@ -13,6 +14,7 @@ export default function ExerciseCard({ exercise, onClick, averageRating = 0, ini
   const [userRating, setUserRating] = useState<number>(initialUserRating);
   const [message, setMessage] = useState<string | null>(null);
 
+  const navigate = useNavigate();
 
   const handleRating = async (rating: number) => {
   try {
@@ -106,9 +108,24 @@ export default function ExerciseCard({ exercise, onClick, averageRating = 0, ini
             </video>
           )}
         </div>
-        <button className="realizar-button" onClick={onClick}>
-          Realizar
-        </button>
+        <div className="exercise-card-buttons">
+          <button
+            className="realizar-button"
+            onClick={onClick}
+          >
+            Realizar ejercicio
+          </button>
+          {user?.rol === "personal_trainer" && (
+            <button
+              className="share-btn"
+              onClick={() =>
+                navigate(`/compartir-ejercicio/${exercise.exercise_id}`)
+              }
+            >
+              Compartir
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

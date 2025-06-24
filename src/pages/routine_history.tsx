@@ -19,7 +19,7 @@ async function getRoutineHistory(user_id: number) {
     }
 
     const data = await response.json();
-    // Ajuste aquí:
+
     return data.message && data.message[1]?.routine_history
       ? data.message[1].routine_history
       : [];
