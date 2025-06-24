@@ -2,7 +2,7 @@ import { DevUrl } from "../env/dev.url.model";
 import { Dish } from "../Models/dish";
 
 export async function getDishes() {
-  const response = await fetch("http://localhost:8080/nutrition/get_dishes");
+  const response = await fetch(`${DevUrl.baseUrl}/nutrition/get_dishes`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
