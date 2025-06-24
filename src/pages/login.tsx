@@ -125,13 +125,20 @@ function Login(): JSX.Element {
             <button type="submit">
               Ingresar
             </button>
+
           </div>
-          <GoogleLogin
-            onSuccess={handleGoogleLogin}
-            onError={() => {
-              alert('Error al iniciar sesión con Google');
-            }}
-          />
+          <div className="other-options-wrapper">
+
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                alert('Error al iniciar sesión con Google');
+              }}
+            />
+            <button type="button" onClick={() => navigate('/password-mail')}>
+              Olvidé mi contraseña
+            </button>
+          </div>
         </div>
       </div>
     </form>

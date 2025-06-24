@@ -22,6 +22,7 @@ import ClientProfile from './pages/client_profile.tsx';
 import ClientRoutineHistory from './pages/client_routine_history.tsx';
 import RoleProtectedRoute from './components/role_protected_route.tsx';
 import Tracking from './pages/food_tracking.tsx';
+import ChangePassword from './pages/change_password_mail.tsx';
 
 
 function App() {
@@ -82,6 +83,10 @@ function App() {
             element={
               <Tracking></Tracking>
             }
+          ></Route>
+          <Route path="password-mail" element={<ChangePassword/>}
+          ></Route>
+          <Route path="password-reset" element={<ChangePassword/>}
           ></Route>
           <Route path="*" element={<Login />} />
         </Routes>
