@@ -2,9 +2,9 @@
   max-width: 1200px;
   margin: 200px auto 0;
   padding: 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   width: 100%;
-  color: #333;
+  color: white;
 }
 
 .my-clients-container h1 {
@@ -12,6 +12,7 @@
   font-weight: 700;
   margin-bottom: 2rem;
   text-align: center;
+  color: white;
 }
 
 .search-box {
@@ -24,9 +25,22 @@
   width: 100%;
   max-width: 400px;
   padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 8px;
   font-size: 1rem;
+  background-color: #0a3946;
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box input::placeholder {
+  color: #bbb;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #ff7d00;
+  box-shadow: 0 0 0 3px rgba(255, 125, 0, 0.3);
 }
 
 .clients-grid {
@@ -39,23 +53,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #eaeaea;
+  background-color: #062c30;
+  border: 1px solid #0d4b5a;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
   padding: 1rem 1.5rem;
   transition: all 0.2s ease;
+  color: white;
 }
 
 .client-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px rgba(255, 125, 0, 0.5);
+  border-color: #ff7d00;
 }
 
 .client-info h2 {
   font-size: 1.1rem;
   font-weight: 500;
   margin: 0;
+  color: white;
 }
 
 .client-actions {
@@ -64,7 +81,7 @@
 }
 
 .client-button {
-  background-color: #4d90fe;
+  background-color: #ff7d00;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
@@ -72,26 +89,41 @@
   font-size: 0.95rem;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .client-button:hover {
-  background-color: #357ae8;
+  background-color: #e67300;
 }
 
 .associate-section {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #444;
   text-align: center;
+  color: white;
 }
 
 .associate-section input {
   padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 8px;
   margin-right: 1rem;
   font-size: 1rem;
   width: 250px;
+  background-color: #0a3946;
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.associate-section input::placeholder {
+  color: #bbb;
+}
+
+.associate-section input:focus {
+  outline: none;
+  border-color: #ff7d00;
+  box-shadow: 0 0 0 3px rgba(255, 125, 0, 0.3);
 }
 
 .associate-section button {
@@ -103,32 +135,20 @@
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-}
-
-h1,
-.associate-section h2 {
-  color: white;
+  transition: background-color 0.3s ease;
 }
 
 .associate-section button:hover {
   background-color: #218838;
 }
 
-.search-box input {
-  color: black;
-}
-
-.associate-section input {
-  color: black;
-}
-
 .success {
-  color: green;
+  color: #28a745;
   margin-top: 1rem;
 }
 
 .error {
-  color: red;
+  color: #d32f2f;
   margin-top: 1rem;
 }
 
@@ -147,20 +167,21 @@ h1,
   background-size: 10px;
   max-width: 180px;
   height: 35px;
+  transition: background-color 0.3s ease;
 }
 
 .client-dropdown option {
-  background-color: #e23d00;
+  background-color: #ff7d00;
   color: white;
 }
 
 .client-dropdown option:hover {
-  background-color: #e23d00;
+  background-color: #ff7d00;
   color: white;
 }
 
 .client-dropdown:hover {
-  background-color: #e23d00;
+  background-color: #ff7d00;
 }
 
 .client-dropdown:focus {
@@ -171,4 +192,23 @@ h1,
 
 .client-profile-title {
   color: white;
+}
+
+.associate-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.associate-section button {
+  padding: 0.75rem 1.5rem;
+  background-color: #ff7d00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }

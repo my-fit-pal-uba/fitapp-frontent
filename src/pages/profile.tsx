@@ -99,7 +99,7 @@ function SimpleProfileForm() {
             <h2>Mi Perfil</h2>
             <form onSubmit={handleSubmit} className="simple-profile-form">
                 <div className="form-wrapper">
-                    <div className="form-group">
+                    <div className="profile-form-group">
                         <label htmlFor="age">Edad</label>
                         <input
                             id="age"
@@ -112,7 +112,7 @@ function SimpleProfileForm() {
                         />
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                         <label htmlFor="height">Altura (cm)</label>
                         <input
                             id="height"
@@ -125,7 +125,7 @@ function SimpleProfileForm() {
                         />
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                         <label htmlFor="gender">Género</label>
                         <select
                             id="gender"
@@ -140,7 +140,7 @@ function SimpleProfileForm() {
                         </select>
                     </div>
 
-                    <button type="submit" className="submit-btn">
+                    <button type="submit" className="profile-submit-btn">
                         Guardar
                     </button>
                 </div >

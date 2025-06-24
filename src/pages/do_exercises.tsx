@@ -24,6 +24,9 @@ function RealizarEjercicio() {
   const [repetitionsInput, setRepetitionsInput] = useState('');
   const [weightInput, setWeightInput] = useState('');
 
+    const [message, setMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   useEffect(() => {
     if (!exercise && id) {
         fetch(`${DevUrl}/exercises/${id}`)
@@ -78,11 +81,12 @@ function RealizarEjercicio() {
         throw new Error('Error al registrar las series');
         navigate('/exercises')
       }
-      alert(`Series registradas exitosamente`)
-      navigate('/exercises')
+      setMessage("Series registradas exitosamente");
+      setTimeout(() => setMessage(null), 4000);
     } catch (error) {
       console.error('Error al enviar las series:', error);
-      alert('Error al registrar las series. Por favor, inténtalo de nuevo.');
+      setErrorMessage('Error al registrar las series. Por favor, inténtalo de nuevo.');
+      setTimeout(() => setErrorMessage(null), 4000);
     }
     setSeries([]); // Limpiar las series después de enviar
     setRepetitionsInput('');
@@ -95,13 +99,15 @@ function RealizarEjercicio() {
   return (
     <>
       <Header />
+      {message && <div className="flash-message">{message}</div>}
+      {errorMessage && <div className="flash-message">{errorMessage}</div>}
       <div>
         <h1>{exercise.name}</h1>
         <p>{exercise.description}</p>
       </div>
 
       <div>
-        <h2>Agregar series</h2>
+        <h2 className='serie-h2'>Agregar series</h2>
         <form onSubmit={addSerie} className="formSerieContainer">
           <input
             type="number"

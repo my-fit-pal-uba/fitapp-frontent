@@ -54,7 +54,7 @@
   margin-bottom: 1.5rem;
 }
 
-.chart-wrapper {
+.home-chart-wrapper {
   flex: 1;
   background-color: #062c30;
   border-radius: 8px;
@@ -62,7 +62,7 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-.chart-wrapper h3 {
+.home-chart-wrapper h3 {
   color: white;
   margin-bottom: 1rem;
 }
@@ -91,4 +91,15 @@
   color: #cccccc;
   font-size: 1.1rem;
   text-align: center;
+}
+
+.home-chart-wrapper submit-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    width: 100%;
 }

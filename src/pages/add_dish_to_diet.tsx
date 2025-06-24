@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { addDish } from "../services/diets.services";
 import { DevUrl } from "../env/dev.url.model";
 import { Dish } from "../Models/dish";
+import Header from '../components/header';
 import './add_dish_to_diet.css';
 
 const AddDishToDiet = () => {
@@ -94,81 +95,84 @@ const AddDishToDiet = () => {
   };
 
   return (
-    <div className="add-dish-container">
-      <h2>Agregar Plato a la Dieta</h2>
-      <form className="add-dish-form" onSubmit={handleSubmit}>
-        <label>
-          Plato:
-          <select
-            value={dishId}
-            onChange={(e) => {
-              setDishId(e.target.value);
-              setMealCategoryId(""); // Reiniciar categoría
-            }}
-          >
-            <option value="">Selecciona un plato</option>
-            {dishes.map((dish) => (
-              <option key={dish.id} value={dish.id}>
-                {dish.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
+    <>
+      <Header />
+      <div className="add-dish-container">
+        <h2>Agregar Plato a la Dieta</h2>
+        <form className="add-dish-form" onSubmit={handleSubmit}>
+          <label>
+            Plato:
+            <select
+              value={dishId}
+              onChange={(e) => {
+                setDishId(e.target.value);
+                setMealCategoryId(""); // Reiniciar categoría
+              }}
+            >
+              <option value="">Selecciona un plato</option>
+              {dishes.map((dish) => (
+                <option key={dish.id} value={dish.id}>
+                  {dish.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <br />
+
+          {selectedDish && (
+            <>
+              <label>
+                Categoría del plato:
+                <select
+                  value={mealCategoryId}
+                  onChange={(e) => setMealCategoryId(e.target.value)}
+                >
+                  <option value="">Selecciona una categoría</option>
+                  {selectedDish.id_dish_category.map((catId: number) => {
+                    const category = mealCategories.find((cat) => cat.id === catId);
+                    return (
+                      <option key={catId} value={catId}>
+                        {category ? category.description : `Categoría #${catId}`}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+              <br />
+            </>
+          )}
+
+          <label>
+            Tamaño de porción (g):
+            <input
+              type="number"
+              placeholder="Tamaño de porción (g)"
+              value={servingSize}
+              onChange={(e) => setServingSize(e.target.value)}
+            />
+          </label>
+          <br />
+
+          <button type="submit">Agregar Plato</button>
+        </form>
+
+        {success && <p className="success-message">¡Plato agregado correctamente!</p>}
+        {error && <p className="error-message">{error}</p>}
 
         {selectedDish && (
-          <>
-            <label>
-              Categoría del plato:
-              <select
-                value={mealCategoryId}
-                onChange={(e) => setMealCategoryId(e.target.value)}
-              >
-                <option value="">Selecciona una categoría</option>
-                {selectedDish.id_dish_category.map((catId: number) => {
-                  const category = mealCategories.find((cat) => cat.id === catId);
-                  return (
-                    <option key={catId} value={catId}>
-                      {category ? category.description : `Categoría #${catId}`}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <br />
-          </>
+          <div className="dish-details">
+            <h3>Detalles del plato seleccionado</h3>
+            <p><strong>Nombre:</strong> {selectedDish.name}</p>
+            <p><strong>Descripción:</strong> {selectedDish.description}</p>
+            <p><strong>Calorías:</strong> {selectedDish.calories}</p>
+            <p><strong>Carbohidratos:</strong> {selectedDish.carbs}</p>
+            <p><strong>Grasas:</strong> {selectedDish.fats}</p>
+            <p><strong>Proteínas:</strong> {selectedDish.proteins}</p>
+            <p><strong>Peso base:</strong> {selectedDish.weight}g</p>
+          </div>
         )}
-
-        <label>
-          Tamaño de porción (g):
-          <input
-            type="number"
-            placeholder="Tamaño de porción (g)"
-            value={servingSize}
-            onChange={(e) => setServingSize(e.target.value)}
-          />
-        </label>
-        <br />
-
-        <button type="submit">Agregar Plato</button>
-      </form>
-
-      {success && <p className="success-message">¡Plato agregado correctamente!</p>}
-      {error && <p className="error-message">{error}</p>}
-
-      {selectedDish && (
-        <div className="dish-details">
-          <h3>Detalles del plato seleccionado</h3>
-          <p><strong>Nombre:</strong> {selectedDish.name}</p>
-          <p><strong>Descripción:</strong> {selectedDish.description}</p>
-          <p><strong>Calorías:</strong> {selectedDish.calories}</p>
-          <p><strong>Carbohidratos:</strong> {selectedDish.carbs}</p>
-          <p><strong>Grasas:</strong> {selectedDish.fats}</p>
-          <p><strong>Proteínas:</strong> {selectedDish.proteins}</p>
-          <p><strong>Peso base:</strong> {selectedDish.weight}g</p>
-        </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 

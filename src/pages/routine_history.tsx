@@ -107,7 +107,7 @@ function RoutineHistory() {
         {history.length === 0 && !error && <p>No hay historial de rutinas.</p>}
         <ul className="routine-list">
             {history.map((item, idx) => (
-                <li key={idx} className="routine-card">
+                <li key={idx} className="history-routine-card">
                 <strong>Fecha:</strong> {item.done_at}<br />
                 <strong>Rutina:</strong> {item.routine?.name}<br />
                 <strong>Grupo muscular:</strong> {item.routine?.muscular_group}<br />

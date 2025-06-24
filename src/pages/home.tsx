@@ -61,11 +61,11 @@ function Home() {
         <section className="home-section">
           <h2>📈 Tu progreso</h2>
           <div className="charts-wrapper">
-            <div className="chart-wrapper">
+            <div className="home-chart-wrapper">
               <h3>Historial de calorías</h3>
               <Chart chartType='line' fetchData={() => getCaloriesHistory(user_id)} />
             </div>
-            <div className="chart-wrapper">
+            <div className="home-chart-wrapper">
               <h3>Historial de peso</h3>
               <Chart chartType='line' fetchData={() => getWeightHistory(user_id)} goalLine={goalLine ?? undefined} />
             </div>
