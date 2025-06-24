@@ -11,6 +11,7 @@ export default defineConfig({
     },
     hmr: {
       clientPort: 8081,  
-    }
+    },
+    allowedHosts: ['fitapp-frontent.onrender.com']
   }
 });
