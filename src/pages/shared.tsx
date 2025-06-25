@@ -67,15 +67,15 @@ const SharedItems = () => {
     <>
       <Header />
       <div className="shared-items-container">
-        <h1>Platos y ejercicios que te compartió tu entrenador</h1>
+        <h1>Alimentos y ejercicios que te compartió tu entrenador</h1>
         {loading ? (
           <p>Cargando...</p>
         ) : (
           <>
             <section>
-              <h2>Platos</h2>
+              <h2>Alimentos</h2>
               {dishes.length === 0 ? (
-                <p>No tienes platos compartidos.</p>
+                <p>No tienes alimentos compartidos.</p>
               ) : (
                 <NutritionTable
                   data={dishes}
