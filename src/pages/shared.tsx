@@ -9,14 +9,35 @@ import { Exercise } from "../Models/exercise";
 import NutritionTable from "../components/nutritiontable";
 import ExerciseCard from "../components/exercise_card";
 import { useNavigate } from "react-router";
+import { getDishCategories, getDishes, postDish, registerDishConsumption } from "../services/nutrition.services";
+import { MealRegistrationModal } from "../components/mealregistrationmodal";
 
 const SharedItems = () => {
   const user = getToken();
   const [dishes, setDishes] = useState<Dish[]>([]);
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  const handleAddToMeal = (item: Dish) => {
+    setSelectedDish(item);
+    setIsModalOpen(true);
+  };
+
+  
+  const handleRegisterMeal = (quantity: number) => {
+    const userToken = getToken();
+    if (!userToken || !selectedDish) {
+        console.error("User token is not available.");
+        return;
+    }
+    const user_id = userToken.user_id ?? 0;
+    const dish_id = selectedDish.id ?? 0;
+    registerDishConsumption(dish_id, user_id, quantity)
+  };
 
   useEffect(() => {
     const fetchShared = async () => {
@@ -79,7 +100,7 @@ const SharedItems = () => {
               ) : (
                 <NutritionTable
                   data={dishes}
-                  onAddToMeal={() => {}} // Puedes dejarlo vacío o mostrar un modal si quieres permitir registrar consumo
+                  onAddToMeal={handleAddToMeal}
                 />
               )}
             </section>
@@ -104,6 +125,12 @@ const SharedItems = () => {
             </section>
           </>
         )}
+        <MealRegistrationModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            dish={selectedDish}
+            onRegister={handleRegisterMeal}
+         />
       </div>
     </>
   );
